@@ -163,9 +163,9 @@
 		B63E5C30272BA4E600830C77 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				B67D057427307EBD00B2E311 /* Models */,
+				B67D057327307EA700B2E311 /* ViewModels */,
 				B63E5C31272BA4E600830C77 /* CampusConnectApp.swift */,
-				B63E5C70272BAA8100830C77 /* Student.swift */,
-				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
 				B63E5C32272BA4E600830C77 /* ContentView.swift */,
 				B63E5C33272BA4E700830C77 /* Assets.xcassets */,
 				B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */,
@@ -208,6 +208,22 @@
 				B63E5C57272BA4E700830C77 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		B67D057327307EA700B2E311 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B67D057427307EBD00B2E311 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B63E5C70272BAA8100830C77 /* Student.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C4E953673886AFE59260D500 /* Pods */ = {
