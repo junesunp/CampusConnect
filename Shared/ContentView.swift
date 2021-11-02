@@ -15,21 +15,21 @@ struct ContentView: View {
         Text(student.Last)
         Text(student.School)
         Text(student.Major)
-        Text("Hello World")
 
       }
     }
   
+    
     @ObservedObject var viewModel = StudentsViewModel()
     var body: some View {
 
         TabView{
             List {
-              ForEach(viewModel.students) {
-                student in
-                  studentRowView(student: student)
-              }
-            }.tabItem {
+                Text(viewModel.user.Email)
+                Text(viewModel.user.First)
+                Text(viewModel.user.Last)
+            }
+            .tabItem {
                 Image(systemName: "list.bullet")
             }
             VStack{
@@ -42,7 +42,12 @@ struct ContentView: View {
             .tabItem {
                 Image(systemName: "qrcode.viewfinder")
             }
-            Text("Profile Info").tabItem {
+            VStack{
+                Text(viewModel.user.First)
+                Text(viewModel.user.Last)
+                Text(viewModel.user.School)
+            }
+            .tabItem {
                 Image(systemName: "person.crop.circle")
             }
             
@@ -51,6 +56,7 @@ struct ContentView: View {
   
   init(){
     viewModel.fetchStudents()
+    viewModel.fetchStudent()
   }
 }
 
