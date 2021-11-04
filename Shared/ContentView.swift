@@ -27,7 +27,7 @@ class AppViewModel: ObservableObject {
         }
     }
     
-    func signUp(email: String, password: String){
+    func signUp(email: String, password: String, username: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
         guard let strongSelf = self else { return }
         DispatchQueue.main.async {
@@ -71,7 +71,7 @@ struct ContentView: View {
                         Text("Sign Out")
                             .frame(width: 200, height: 50)
                             .foregroundColor(Color.blue)
-                            .background(Color(Color.green))
+                            .background(Color.green)
                     })
                 }
                 .tabItem {
@@ -141,7 +141,7 @@ struct SignInView: View {
                             .cornerRadius(8)
                             .background(Color.blue)
                     })
-                    NavigationLink("Create Account", destination: SignUpView())
+                    NavigationLink("Create Account", destination: StartSignUpView())
                 }
                 .padding()
                 
@@ -152,9 +152,69 @@ struct SignInView: View {
     }
 }
 
-struct SignUpView: View {
+struct StartSignUpView: View {
     @State var email = ""
+    @State var username = ""
     @State var password = ""
+    @State var fname = ""
+    @State var lname = ""
+    var gradYear = ["2022", "2023", "2024", "2025"]
+    @State private var selectedYearIndex = 0
+    @State var schoolName = ""
+    @State var major = ""
+    
+    
+    @EnvironmentObject var sviewModel: AppViewModel
+
+    @ObservedObject var viewModel = StudentsViewModel()
+    var body: some View {
+        NavigationView {
+//            VStack {
+                VStack {
+                    TextField("First Name", text: $fname)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                    TextField("Last Name", text: $lname)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                    TextField("Email Address", text: $email)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                    NavigationLink("Next", destination: SchoolSignUpView())
+//                    Button(action: {
+//                        guard !email.isEmpty, !password.isEmpty else {
+//                            return
+//                        }
+//                        sviewModel.signUp(email: email, password: password)
+//                    }, label: {
+//                        Text("Create Account")
+//                            .foregroundColor(Color.white)
+//                            .frame(width: 200, height: 50)
+//                            .cornerRadius(8)
+//                            .background(Color.blue)
+//                    })
+                }
+                .padding()
+                //Spacer()
+            }
+            .navigationTitle("Create Account")
+        }
+    }
+// }
+
+struct SchoolSignUpView: View {
+    @State var email = ""
+    @State var username = ""
+    @State var password = ""
+    @State var fname = ""
+    @State var lname = ""
+    @State var major = ""
+    var gradYear = ["2022", "2023", "2024", "2025"]
+    @State private var selectedYearIndex = 0
+    @State var schoolName = ""
     
     @EnvironmentObject var sviewModel: AppViewModel
 
@@ -163,17 +223,27 @@ struct SignUpView: View {
         NavigationView {
             VStack {
                 VStack {
-                    TextField("Email Address", text: $email)
+                    TextField("Username", text: $username)
                         .padding()
                         .background(Color(.secondarySystemBackground))
-                    SecureField("Password", text: $password)
+                    TextField("School", text: $schoolName)
                         .padding()
                         .background(Color(.secondarySystemBackground))
-                    Button(action: {
-                        guard !email.isEmpty, !password.isEmpty else {
-                            return
+                    Picker(selection: $selectedYearIndex, label: Text("")) {
+                        ForEach(0 ..< gradYear.count) {
+                           Text(self.gradYear[$0])
                         }
-                        sviewModel.signUp(email: email, password: password)
+                     }
+                     Text("Your Graduation Year: \(gradYear[selectedYearIndex])")
+                    TextField("major", text: $major)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                    //NavigationLink("Next", destination: SchoolSignUpView())
+                    Button(action: {
+//                        guard !email.isEmpty, !password.isEmpty else {
+//                            return
+//                        }
+                        sviewModel.signUp(email: email, password: password, username: username, fname: fname, lname: lname, schoolName: schoolName, major: major, gradYear: gradYear[selectedYearIndex])
                     }, label: {
                         Text("Create Account")
                             .foregroundColor(Color.white)
@@ -183,14 +253,12 @@ struct SignUpView: View {
                     })
                 }
                 .padding()
-                
                 Spacer()
             }
-            .navigationTitle("Create Account")
+//            .navigationTitle("Create Account")
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
