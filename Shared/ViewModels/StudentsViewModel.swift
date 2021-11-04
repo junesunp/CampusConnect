@@ -39,7 +39,7 @@ class StudentsViewModel: ObservableObject{
      if let document = document {
       do {
         self.user = try document.data(as: Student.self)!
-        self.getStudentGroups()
+        self.getStudentGroups(number: 1)
       }
       catch {
        print(error)
@@ -48,29 +48,41 @@ class StudentsViewModel: ObservableObject{
     }
    }
   }
-  func getStudentGroups(){
-    for group in self.user.Groups{
-      let docRef = group
-      docRef.getDocument { document, error in
-        if let error = error as NSError? {
-          self.errorMessage = "Error getting document: \(error.localizedDescription)"
-        }
-        else {
-         if let document = document {
-           do{
-             let temp = try document.data(as: Group.self)
-             self.myGroups.append(temp!)
-           }
-           catch {
-             print(error)
-           }
-         }
-        }
-      }
+    func sorterForAlphabetical(this:Group, that:Group) -> Bool {
+        return this.Name < that.Name
     }
-  }
-  
+    func sorterForTimeStamp(this:Group, that:Group) -> Bool {
+      return this.Created < that.Created
+    }
+      func getStudentGroups(number: Int) {
+          for group in self.user.Groups{
+            let docRef = group
+            docRef.getDocument { document, error in
+              if let error = error as NSError? {
+                self.errorMessage = "Error getting document: \(error.localizedDescription)"
+              }
+              else {
+               if let document = document {
+                 do{
+                   let temp = try document.data(as: Group.self)
+                   self.myGroups.append(temp!)
+                 }
+                 catch {
+                   print(error)
+                 }
+               }
+              }
+            }
+          }
+          if number == 1{
+              myGroups.sort(by: sorterForAlphabetical)
+          }
+          else{
+              myGroups.sort(by: sorterForTimeStamp)
+          }
+    }
 
+    
   func addStudent(student: Student){
     do {
       try db.collection("Student").addDocument(from: student)

@@ -17,6 +17,8 @@ struct Group: Identifiable, Codable {
  var Name: String
  var Description: String
  var Recruiter: DocumentReference
+ var Students: [DocumentReference]
+    
  enum CodingKeys: String, CodingKey {
   case id
   case Created = "DateCreated"
@@ -24,5 +26,6 @@ struct Group: Identifiable, Codable {
   case Name
   case Description
   case Recruiter
+  case Students
  }
 }
