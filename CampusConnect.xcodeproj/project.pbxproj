@@ -50,6 +50,12 @@
 		B67D056E272F77F400B2E311 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056D272F77F400B2E311 /* FirebaseStorage */; };
 		B67D0570272F77F400B2E311 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */; };
 		B67D0572272F77F400B2E311 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */; };
+		B67D05762731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
+		B67D05772731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
+		B67D05792731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
+		B67D057A2731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
+		B67D057F273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
+		B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +92,9 @@
 		B63E5C70272BAA8100830C77 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsViewModel.swift; sourceTree = "<group>"; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
+		B67D05752731CEA100B2E311 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		B67D05782731D43400B2E311 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
+		B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
+				B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -222,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				B63E5C70272BAA8100830C77 /* Student.swift */,
+				B67D05752731CEA100B2E311 /* Group.swift */,
+				B67D05782731D43400B2E311 /* Recruiter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -433,8 +445,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
+				B67D05792731D43400B2E311 /* Recruiter.swift in Sources */,
+				B67D057F273361FE00B2E311 /* RecruiterViewModel.swift in Sources */,
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				B63E5C71272BAA8100830C77 /* Student.swift in Sources */,
+				B67D05762731CEA100B2E311 /* Group.swift in Sources */,
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,8 +459,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B63E5C75272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
+				B67D057A2731D43400B2E311 /* Recruiter.swift in Sources */,
+				B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */,
 				B63E5C5C272BA4E700830C77 /* ContentView.swift in Sources */,
 				B63E5C72272BAA8100830C77 /* Student.swift in Sources */,
+				B67D05772731CEA100B2E311 /* Group.swift in Sources */,
 				B63E5C5A272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

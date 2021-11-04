@@ -24,20 +24,25 @@ struct ContentView: View {
     var body: some View {
 
         TabView{
-            List {
-                Text(viewModel.user.Email)
-                Text(viewModel.user.First)
-                Text(viewModel.user.Last)
+            VStack{
+                List {
+                    Text(viewModel.user.First)
+                }
+                List{
+                    ForEach(viewModel.myGroups){
+                        group in
+                        Text(group.Name)
+                        Text(group.Description)
+                    }
+                }
             }
+            
             .tabItem {
                 Image(systemName: "list.bullet")
             }
             VStack{
                 Text("QR Code")
-                ForEach(viewModel.students) {
-                  student in
-                    Image(uiImage: viewModel.createQRCode(from: student.Email))
-                }
+                Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
             }
             .tabItem {
                 Image(systemName: "qrcode.viewfinder")
@@ -50,13 +55,12 @@ struct ContentView: View {
             .tabItem {
                 Image(systemName: "person.crop.circle")
             }
-            
         }
+            
     }
   
   init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
+      viewModel.fetchStudent()
   }
 }
 
