@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B28404D62731C642002684D3 /* GroupRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404D52731C642002684D3 /* GroupRow.swift */; };
+		B28404D82731CC5C002684D3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404D72731CC5C002684D3 /* Profile.swift */; };
+		B28404DA2731D235002684D3 /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404D92731D235002684D3 /* QRCode.swift */; };
+		B28404DC2731D9B4002684D3 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404DB2731D9B4002684D3 /* Group.swift */; };
+		B28404DE2731D9ED002684D3 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404DD2731D9ED002684D3 /* Recruiter.swift */; };
+		B28404E22731DBF8002684D3 /* RecruitersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404E12731DBF8002684D3 /* RecruitersViewModel.swift */; };
+		B28404E42731DD61002684D3 /* StudentViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404E32731DD61002684D3 /* StudentViews.swift */; };
+		B28404E62731DEF4002684D3 /* RecruiterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404E52731DEF4002684D3 /* RecruiterViews.swift */; };
+		B28404E82731DF6D002684D3 /* RecruiterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404E72731DF6D002684D3 /* RecruiterProfile.swift */; };
+		B28404EB273330A6002684D3 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = B28404EA273330A6002684D3 /* CodeScanner */; };
+		B28404ED273331D0002684D3 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28404EC273331D0002684D3 /* Scanner.swift */; };
 		B63E5C4A272BA4E700830C77 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C49272BA4E700830C77 /* Tests_iOS.swift */; };
 		B63E5C4C272BA4E700830C77 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C4B272BA4E700830C77 /* Tests_iOSLaunchTests.swift */; };
 		B63E5C56272BA4E700830C77 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C55272BA4E700830C77 /* Tests_macOS.swift */; };
@@ -70,6 +81,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B28404D52731C642002684D3 /* GroupRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRow.swift; sourceTree = "<group>"; };
+		B28404D72731CC5C002684D3 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		B28404D92731D235002684D3 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		B28404DB2731D9B4002684D3 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		B28404DD2731D9ED002684D3 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
+		B28404E12731DBF8002684D3 /* RecruitersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecruitersViewModel.swift; sourceTree = "<group>"; };
+		B28404E32731DD61002684D3 /* StudentViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViews.swift; sourceTree = "<group>"; };
+		B28404E52731DEF4002684D3 /* RecruiterViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterViews.swift; sourceTree = "<group>"; };
+		B28404E72731DF6D002684D3 /* RecruiterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterProfile.swift; sourceTree = "<group>"; };
+		B28404EC273331D0002684D3 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
 		B63E5C31272BA4E600830C77 /* CampusConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusConnectApp.swift; sourceTree = "<group>"; };
 		B63E5C32272BA4E600830C77 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B63E5C33272BA4E700830C77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -105,6 +126,7 @@
 				B67D0546272F77F400B2E311 /* FirebaseAppCheck in Frameworks */,
 				B67D0544272F77F400B2E311 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B67D054A272F77F400B2E311 /* FirebaseAuth in Frameworks */,
+				B28404EB273330A6002684D3 /* CodeScanner in Frameworks */,
 				B67D054E272F77F400B2E311 /* FirebaseCrashlytics in Frameworks */,
 				B67D0552272F77F400B2E311 /* FirebaseDatabaseSwift-Beta in Frameworks */,
 				B67D0560272F77F400B2E311 /* FirebaseInAppMessaging-Beta in Frameworks */,
@@ -147,6 +169,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B28404D42731C5F9002684D3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B28404D52731C642002684D3 /* GroupRow.swift */,
+				B28404D92731D235002684D3 /* QRCode.swift */,
+				B28404D72731CC5C002684D3 /* Profile.swift */,
+				B28404E52731DEF4002684D3 /* RecruiterViews.swift */,
+				B28404E72731DF6D002684D3 /* RecruiterProfile.swift */,
+				B28404E32731DD61002684D3 /* StudentViews.swift */,
+				B28404EC273331D0002684D3 /* Scanner.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B63E5C2B272BA4E600830C77 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +203,7 @@
 				B67D057327307EA700B2E311 /* ViewModels */,
 				B63E5C31272BA4E600830C77 /* CampusConnectApp.swift */,
 				B63E5C32272BA4E600830C77 /* ContentView.swift */,
+				B28404D42731C5F9002684D3 /* Views */,
 				B63E5C33272BA4E700830C77 /* Assets.xcassets */,
 				B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */,
 			);
@@ -213,6 +250,7 @@
 		B67D057327307EA700B2E311 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B28404E12731DBF8002684D3 /* RecruitersViewModel.swift */,
 				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
 			);
 			path = ViewModels;
@@ -222,6 +260,8 @@
 			isa = PBXGroup;
 			children = (
 				B63E5C70272BAA8100830C77 /* Student.swift */,
+				B28404DB2731D9B4002684D3 /* Group.swift */,
+				B28404DD2731D9ED002684D3 /* Recruiter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,6 +324,7 @@
 				B67D056D272F77F400B2E311 /* FirebaseStorage */,
 				B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */,
 				B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */,
+				B28404EA273330A6002684D3 /* CodeScanner */,
 			);
 			productName = "CampusConnect (iOS)";
 			productReference = B63E5C38272BA4E700830C77 /* CampusConnect.app */;
@@ -379,6 +420,7 @@
 			mainGroup = B63E5C2B272BA4E600830C77;
 			packageReferences = (
 				B67D053E272F77F400B2E311 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B28404E9273330A6002684D3 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = B63E5C39272BA4E700830C77 /* Products */;
 			projectDirPath = "";
@@ -432,9 +474,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B28404E22731DBF8002684D3 /* RecruitersViewModel.swift in Sources */,
+				B28404DA2731D235002684D3 /* QRCode.swift in Sources */,
+				B28404E62731DEF4002684D3 /* RecruiterViews.swift in Sources */,
+				B28404D62731C642002684D3 /* GroupRow.swift in Sources */,
+				B28404D82731CC5C002684D3 /* Profile.swift in Sources */,
+				B28404DC2731D9B4002684D3 /* Group.swift in Sources */,
+				B28404DE2731D9ED002684D3 /* Recruiter.swift in Sources */,
 				B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
+				B28404E82731DF6D002684D3 /* RecruiterProfile.swift in Sources */,
+				B28404E42731DD61002684D3 /* StudentViews.swift in Sources */,
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				B63E5C71272BAA8100830C77 /* Student.swift in Sources */,
+				B28404ED273331D0002684D3 /* Scanner.swift in Sources */,
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +587,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -588,6 +641,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -604,9 +658,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MSM8RA86AZ;
+				DEVELOPMENT_TEAM = TP5XBDBDNQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -635,9 +690,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MSM8RA86AZ;
+				DEVELOPMENT_TEAM = TP5XBDBDNQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -668,7 +724,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MSM8RA86AZ;
+				DEVELOPMENT_TEAM = TP5XBDBDNQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -696,7 +752,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MSM8RA86AZ;
+				DEVELOPMENT_TEAM = TP5XBDBDNQ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -867,6 +923,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B28404E9273330A6002684D3 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		B67D053E272F77F400B2E311 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -878,6 +942,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B28404EA273330A6002684D3 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B28404E9273330A6002684D3 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		B67D053F272F77F400B2E311 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B67D053E272F77F400B2E311 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
