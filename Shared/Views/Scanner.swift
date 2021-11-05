@@ -36,7 +36,7 @@ struct Scanner: View {
         Text("Scan")
       }
       .sheet(isPresented: $isShowingScanner) {
-        CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: self.handleScan)
+        CodeScannerView(codeTypes: [.qr], completion: self.handleScan)
       }
     }
 }
