@@ -29,8 +29,9 @@ struct RecruiterViews: View {
                             GroupRow(group: group)
                             .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
                             }
-                    }.onAppear(perform: { groupViewModel.clearStudents() })
+                    }
                 }.navigationBarTitle(recViewModel.user.First + "'s Groups")
+                .onAppear(perform: { groupViewModel.clearStudents() })
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
