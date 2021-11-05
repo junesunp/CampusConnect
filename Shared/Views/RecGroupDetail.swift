@@ -25,10 +25,10 @@ struct RecGroupDetail: View {
         }
 
     }.navigationBarTitle(group.Name)
-      .navigationBarItems(trailing:
-        NavigationLink(destination: Scanner(group: group)) {
-            Image(systemName: "plus")
-        }
-      )
+//      .navigationBarItems(trailing:
+//        NavigationLink(destination: Scanner(group: group)) {
+//            Image(systemName: "plus")
+//        }
+//      )
   }
 }
