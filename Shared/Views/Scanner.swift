@@ -19,7 +19,6 @@ struct Scanner: View {
     switch result {
     case .success(let code):
         let details = code.components(separatedBy: "")
-        
         groupViewModel.addStudent(group: group, studentId: details[0])
     case .failure(let error):
         print("Scanning failed")
