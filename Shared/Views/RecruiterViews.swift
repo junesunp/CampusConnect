@@ -11,10 +11,11 @@ struct RecruiterViews: View {
   
   @ObservedObject var recViewModel = RecruitersViewModel()
   @ObservedObject var groupViewModel = GroupsViewModel()
-  
+  @State var sort: Int = 1
+    
   init(){
     recViewModel.fetchRecruiter()
-    recViewModel.fetchRecruiterGroups()
+    recViewModel.fetchRecruiterGroups(number: sort)
     
     
   }
@@ -28,13 +29,21 @@ struct RecruiterViews: View {
                             GroupRow(group: group)
                             .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
                             }
-                        /*
-                        NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter)) {
-                            GroupRow(group: group)
-                            .onAppear(perform: { groupViewModel.getRecruiter(group: group) })
-                        } */
-                    } //.onDisappear(perform: { groupViewModel.clearStudents() })
+                    }.onAppear(perform: { groupViewModel.clearStudents() })
                 }.navigationBarTitle(recViewModel.user.First + "'s Groups")
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Picker(selection: $sort, label: Text("Sorting options")) {
+                                Text("Date").tag(1)
+                                Text("Alphabetical").tag(2)
+                            }
+                        }
+                        label: {
+                            Label("Sort", systemImage: "arrow.up.arrow.down")
+                        }
+                    }
+                }
             }
             .tabItem {
                 Image(systemName: "list.bullet")

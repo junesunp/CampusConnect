@@ -28,7 +28,7 @@ class RecruitersViewModel: ObservableObject {
         if let document = document {
           do{
             self.user = try document.data(as: Recruiter.self)!
-            self.fetchRecruiterGroups()
+            self.fetchRecruiterGroups(number: 1)
           }
           catch {
             print(error)
@@ -37,7 +37,16 @@ class RecruitersViewModel: ObservableObject {
       }
     }
   }
-  func fetchRecruiterGroups() {
+    
+    func sorterForAlphabetical(this:Group, that:Group) -> Bool {
+        return this.Name < that.Name
+    }
+    func sorterForTimeStamp(this:Group, that:Group) -> Bool {
+      return this.Created < that.Created
+    }
+    
+    
+  func fetchRecruiterGroups(number: Int) {
     db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).addSnapshotListener { (querySnapshot, error) in
       guard let documents = querySnapshot?.documents else {
         print("No documents")
@@ -46,6 +55,12 @@ class RecruitersViewModel: ObservableObject {
       self.recruiterGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
         return try? queryDocumentSnapshot.data(as: Group.self)
       }
+    }
+    if number == 1{
+        recruiterGroups.sort(by: sorterForAlphabetical)
+    }
+    else{
+        recruiterGroups.sort(by: sorterForTimeStamp)
     }
   }
   /*
