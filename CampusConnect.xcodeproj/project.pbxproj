@@ -21,6 +21,7 @@
 		5E9D8FDD2733631200AA6120 /* StudentViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8FD62733631200AA6120 /* StudentViews.swift */; };
 		5E9D8FDF2733709B00AA6120 /* GroupDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8FDE2733709B00AA6120 /* GroupDetail.swift */; };
 		5E9D8FE3273372FD00AA6120 /* GroupsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8FE2273372FD00AA6120 /* GroupsViewModel.swift */; };
+		5E9D8FE52734957600AA6120 /* RecGroupDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8FE42734957600AA6120 /* RecGroupDetail.swift */; };
 		B63E5C4A272BA4E700830C77 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C49272BA4E700830C77 /* Tests_iOS.swift */; };
 		B63E5C4C272BA4E700830C77 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C4B272BA4E700830C77 /* Tests_iOSLaunchTests.swift */; };
 		B63E5C56272BA4E700830C77 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C55272BA4E700830C77 /* Tests_macOS.swift */; };
@@ -95,6 +96,7 @@
 		5E9D8FD62733631200AA6120 /* StudentViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentViews.swift; sourceTree = "<group>"; };
 		5E9D8FDE2733709B00AA6120 /* GroupDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetail.swift; sourceTree = "<group>"; };
 		5E9D8FE2273372FD00AA6120 /* GroupsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewModel.swift; sourceTree = "<group>"; };
+		5E9D8FE42734957600AA6120 /* RecGroupDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecGroupDetail.swift; sourceTree = "<group>"; };
 		B63E5C31272BA4E600830C77 /* CampusConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusConnectApp.swift; sourceTree = "<group>"; };
 		B63E5C32272BA4E600830C77 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B63E5C33272BA4E700830C77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				5E9D8FD12733631200AA6120 /* RecruiterViews.swift */,
 				5E9D8FD62733631200AA6120 /* StudentViews.swift */,
 				5E9D8FDE2733709B00AA6120 /* GroupDetail.swift */,
+				5E9D8FE42734957600AA6120 /* RecGroupDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				5E9D8FE3273372FD00AA6120 /* GroupsViewModel.swift in Sources */,
 				5E9D8FC62731C9A700AA6120 /* Recruiter.swift in Sources */,
 				B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
+				5E9D8FE52734957600AA6120 /* RecGroupDetail.swift in Sources */,
 				5E9D8FDD2733631200AA6120 /* StudentViews.swift in Sources */,
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				5E9D8FDC2733631200AA6120 /* QRCode.swift in Sources */,

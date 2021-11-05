@@ -14,8 +14,9 @@ struct ContentView: View {
     @ObservedObject var recViewModel = RecruitersViewModel()
   
     var body: some View {
-      StudentViews()
+      //StudentViews()
       // Scanner()
+        RecruiterViews()
     }
   
   init(){

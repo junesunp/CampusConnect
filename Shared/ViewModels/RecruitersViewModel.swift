@@ -17,6 +17,7 @@ class RecruitersViewModel: ObservableObject {
   @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
   //@Published var currentGroup = Group(id:"" , Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: recruiterDocRef, Students:[Student]())
   var errorMessage = ""
+
   func fetchRecruiter() {
     let docRef = db.collection("Recruiter").document(currentRecID)
     docRef.getDocument { document, error in
@@ -45,9 +46,6 @@ class RecruitersViewModel: ObservableObject {
       self.recruiterGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
         return try? queryDocumentSnapshot.data(as: Group.self)
       }
-      print("hELLOOO")
-      print("")
-      print(self.recruiterGroups)
     }
   }
   /*

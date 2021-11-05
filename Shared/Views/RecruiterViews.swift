@@ -9,35 +9,42 @@ import SwiftUI
 
 struct RecruiterViews: View {
   
-  @ObservedObject var viewModel = StudentsViewModel()
   @ObservedObject var recViewModel = RecruitersViewModel()
+  @ObservedObject var groupViewModel = GroupsViewModel()
   
   init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
     recViewModel.fetchRecruiter()
+    recViewModel.fetchRecruiterGroups()
+    
+    
   }
   
     var body: some View {
-      TabView{
-          List {
-              Text(viewModel.user.Email)
-              Text(viewModel.user.First)
-              Text(viewModel.user.Last)
-          }
-          .tabItem {
-              Image(systemName: "list.bullet")
-          }
-          QRCode()
-          .tabItem {
-              Image(systemName: "qrcode.viewfinder")
-          }
-          RecruiterProfile()
-          .tabItem {
-              Image(systemName: "person.crop.circle")
-          }
-          
-      }
+        TabView{
+            NavigationView{
+                List{
+                    ForEach(recViewModel.recruiterGroups){ group in
+                        NavigationLink(destination: RecGroupDetail(group: group, students: groupViewModel.students)) {
+                            GroupRow(group: group)
+                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+                            }
+                        /*
+                        NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter)) {
+                            GroupRow(group: group)
+                            .onAppear(perform: { groupViewModel.getRecruiter(group: group) })
+                        } */
+                    } //.onDisappear(perform: { groupViewModel.clearStudents() })
+                }.navigationBarTitle(recViewModel.user.First + "'s Groups")
+            }
+            .tabItem {
+                Image(systemName: "list.bullet")
+            }
+            Profile()
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                }
+            
+        }
     }
 }
 

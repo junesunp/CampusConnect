@@ -105,4 +105,9 @@ class StudentsViewModel: ObservableObject{
     }
     return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
+    func deleteGroup(group: Group) {
+        
+    }
 }
+
+

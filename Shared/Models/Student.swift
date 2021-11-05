@@ -21,6 +21,7 @@ struct Student: Identifiable, Codable {
  var School: String
  var Password: String
  var Groups: [DocumentReference]
+
  enum CodingKeys: String, CodingKey {
   case id
   case Email
