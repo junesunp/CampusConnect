@@ -15,7 +15,6 @@ class RecruitersViewModel: ObservableObject {
   let db = Firestore.firestore()
   @Published var recruiterGroups = [Group]()
   @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
-  //@Published var currentGroup = Group(id:"" , Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: recruiterDocRef, Students:[Student]())
   var errorMessage = ""
 
   func fetchRecruiter() {

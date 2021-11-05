@@ -16,6 +16,8 @@ class GroupsViewModel: ObservableObject{
  @Published var myGroups = [Recruiter]()
  @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
   @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+  
+    //@Published var currentGroup = Group(id:"", Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: , Students: [DocumentReference]())
  var errorMessage = ""
   
  func getRecruiter(group: Group) {
@@ -59,6 +61,19 @@ class GroupsViewModel: ObservableObject{
                 }
             }
         }
+    }
+    
+    func addStudent(group: Group, studentId: String) {
+        let studentDocRef = db.collection("Student").document(studentId)
+        let groupDocRef = db.collection("Group").document(group.id!)
+        groupDocRef.updateData([
+            "Students": FieldValue.arrayUnion([studentDocRef])
+        ])
+        
+        studentDocRef.updateData([
+            "Groups": FieldValue.arrayUnion([groupDocRef])
+        ])
+        fetchStudents(group: group)
     }
     
     func clearStudents() {

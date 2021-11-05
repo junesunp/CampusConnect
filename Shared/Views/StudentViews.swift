@@ -11,7 +11,7 @@ struct StudentViews: View {
     
     @ObservedObject var viewModel = StudentsViewModel()
     @ObservedObject var groupViewModel = GroupsViewModel()
-    @State var sort: Int = 1
+    @State var sort: Int = 2
     
     init(){
         viewModel.fetchStudents()

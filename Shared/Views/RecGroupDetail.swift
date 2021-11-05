@@ -15,10 +15,12 @@ struct RecGroupDetail: View {
   //let groupRecruiter: Recruiter
     
   var body: some View {
-    VStack {
-        List {
+    NavigationView {
+        List{
             ForEach(students) { student in
-                Text(student.First + " " + student.Last)
+                NavigationLink(destination: RecStudentDetail(student: student)) {
+                    RecStudentRow(student: student)
+                }
             }
         }
 
