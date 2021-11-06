@@ -26,6 +26,10 @@
 		5E9D8FE92735D75500AA6120 /* RecStudentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8FE82735D75500AA6120 /* RecStudentRow.swift */; };
 		5E9D8FEB2735DF9200AA6120 /* Scanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D8FEA2735DF9200AA6120 /* Scanner.swift */; };
 		5E9D8FEE2735DFD300AA6120 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 5E9D8FED2735DFD300AA6120 /* CodeScanner */; };
+		B284051A27361D8D002684D3 /* CampusConnectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284051927361D8D002684D3 /* CampusConnectTests.swift */; };
+		B284052127361DB9002684D3 /* StudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284052027361DB9002684D3 /* StudentTests.swift */; };
+		B284052327361E67002684D3 /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284052227361E66002684D3 /* GroupTests.swift */; };
+		B284052527361F1C002684D3 /* RecruiterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B284052427361F1C002684D3 /* RecruiterTests.swift */; };
 		B63E5C4A272BA4E700830C77 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C49272BA4E700830C77 /* Tests_iOS.swift */; };
 		B63E5C4C272BA4E700830C77 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C4B272BA4E700830C77 /* Tests_iOSLaunchTests.swift */; };
 		B63E5C56272BA4E700830C77 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C55272BA4E700830C77 /* Tests_macOS.swift */; };
@@ -72,6 +76,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B284051B27361D8D002684D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B63E5C2C272BA4E600830C77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B63E5C37272BA4E700830C77;
+			remoteInfo = "CampusConnect (iOS)";
+		};
 		B63E5C46272BA4E700830C77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B63E5C2C272BA4E600830C77 /* Project object */;
@@ -104,6 +115,11 @@
 		5E9D8FE62735CA0E00AA6120 /* RecStudentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecStudentDetail.swift; sourceTree = "<group>"; };
 		5E9D8FE82735D75500AA6120 /* RecStudentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecStudentRow.swift; sourceTree = "<group>"; };
 		5E9D8FEA2735DF9200AA6120 /* Scanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scanner.swift; sourceTree = "<group>"; };
+		B284051727361D8D002684D3 /* CampusConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CampusConnectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B284051927361D8D002684D3 /* CampusConnectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusConnectTests.swift; sourceTree = "<group>"; };
+		B284052027361DB9002684D3 /* StudentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTests.swift; sourceTree = "<group>"; };
+		B284052227361E66002684D3 /* GroupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTests.swift; sourceTree = "<group>"; };
+		B284052427361F1C002684D3 /* RecruiterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterTests.swift; sourceTree = "<group>"; };
 		B63E5C31272BA4E600830C77 /* CampusConnectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusConnectApp.swift; sourceTree = "<group>"; };
 		B63E5C32272BA4E600830C77 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B63E5C33272BA4E700830C77 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +139,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B284051427361D8D002684D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B63E5C35272BA4E700830C77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +223,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		B284051827361D8D002684D3 /* CampusConnectTests */ = {
+			isa = PBXGroup;
+			children = (
+				B284051927361D8D002684D3 /* CampusConnectTests.swift */,
+				B284052027361DB9002684D3 /* StudentTests.swift */,
+				B284052227361E66002684D3 /* GroupTests.swift */,
+				B284052427361F1C002684D3 /* RecruiterTests.swift */,
+			);
+			path = CampusConnectTests;
+			sourceTree = "<group>";
+		};
 		B63E5C2B272BA4E600830C77 = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +241,7 @@
 				B63E5C3F272BA4E700830C77 /* macOS */,
 				B63E5C48272BA4E700830C77 /* Tests iOS */,
 				B63E5C54272BA4E700830C77 /* Tests macOS */,
+				B284051827361D8D002684D3 /* CampusConnectTests */,
 				B63E5C39272BA4E700830C77 /* Products */,
 				C4E953673886AFE59260D500 /* Pods */,
 				D191D421853AAB98A6C50EC1 /* Frameworks */,
@@ -234,6 +269,7 @@
 				B63E5C3E272BA4E700830C77 /* CampusConnect.app */,
 				B63E5C45272BA4E700830C77 /* Tests iOS.xctest */,
 				B63E5C51272BA4E700830C77 /* Tests macOS.xctest */,
+				B284051727361D8D002684D3 /* CampusConnectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,6 +338,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B284051627361D8D002684D3 /* CampusConnectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B284051F27361D8D002684D3 /* Build configuration list for PBXNativeTarget "CampusConnectTests" */;
+			buildPhases = (
+				B284051327361D8D002684D3 /* Sources */,
+				B284051427361D8D002684D3 /* Frameworks */,
+				B284051527361D8D002684D3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B284051C27361D8D002684D3 /* PBXTargetDependency */,
+			);
+			name = CampusConnectTests;
+			productName = CampusConnectTests;
+			productReference = B284051727361D8D002684D3 /* CampusConnectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B63E5C37272BA4E700830C77 /* CampusConnect (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B63E5C61272BA4E700830C77 /* Build configuration list for PBXNativeTarget "CampusConnect (iOS)" */;
@@ -411,6 +465,10 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					B284051627361D8D002684D3 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = B63E5C37272BA4E700830C77;
+					};
 					B63E5C37272BA4E700830C77 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -448,11 +506,19 @@
 				B63E5C3D272BA4E700830C77 /* CampusConnect (macOS) */,
 				B63E5C44272BA4E700830C77 /* Tests iOS */,
 				B63E5C50272BA4E700830C77 /* Tests macOS */,
+				B284051627361D8D002684D3 /* CampusConnectTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B284051527361D8D002684D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B63E5C36272BA4E700830C77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -488,6 +554,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B284051327361D8D002684D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B284051A27361D8D002684D3 /* CampusConnectTests.swift in Sources */,
+				B284052327361E67002684D3 /* GroupTests.swift in Sources */,
+				B284052127361DB9002684D3 /* StudentTests.swift in Sources */,
+				B284052527361F1C002684D3 /* RecruiterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B63E5C34272BA4E700830C77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -549,6 +626,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B284051C27361D8D002684D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B63E5C37272BA4E700830C77 /* CampusConnect (iOS) */;
+			targetProxy = B284051B27361D8D002684D3 /* PBXContainerItemProxy */;
+		};
 		B63E5C47272BA4E700830C77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B63E5C37272BA4E700830C77 /* CampusConnect (iOS) */;
@@ -562,6 +644,57 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		B284051D27361D8D002684D3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TP5XBDBDNQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-43.CampusConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CampusConnect.app/CampusConnect";
+			};
+			name = Debug;
+		};
+		B284051E27361D8D002684D3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TP5XBDBDNQ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "-43.CampusConnectTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CampusConnect.app/CampusConnect";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		B63E5C5F272BA4E700830C77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -904,6 +1037,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B284051F27361D8D002684D3 /* Build configuration list for PBXNativeTarget "CampusConnectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B284051D27361D8D002684D3 /* Debug */,
+				B284051E27361D8D002684D3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B63E5C2F272BA4E600830C77 /* Build configuration list for PBXProject "CampusConnect" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
