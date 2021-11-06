@@ -11,7 +11,7 @@ import CoreImage.CIFilterBuiltins
 import SwiftUI
 import CoreMedia
 class StudentsViewModel: ObservableObject{
-  let currentStudentID = "C8V5BI0KYdqWT5xnpUy9"
+  @Published var currentStudentID = "6OLooxhvaBi1JMFecPXU"
   let db = Firestore.firestore()
   @Published var students = [Student]()
   @Published var myGroups = [Group]()

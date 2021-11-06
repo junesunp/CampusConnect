@@ -71,6 +71,5 @@ struct Profile: View {
         
         
       }
-      
     }
 }

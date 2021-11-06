@@ -12,12 +12,10 @@ struct RecruiterViews: View {
   @ObservedObject var recViewModel = RecruitersViewModel()
   @ObservedObject var groupViewModel = GroupsViewModel()
   @State var sort: Int = 1
-    
+  
   init(){
     recViewModel.fetchRecruiter()
     recViewModel.fetchRecruiterGroups(number: sort)
-    
-    
   }
   
     var body: some View {
@@ -49,7 +47,7 @@ struct RecruiterViews: View {
             .tabItem {
                 Image(systemName: "list.bullet")
             }
-            Profile()
+            RecruiterProfile()
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                 }
