@@ -91,6 +91,20 @@ class StudentsViewModel: ObservableObject{
       print(error)
     }
   }
+	
+	func createStudent(email: String, password: String, username: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
+		db.collection("Student").document(email).setData([
+			"email": email,
+			"first": fname,
+			"last": lname,
+			"Grad": gradYear,
+			"Major": major,
+			"School": schoolName,
+			"Password": password
+		])
+	}
+    
+  
 
     
   func createQRCode(from string: String) -> UIImage{
