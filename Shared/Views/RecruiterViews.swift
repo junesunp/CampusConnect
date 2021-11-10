@@ -20,14 +20,28 @@ struct RecruiterViews: View {
   
     var body: some View {
       TabView{
+          
           List {
+              NavigationLink("Add Group", destination: CreateGroup())
+              .tabItem {
+                  Image(systemName: "list.bullet")
+              }
               Text(viewModel.user.Email)
               Text(viewModel.user.First)
               Text(viewModel.user.Last)
           }
-          .tabItem {
-              Image(systemName: "list.bullet")
-          }
+          .navigationBarItems(trailing: Button(action: {
+          })
+          {
+              Image(systemName: "plus")
+                  .resizable()
+                  .padding(6)
+                  .frame(width: 24, height: 24)
+                  .background(Color.blue)
+                  .clipShape(Circle())
+                  .foregroundColor(.white)
+          })
+          
           QRCode()
           .tabItem {
               Image(systemName: "qrcode.viewfinder")

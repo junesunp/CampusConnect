@@ -10,9 +10,16 @@ import FirebaseFirestore
 import CoreImage.CIFilterBuiltins
 import SwiftUI
 import CoreMedia
+import FirebaseAuth
 class StudentsViewModel: ObservableObject{
-  let currentStudentID = "C8V5BI0KYdqWT5xnpUy9"
+	let currentStudentID: String
   let db = Firestore.firestore()
+	let currUser = Auth.auth().currentUser
+	
+	init() {
+		self.currentStudentID = self.currUser?.id
+					
+	}
   @Published var students = [Student]()
   @Published var myGroups = [Group]()
   @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
@@ -93,7 +100,7 @@ class StudentsViewModel: ObservableObject{
   }
 	
 	func createStudent(email: String, password: String, username: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
-		db.collection("Student").document(email).setData([
+		db.collection("Student").document(username).setData([
 			"email": email,
 			"first": fname,
 			"last": lname,
@@ -102,6 +109,13 @@ class StudentsViewModel: ObservableObject{
 			"School": schoolName,
 			"Password": password
 		])
+		{ err in
+				if let err = err {
+						print("Error writing document: \(err)")
+				} else {
+						print("Document successfully written!")
+		}
+		}
 	}
     
   
@@ -119,4 +133,10 @@ class StudentsViewModel: ObservableObject{
     }
     return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
+	
+	
+//	func getCurrUserID(student: Student){
+//		currentStudentID = student.id
+//
+//	}
 }

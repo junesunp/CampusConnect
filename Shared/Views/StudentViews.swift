@@ -10,6 +10,7 @@ import SwiftUI
 struct StudentViews: View {
     
     @ObservedObject var viewModel = StudentsViewModel()
+    @ObservedObject var groupViewModel = GroupsViewModel()
     @State var sort: Int = 1
     init(){
         viewModel.fetchStudents()
@@ -20,7 +21,14 @@ struct StudentViews: View {
     var body: some View {
         TabView{
             NavigationView{
-                Text("Hello World!")
+                List{
+                    ForEach(viewModel.myGroups){ group in
+                        NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter)) {
+                            GroupRow(group: group)
+                            .onAppear(perform: { groupViewModel.getRecruiter(group: group) })
+                        }
+                    }
+                }.navigationBarTitle(viewModel.user.First + "'s Groups")
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
@@ -34,14 +42,6 @@ struct StudentViews: View {
                         }
                     }
                 }
-                List{
-                    
-                    ForEach(viewModel.myGroups){ group in
-                        NavigationLink(destination: GroupDetail(group: group)) {
-                            GroupRow(group: group)
-                        }
-                    }
-                }.navigationBarTitle(viewModel.user.First + "'s Groups")
             }
             .tabItem {
                 Image(systemName: "list.bullet")

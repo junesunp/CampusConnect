@@ -65,7 +65,7 @@
 		B67D0570272F77F400B2E311 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */; };
 		B67D0572272F77F400B2E311 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */; };
 		CF798A0127324A320038678F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = CF798A0027324A320038678F /* GoogleSignIn */; };
-		CF89C891273A4A9400C08A4D /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89C890273A4A9400C08A4D /* SignInViewModel.swift */; };
+		CF89C893273AE6B400C08A4D /* CreateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89C892273AE6B300C08A4D /* CreateGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,7 +113,7 @@
 		B63E5C70272BAA8100830C77 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = StudentsViewModel.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
-		CF89C890273A4A9400C08A4D /* SignInViewModel.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
+		CF89C892273AE6B300C08A4D /* CreateGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +186,7 @@
 				5E9D8FD12733631200AA6120 /* RecruiterViews.swift */,
 				5E9D8FD62733631200AA6120 /* StudentViews.swift */,
 				5E9D8FDE2733709B00AA6120 /* GroupDetail.swift */,
+				CF89C892273AE6B300C08A4D /* CreateGroup.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -260,7 +261,6 @@
 				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
 				5E9D8FC22731C86800AA6120 /* RecruitersViewModel.swift */,
 				5E9D8FE2273372FD00AA6120 /* GroupsViewModel.swift */,
-				CF89C890273A4A9400C08A4D /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -487,7 +487,6 @@
 				5E9D8FDA2733631200AA6120 /* GroupRow.swift in Sources */,
 				5E9D8FDF2733709B00AA6120 /* GroupDetail.swift in Sources */,
 				5E9D8FD92733631200AA6120 /* Profile.swift in Sources */,
-				CF89C891273A4A9400C08A4D /* SignInViewModel.swift in Sources */,
 				5E9D8FC32731C86800AA6120 /* RecruitersViewModel.swift in Sources */,
 				5E9D8FD82733631200AA6120 /* RecruiterViews.swift in Sources */,
 				5E9D8FE3273372FD00AA6120 /* GroupsViewModel.swift in Sources */,
@@ -497,6 +496,7 @@
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				5E9D8FDC2733631200AA6120 /* QRCode.swift in Sources */,
 				B63E5C71272BAA8100830C77 /* Student.swift in Sources */,
+				CF89C893273AE6B400C08A4D /* CreateGroup.swift in Sources */,
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 				5E9D8FDB2733631200AA6120 /* RecruiterProfile.swift in Sources */,
 			);

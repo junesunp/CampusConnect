@@ -11,6 +11,7 @@ struct GroupDetail: View {
 
   var group: Group
   let width = UIScreen.main.bounds.width * 0.75
+  let groupRecruiter: Recruiter
 
   var body: some View {
     VStack {
