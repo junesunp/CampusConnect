@@ -23,13 +23,12 @@ struct RecruiterViews: View {
             NavigationView{
                 List{
                     ForEach(recViewModel.recruiterGroups){ group in
-                        NavigationLink(destination: RecGroupDetail(group: group, students: groupViewModel.students)) {
-                            GroupRow(group: group)
-                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+                        NavigationLink(destination: RecGroupDetail(group: group)) {
+                              GroupRow(group: group)
                             }
                     }
                 }.navigationBarTitle(recViewModel.user.First + "'s Groups")
-                .onAppear(perform: { groupViewModel.clearStudents() })
+                //.onAppear(perform: { groupViewModel.clearStudents() })
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {

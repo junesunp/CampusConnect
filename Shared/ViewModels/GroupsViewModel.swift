@@ -41,6 +41,7 @@ class GroupsViewModel: ObservableObject{
   }
     
     func fetchStudents(group: Group) {
+        self.students = [Student]()
         let docRefs = group.Students
         for student in docRefs {
             let docRef = student
@@ -52,6 +53,7 @@ class GroupsViewModel: ObservableObject{
                     if let document = document {
                         do {
                             let temp = try document.data(as: Student.self)
+                            print(temp!.First + " " + temp!.Last)
                             self.students.append(temp!)
                         }
                         catch {

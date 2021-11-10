@@ -9,15 +9,15 @@ import SwiftUI
 
 struct RecGroupDetail: View {
   @ObservedObject var groupViewModel = GroupsViewModel()
-    var group: Group
-  var students: [Student]
+  var group: Group
+  // var students: [Student]
   let width = UIScreen.main.bounds.width * 0.75
   //let groupRecruiter: Recruiter
-    
+  
   var body: some View {
     NavigationView {
         List{
-            ForEach(students) { student in
+          ForEach(groupViewModel.students) { student in
                 NavigationLink(destination: RecStudentDetail(student: student)) {
                     RecStudentRow(student: student)
                 }
@@ -25,6 +25,7 @@ struct RecGroupDetail: View {
         }
 
     }.navigationBarTitle(group.Name)
+      .onAppear(perform: {groupViewModel.fetchStudents(group: group) } )
       .navigationBarItems(trailing:
         NavigationLink(destination: Scanner(group: group)) {
             Image(systemName: "plus")
