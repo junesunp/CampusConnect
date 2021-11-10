@@ -12,7 +12,8 @@ struct RecruiterViews: View {
   @ObservedObject var recViewModel = RecruitersViewModel()
   @ObservedObject var groupViewModel = GroupsViewModel()
   @State var sort: Int = 1
-    
+  @State private var createGroupSheet = false
+  
   init(){
     recViewModel.fetchRecruiter()
     recViewModel.fetchRecruiterGroups(number: sort)
@@ -31,6 +32,14 @@ struct RecruiterViews: View {
                             }
                     }
                 }.navigationBarTitle(recViewModel.user.First + "'s Groups")
+                .navigationBarItems(trailing:
+                                        Button("Create Group") {
+                                            createGroupSheet.toggle()
+                                        }
+                                        .sheet(isPresented: $createGroupSheet) {
+                                                    CreateGroup()
+                                            }
+                )
                 .onAppear(perform: { groupViewModel.clearStudents() })
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {

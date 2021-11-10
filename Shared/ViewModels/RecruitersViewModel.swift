@@ -62,6 +62,50 @@ class RecruitersViewModel: ObservableObject {
         recruiterGroups.sort(by: sorterForTimeStamp)
     }
   }
+    
+    
+    func recCreateGroup(name: String, des: String?) {
+        var recRef: DocumentReference? = nil
+        let docRef = db.collection("Recruiter").document(currentRecID)
+        recRef = db.document("Recruiter/" + docRef.documentID)
+        
+        var ref: DocumentReference? = nil
+        ref = db.collection("Group").addDocument(data: [
+            "Active": true,
+            "DateCreated": Date.now,
+            "DateUpdated": Date.now,
+            "Name": name,
+            "Description": des ?? "",
+            "Recruiter": recRef
+        ])
+    }
+    
+    func recEditGroup(curGroup: Group, name: String = "", des: String = "") {
+        let docRef = db.collection("Group").document(curGroup.id!)
+        let strDocRef = "\(docRef)"
+        if name != "" && des != "" {
+            db.collection("Group").document(strDocRef).updateData([
+                        "DateUpdated": Date.now,
+                        "Name": name,
+                        "Description": des
+                    ])
+        }
+        else if name == "" && des != "" {
+            db.collection("Group").document(strDocRef).updateData([
+                        "DateUpdated": Date.now,
+                        "Description": des
+                    ])
+        }
+        else if name != "" && des == "" {
+            db.collection("Group").document(strDocRef).updateData([
+                        "DateUpdated": Date.now,
+                        "Name": name
+                    ])
+        }
+        
+    }
+  
+    
   /*
   func fetchGroup() {
     let docRef = db.collection("Group").document(currentRecID)

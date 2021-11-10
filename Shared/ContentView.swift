@@ -16,7 +16,7 @@ struct ContentView: View {
     var body: some View {
       //StudentViews()
       // Scanner()
-        RecruiterViews()
+      RecruiterViews()
     }
   
   init(){
