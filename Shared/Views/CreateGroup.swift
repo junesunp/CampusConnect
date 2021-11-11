@@ -23,7 +23,8 @@ struct CreateGroup: View {
                 .padding()
                 .background(Color(.secondarySystemBackground))
             Button (action: {
-                recViewModel.recCreateGroup(name: name, des: description)
+                RecGroupDetail(group: recViewModel.recCreateGroup(name: name, des: description));
+                dismiss()
             }, label: {
                 Text("Create Group")
                     .foregroundColor(Color.white)
@@ -33,10 +34,6 @@ struct CreateGroup: View {
             })
         }
         .padding()
-        Button("Done") {
-            dismiss()
-            recViewModel.fetchRecruiterGroups(number: 1)
-        }
         //Spacer()
     }
 }

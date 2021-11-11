@@ -16,13 +16,22 @@ struct RecGroupDetail: View {
     
   var body: some View {
     NavigationView {
-        List{
-            ForEach(groupViewModel.students) { student in
-                NavigationLink(destination: RecStudentDetail(student: student)) {
-                    RecStudentRow(student: student)
+        
+        if groupViewModel.students.count == 0 {
+            Text("No students in group")
+        }
+        
+        else {
+            List{
+                ForEach(groupViewModel.students) { student in
+                    NavigationLink(destination: RecStudentDetail(student: student)) {
+                        RecStudentRow(student: student)
+                    }
                 }
             }
         }
+        
+        
 
     }.navigationBarTitle(group.Name)
       .onAppear(perform: {groupViewModel.fetchStudents(group: group) } )

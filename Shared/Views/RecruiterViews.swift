@@ -41,6 +41,7 @@ struct RecruiterViews: View {
                                             }
                 )
                 .onAppear(perform: { groupViewModel.clearStudents() })
+                .onAppear(perform: { recViewModel.updateGroups() })
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {

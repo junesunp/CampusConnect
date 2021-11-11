@@ -42,6 +42,10 @@ class GroupsViewModel: ObservableObject{
     
     func fetchStudents(group: Group) {
         let docRefs = group.Students
+        if docRefs.count == 0 {
+            self.students = [Student]()
+            return
+        }
         for student in docRefs {
             let docRef = student
             docRef.getDocument { document, error in

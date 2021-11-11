@@ -12,6 +12,7 @@ import SwiftUI
 
 struct Group: Identifiable, Codable {
  @DocumentID var id: String? = UUID().uuidString
+ var Active: Bool
  var Created: Date
  var Updated: Date
  var Name: String
@@ -21,6 +22,7 @@ struct Group: Identifiable, Codable {
     
  enum CodingKeys: String, CodingKey {
   case id
+  case Active
   case Created = "DateCreated"
   case Updated = "DateUpdated"
   case Name
