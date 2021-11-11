@@ -63,13 +63,13 @@ class RecruitersViewModel: ObservableObject {
     }
   }
     
-    func updateGroups() {
+    func updateGroups(number: Int) {
       recruiterGroups = [Group]()
-        fetchRecruiterGroups(number: 1)
+        fetchRecruiterGroups(number: number)
     }
     
     
-    func recCreateGroup(name: String, des: String?) -> Group {
+    func recCreateGroup(name: String, des: String?){
         var recRef: DocumentReference? = nil
         let docRef = db.collection("Recruiter").document(currentRecID)
         recRef = db.document("Recruiter/" + docRef.documentID)
@@ -84,8 +84,6 @@ class RecruitersViewModel: ObservableObject {
             "Recruiter": recRef,
             "Students": [DocumentReference]()
         ])
-        var currentGroup = Group(id:String(ref!.documentID), Active:true, Created:Date.now, Updated:Date.now, Name:name, Description:des ?? "", Recruiter:recRef!, Students: [DocumentReference]())
-        return currentGroup
     }
     
     func recEditGroup(curGroup: Group, name: String = "", des: String = "") {

@@ -11,7 +11,7 @@ struct RecruiterViews: View {
   
   @ObservedObject var recViewModel = RecruitersViewModel()
   @ObservedObject var groupViewModel = GroupsViewModel()
-  @State var sort: Int = 1
+  @State var sort: Int = 2
   @State private var createGroupSheet = false
   
   init(){
@@ -41,7 +41,7 @@ struct RecruiterViews: View {
                                             }
                 )
                 .onAppear(perform: { groupViewModel.clearStudents() })
-                .onAppear(perform: { recViewModel.updateGroups() })
+                .onAppear(perform: { recViewModel.updateGroups(number: sort) })
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
