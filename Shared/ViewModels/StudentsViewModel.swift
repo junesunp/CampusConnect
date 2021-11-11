@@ -12,14 +12,9 @@ import SwiftUI
 import CoreMedia
 import FirebaseAuth
 class StudentsViewModel: ObservableObject{
-	let currentStudentID: String
+	var currentStudentID: String = "Test"
   let db = Firestore.firestore()
-	let currUser = Auth.auth().currentUser
-	
-	init() {
-		self.currentStudentID = self.currUser?.id
-					
-	}
+	//let currUser = Auth.auth().currentUser
   @Published var students = [Student]()
   @Published var myGroups = [Group]()
   @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
@@ -36,7 +31,9 @@ class StudentsViewModel: ObservableObject{
       }
     }
   }
-  func fetchStudent() {
+	func fetchStudent() {
+//	 let curSID = student.id
+//	 let currID = "\(curSID)"
    let docRef = db.collection("Student").document(currentStudentID)
    docRef.getDocument { document, error in
     if let error = error as NSError? {
@@ -107,13 +104,19 @@ class StudentsViewModel: ObservableObject{
 			"Grad": gradYear,
 			"Major": major,
 			"School": schoolName,
-			"Password": password
+			"Password": password,
+			"Phone": "123-456-1890",
+			"Groups": [Group]()
 		])
 		{ err in
 				if let err = err {
 						print("Error writing document: \(err)")
+					  
 				} else {
 						print("Document successfully written!")
+					  self.user = Student(id: email, Email:email, First:fname, Last:lname, Grad:gradYear, Major:major, Phone:"", School:schoolName, Password:password, Groups: [])
+					  self.currentStudentID = "\(self.user.id)"
+					  //self.fetchStudent(student: self.user)
 		}
 		}
 	}

@@ -47,6 +47,7 @@ class AppViewModel: ObservableObject {
 
 struct ContentView: View {
 // <<<<<<< HEAD
+    let auth = Auth.auth()
     private func studentRowView(student: Student) -> some View{
       VStack(alignment: .leading){
           
@@ -61,11 +62,16 @@ struct ContentView: View {
     @EnvironmentObject var sviewModel: AppViewModel
     @ObservedObject var viewModel = StudentsViewModel()
     @ObservedObject var recViewModel = RecruitersViewModel()
+    
+    
   
     var body: some View {
         // TODO: Add way to check user role 
         if sviewModel.signedIn{
+            // viewModel.fetchStudent()
             StudentViews()
+            
+            
             //RecruiterViews()
         }
         else{
@@ -156,7 +162,7 @@ struct StartSignUpView: View {
                     SecureField("Password", text: $password)
                         .padding()
                         .background(Color(.secondarySystemBackground))
-                    NavigationLink("Next", destination: SchoolSignUpView())
+                    NavigationLink("Next", destination: SchoolSignUpView(email: $email, password:$password, fname:$fname, lname:$fname))
 //                    Button(action: {
 //                        guard !email.isEmpty, !password.isEmpty else {
 //                            return
@@ -179,15 +185,16 @@ struct StartSignUpView: View {
 // }
 
 struct SchoolSignUpView: View {
-    @State var email = ""
+    @Binding var email : String
     @State var username = ""
-    @State var password = ""
-    @State var fname = ""
-    @State var lname = ""
+    @Binding var password : String
+    @Binding var fname : String
+    @Binding var lname : String
     @State var major = ""
     var gradYear = ["2022", "2023", "2024", "2025"]
     @State private var selectedYearIndex = 0
     @State var schoolName = ""
+    //let student = nil!
     
     @EnvironmentObject var sviewModel: AppViewModel
 
@@ -218,6 +225,7 @@ struct SchoolSignUpView: View {
 //                        }
                         sviewModel.signUp(email: email, password: password, username: username, fname: fname, lname: lname, schoolName: schoolName, major: major, gradYear: gradYear[selectedYearIndex])
                         viewModel.createStudent(email: email, password: password, username: username, fname: fname, lname: lname, schoolName: schoolName, major: major, gradYear: gradYear[selectedYearIndex])
+                        
                     }, label: {
                         Text("Create Account")
                             .foregroundColor(Color.white)
