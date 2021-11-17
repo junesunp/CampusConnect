@@ -70,6 +70,12 @@
 		B67D056E272F77F400B2E311 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056D272F77F400B2E311 /* FirebaseStorage */; };
 		B67D0570272F77F400B2E311 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */; };
 		B67D0572272F77F400B2E311 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */; };
+		B67D05762731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
+		B67D05772731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
+		B67D05792731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
+		B67D057A2731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
+		B67D057F273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
+		B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +128,9 @@
 		B63E5C70272BAA8100830C77 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsViewModel.swift; sourceTree = "<group>"; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
+		B67D05752731CEA100B2E311 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		B67D05782731D43400B2E311 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
+		B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +282,7 @@
 				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
 				5E9D8FC22731C86800AA6120 /* RecruitersViewModel.swift */,
 				5E9D8FE2273372FD00AA6120 /* GroupsViewModel.swift */,
+
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -283,6 +293,7 @@
 				B63E5C70272BAA8100830C77 /* Student.swift */,
 				5E9D8FC52731C9A700AA6120 /* Recruiter.swift */,
 				5E9D8FC82731CA3500AA6120 /* Group.swift */,
+
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -507,11 +518,13 @@
 				5EA18796273B1B79002AD9EE /* CreateGroup.swift in Sources */,
 				5E9D8FC62731C9A700AA6120 /* Recruiter.swift in Sources */,
 				B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
+
 				5E9D8FE52734957600AA6120 /* RecGroupDetail.swift in Sources */,
 				5E9D8FDD2733631200AA6120 /* StudentViews.swift in Sources */,
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				5E9D8FDC2733631200AA6120 /* QRCode.swift in Sources */,
 				B63E5C71272BAA8100830C77 /* Student.swift in Sources */,
+				B67D05762731CEA100B2E311 /* Group.swift in Sources */,
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 				5E9D8FEB2735DF9200AA6120 /* Scanner.swift in Sources */,
 				5E9D8FDB2733631200AA6120 /* RecruiterProfile.swift in Sources */,
@@ -526,8 +539,11 @@
 				5E9D8FC42731C86800AA6120 /* RecruitersViewModel.swift in Sources */,
 				5E9D8FC72731C9A700AA6120 /* Recruiter.swift in Sources */,
 				B63E5C75272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
+				B67D057A2731D43400B2E311 /* Recruiter.swift in Sources */,
+				B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */,
 				B63E5C5C272BA4E700830C77 /* ContentView.swift in Sources */,
 				B63E5C72272BAA8100830C77 /* Student.swift in Sources */,
+				B67D05772731CEA100B2E311 /* Group.swift in Sources */,
 				B63E5C5A272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
