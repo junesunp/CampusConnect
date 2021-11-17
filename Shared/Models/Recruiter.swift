@@ -1,8 +1,16 @@
+//
+//  Recruiter.swift
+//  CampusConnect
+//
+//  Created by Thomas Choi on 11/2/21.
+//
+
 import Foundation
 import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SwiftUI
+
 struct Recruiter: Identifiable, Codable {
     
   @DocumentID var id: String? = UUID().uuidString

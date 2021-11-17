@@ -5,24 +5,24 @@
 //  Created by John Park on 10/28/21.
 //
 
+
 import SwiftUI
 
 struct ContentView: View {
-    private func studentRowView(student: Student) -> some View{
-      VStack(alignment: .leading){
-          
-        Text(student.First)
-        Text(student.Last)
-        Text(student.School)
-        Text(student.Major)
-
-      }
-    }
-  
     
     @ObservedObject var viewModel = StudentsViewModel()
+    @ObservedObject var recViewModel = RecruitersViewModel()
+  
     var body: some View {
-
+      //StudentViews()
+      // Scanner()
+      RecruiterViews()
+    }
+  
+  init(){
+    viewModel.fetchStudents()
+    viewModel.fetchStudent()
+    recViewModel.fetchRecruiter()
         TabView{
             VStack{
                 List {
@@ -61,11 +61,11 @@ struct ContentView: View {
   
   init(){
       viewModel.fetchStudent()
+
   }
 }
-
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+  static var previews: some View {
+    ContentView()
+  }
 }

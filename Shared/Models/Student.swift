@@ -10,31 +10,28 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SwiftUI
-
 struct Student: Identifiable, Codable {
-    
-  @DocumentID var id: String?
-  var Email: String
-  var First: String
-  var Last: String
-  var Grad: String
-  var Major: String
-  var Phone: String
-  var School: String
-  var Password: String
-  var Groups: [DocumentReference]
-    
-  enum CodingKeys: String, CodingKey {
-    case id
-    case Email
-    case First = "FName"
-    case Last = "LName"
-    case Major
-    case Phone
-    case School
-    case Grad
-    case Password
-    case Groups
-  }
-    
+ @DocumentID var id: String?
+ var Email: String
+ var First: String
+ var Last: String
+ var Grad: String
+ var Major: String
+ var Phone: String
+ var School: String
+ var Password: String
+ var Groups: [DocumentReference]
+
+ enum CodingKeys: String, CodingKey {
+  case id
+  case Email
+  case First = "FName"
+  case Last = "LName"
+  case Major
+  case Phone
+  case School
+  case Grad
+  case Password
+  case Groups
+ }
 }
