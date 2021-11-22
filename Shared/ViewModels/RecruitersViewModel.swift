@@ -13,7 +13,8 @@ import CoreMedia
 class RecruitersViewModel: ObservableObject {
   let currentRecID = "dU7IlGMa71WUHBmDFMhS"
   let db = Firestore.firestore()
-  @Published var recruiterGroups = [Group]()
+  @Published var activeGroups = [Group]()
+  @Published var inactiveGroups = [Group]()
   @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
   var errorMessage = ""
 
@@ -46,25 +47,45 @@ class RecruitersViewModel: ObservableObject {
     
     
   func fetchRecruiterGroups(number: Int) {
-    db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).addSnapshotListener { (querySnapshot, error) in
+      db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
       guard let documents = querySnapshot?.documents else {
         print("No documents")
         return
       }
-      self.recruiterGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+      self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
         return try? queryDocumentSnapshot.data(as: Group.self)
       }
     }
     if number == 1{
-        recruiterGroups.sort(by: sorterForAlphabetical)
+        activeGroups.sort(by: sorterForAlphabetical)
     }
     else{
-        recruiterGroups.sort(by: sorterForTimeStamp)
+        activeGroups.sort(by: sorterForTimeStamp)
     }
   }
     
+    func fetchInactiveGroups(number: Int) {
+        db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).whereField("Active", isEqualTo: false).addSnapshotListener { (querySnapshot, error) in
+        guard let documents = querySnapshot?.documents else {
+          print("No documents")
+          return
+        }
+        self.inactiveGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+          return try? queryDocumentSnapshot.data(as: Group.self)
+        }
+      }
+      if number == 1{
+          activeGroups.sort(by: sorterForAlphabetical)
+      }
+      else{
+          activeGroups.sort(by: sorterForTimeStamp)
+      }
+    }
+    
+ 
+    
     func updateGroups(number: Int) {
-      recruiterGroups = [Group]()
+      activeGroups = [Group]()
         fetchRecruiterGroups(number: number)
     }
     

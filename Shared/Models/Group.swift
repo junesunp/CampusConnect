@@ -19,7 +19,8 @@ struct Group: Identifiable, Codable {
  var Name: String
  var Description: String
  var Recruiter: DocumentReference
- var Students: [DocumentReference]
+ var Actives: [DocumentReference]
+ var Inactives: [DocumentReference]
     
  enum CodingKeys: String, CodingKey {
   case id
@@ -29,6 +30,7 @@ struct Group: Identifiable, Codable {
   case Name
   case Description
   case Recruiter
-  case Students
+  case Actives
+  case Inactives
  }
 }

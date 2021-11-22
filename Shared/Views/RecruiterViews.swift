@@ -17,52 +17,68 @@ struct RecruiterViews: View {
   init(){
     recViewModel.fetchRecruiter()
     recViewModel.fetchRecruiterGroups(number: sort)
-    
+    recViewModel.fetchInactiveGroups(number: sort)
     
   }
   
     var body: some View {
         TabView{
-            NavigationView{
-                List{
-                    ForEach(recViewModel.recruiterGroups){ group in
-                        NavigationLink(destination: RecGroupDetail(group: group)) {
-                            GroupRow(group: group)
-                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+                NavigationView{
+                    VStack{
+                        List{
+                            Section(header: Text("My Active Groups")){
+                                ForEach(recViewModel.activeGroups){ group in
+                                    NavigationLink(destination: RecGroupDetail(group: group)){
+                                        GroupRow(group: group)
+                                    }
+                                }
                             }
-                    }
-                }.navigationBarTitle(recViewModel.user.First + "'s Groups")
-                .navigationBarItems(trailing:
-                                        Button("Create Group") {
-                                            createGroupSheet.toggle()
+                        }
+                        .navigationBarItems(trailing:
+                                                Button("Create Group") {
+                                                    createGroupSheet.toggle()
+                                                }
+                                                .sheet(isPresented: $createGroupSheet) {
+                                                            CreateGroup()
+                                                    }
+                        )
+                        .onAppear(perform: { groupViewModel.clearStudents() })
+                        .onAppear(perform: { recViewModel.updateGroups(number: sort) })
+                        .toolbar {
+                            ToolbarItem(placement: .primaryAction) {
+                                Menu {
+                                    Picker(selection: $sort, label: Text("Sorting options")) {
+                                        Text("Date").tag(1)
+                                        Text("Alphabetical").tag(2)
+                                    }
+                                }
+                                label: {
+                                    Label("Sort", systemImage: "arrow.up.arrow.down")
+                                }
+                            }
+                        }
+                        
+                        List {
+                            Section(header: Text("My Inactive Groups")){
+                                ForEach(recViewModel.inactiveGroups){ group in
+                                    NavigationLink(destination: RecGroupDetail(group: group)) {
+                                        GroupRow(group: group)
+                                        .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
                                         }
-                                        .sheet(isPresented: $createGroupSheet) {
-                                                    CreateGroup()
-                                            }
-                )
-                .onAppear(perform: { groupViewModel.clearStudents() })
-                .onAppear(perform: { recViewModel.updateGroups(number: sort) })
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Menu {
-                            Picker(selection: $sort, label: Text("Sorting options")) {
-                                Text("Date").tag(1)
-                                Text("Alphabetical").tag(2)
+                                }
                             }
                         }
-                        label: {
-                            Label("Sort", systemImage: "arrow.up.arrow.down")
-                        }
+                        .onAppear(perform: { groupViewModel.clearStudents() })
+                        .onAppear(perform: { recViewModel.updateGroups(number: sort) })
                     }
-                }
             }
             .tabItem {
                 Image(systemName: "list.bullet")
             }
             Profile()
-                .tabItem {
-                    Image(systemName: "person.crop.circle")
-                }
+            .tabItem {
+                Image(systemName: "person.crop.circle")
+            }
             
         }
     }

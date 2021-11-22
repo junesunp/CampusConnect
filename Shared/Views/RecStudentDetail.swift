@@ -11,6 +11,7 @@ import SwiftUI
 struct RecStudentDetail: View {
     @ObservedObject var groupViewModel = GroupsViewModel()
     var student: Student
+    var group: Group
     
     let width = UIScreen.main.bounds.width * 0.75
     //let groupRecruiter: Recruiter
@@ -62,6 +63,13 @@ struct RecStudentDetail: View {
                   .padding(.trailing)
               }
             Spacer().frame(height: 5)
+            /*
+            Button(action: { groupViewModel.deactivateStudent(student: student, group: group) }){
+                Text("Remove Student from Group").foregroundColor(Color(.green))
+                    .frame(width: 600, height: 100)
+                    .background(Color(.clear))
+            }
+             */
             
         }.navigationBarTitle(student.First + " " + student.Last)
     }

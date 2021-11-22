@@ -41,7 +41,7 @@ class GroupsViewModel: ObservableObject{
   }
     
     func fetchStudents(group: Group) {
-        let docRefs = group.Students
+        let docRefs = group.Actives
         if docRefs.count == 0 {
             self.students = [Student]()
             return
@@ -79,6 +79,35 @@ class GroupsViewModel: ObservableObject{
         ])
         fetchStudents(group: group)
     }
+    
+    
+    func deactivateGroup(group: Group){
+        if let docID = group.id{
+            do{
+                try db.collection("Group").document(docID).updateData(["Active": false])
+            }
+            catch {
+                print(error)
+            }
+        }
+    }
+    
+    func activateGroup(group: Group){
+        if let docID = group.id{
+            do{
+                try db.collection("Group").document(docID).updateData(["Active": true])
+            }
+            catch {
+                print(error)
+            }
+        }
+    }
+    
+    /*func deactivateStudent(student: Student, group: Group){
+        db.collection("Group").document(group.id).updateData(["Actives": FieldValue.arrayRemove([group.id])
+                           ])
+    }
+     */
     
     func clearStudents() {
         self.students = [Student]()

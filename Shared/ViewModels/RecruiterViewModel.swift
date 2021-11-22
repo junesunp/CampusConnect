@@ -15,8 +15,8 @@ class RecruitersViewModel: ObservableObject {
     let currentRecID = "dU7IlGMa71WUHBmDFMhS"
     let db = Firestore.firestore()
     @Published var recruiterGroups = [Group]()
+    @Published var inactiveGroups = [Group]()
     @Published var recruiterUser: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
-    //@Published var currentGroup = Group(id:"" , Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: recruiterDocRef, Students:[Student]())
     var errorMessage = ""
     
 

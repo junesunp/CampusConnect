@@ -35,10 +35,6 @@
 		B63E5C5A272BA4E700830C77 /* CampusConnectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C31272BA4E600830C77 /* CampusConnectApp.swift */; };
 		B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C32272BA4E600830C77 /* ContentView.swift */; };
 		B63E5C5C272BA4E700830C77 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C32272BA4E600830C77 /* ContentView.swift */; };
-		B63E5C5D272BA4E700830C77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C33272BA4E700830C77 /* Assets.xcassets */; };
-		B63E5C5E272BA4E700830C77 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C33272BA4E700830C77 /* Assets.xcassets */; };
-		B63E5C6E272BA8FB00830C77 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */; };
-		B63E5C6F272BA8FB00830C77 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */; };
 		B63E5C71272BAA8100830C77 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C70272BAA8100830C77 /* Student.swift */; };
 		B63E5C72272BAA8100830C77 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C70272BAA8100830C77 /* Student.swift */; };
 		B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */; };
@@ -70,12 +66,11 @@
 		B67D056E272F77F400B2E311 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056D272F77F400B2E311 /* FirebaseStorage */; };
 		B67D0570272F77F400B2E311 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */; };
 		B67D0572272F77F400B2E311 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */; };
-		B67D05762731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
 		B67D05772731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
-		B67D05792731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
 		B67D057A2731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
-		B67D057F273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
 		B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
+		B6B3BE3C27460FC3003DCBD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */; };
+		B6B3BE3D27460FCA003DCBD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +217,7 @@
 				B63E5C39272BA4E700830C77 /* Products */,
 				C4E953673886AFE59260D500 /* Pods */,
 				D191D421853AAB98A6C50EC1 /* Frameworks */,
+				B6B3BE392745883D003DCBD3 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -282,7 +278,6 @@
 				B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */,
 				5E9D8FC22731C86800AA6120 /* RecruitersViewModel.swift */,
 				5E9D8FE2273372FD00AA6120 /* GroupsViewModel.swift */,
-
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -293,9 +288,18 @@
 				B63E5C70272BAA8100830C77 /* Student.swift */,
 				5E9D8FC52731C9A700AA6120 /* Recruiter.swift */,
 				5E9D8FC82731CA3500AA6120 /* Group.swift */,
-
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B6B3BE392745883D003DCBD3 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				B67D05752731CEA100B2E311 /* Group.swift */,
+				B67D05782731D43400B2E311 /* Recruiter.swift */,
+				B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		C4E953673886AFE59260D500 /* Pods */ = {
@@ -471,8 +475,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63E5C5D272BA4E700830C77 /* Assets.xcassets in Resources */,
-				B63E5C6E272BA8FB00830C77 /* GoogleService-Info.plist in Resources */,
+				B6B3BE3C27460FC3003DCBD3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,8 +483,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63E5C5E272BA4E700830C77 /* Assets.xcassets in Resources */,
-				B63E5C6F272BA8FB00830C77 /* GoogleService-Info.plist in Resources */,
+				B6B3BE3D27460FCA003DCBD3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,13 +520,11 @@
 				5EA18796273B1B79002AD9EE /* CreateGroup.swift in Sources */,
 				5E9D8FC62731C9A700AA6120 /* Recruiter.swift in Sources */,
 				B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */,
-
 				5E9D8FE52734957600AA6120 /* RecGroupDetail.swift in Sources */,
 				5E9D8FDD2733631200AA6120 /* StudentViews.swift in Sources */,
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				5E9D8FDC2733631200AA6120 /* QRCode.swift in Sources */,
 				B63E5C71272BAA8100830C77 /* Student.swift in Sources */,
-				B67D05762731CEA100B2E311 /* Group.swift in Sources */,
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 				5E9D8FEB2735DF9200AA6120 /* Scanner.swift in Sources */,
 				5E9D8FDB2733631200AA6120 /* RecruiterProfile.swift in Sources */,
@@ -700,9 +700,10 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MSM8RA86AZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
@@ -733,9 +734,10 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = MSM8RA86AZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
