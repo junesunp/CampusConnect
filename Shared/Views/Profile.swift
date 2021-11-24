@@ -9,18 +9,20 @@ import SwiftUI
 
 struct Profile: View {
   
-  @ObservedObject var viewModel = StudentsViewModel()
+  //@ObservedObject var stuViewModel = StudentsViewModel()
+  @EnvironmentObject var stuViewModel: StudentsViewModel
+  @EnvironmentObject var sviewModel: AppViewModel
   
-  init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
-  }
+//  init(){
+//      stuViewModel.fetchStudents()
+//      //stuViewModel.fetchStudent(email: stuViewModel.user.Email)
+//  }
   
     var body: some View {
       VStack{
         
         HStack {
-          Text(viewModel.user.First + " " + viewModel.user.Last)
+          Text(stuViewModel.user.First + " " + stuViewModel.user.Last)
             .fontWeight(.bold)
         }.padding()
         
@@ -29,7 +31,7 @@ struct Profile: View {
             .fontWeight(.bold)
             .padding(.leading)
           Spacer()
-          Text(viewModel.user.School)
+          Text(stuViewModel.user.School)
             .padding(.trailing)
         }.padding()
         
@@ -38,7 +40,7 @@ struct Profile: View {
             .fontWeight(.bold)
             .padding(.leading)
           Spacer()
-          Text(viewModel.user.Grad)
+          Text(stuViewModel.user.Grad)
             .padding(.trailing)
         }.padding()
         
@@ -47,7 +49,7 @@ struct Profile: View {
             .fontWeight(.bold)
             .padding(.leading)
           Spacer()
-          Text(viewModel.user.Major)
+          Text(stuViewModel.user.Major)
             .padding(.trailing)
         }.padding()
       
@@ -56,7 +58,7 @@ struct Profile: View {
             .fontWeight(.bold)
             .padding(.leading)
           Spacer()
-          Text(viewModel.user.Email)
+          Text(stuViewModel.user.Email)
             .padding(.trailing)
         }.padding()
         
@@ -65,12 +67,21 @@ struct Profile: View {
             .fontWeight(.bold)
             .padding(.leading)
           Spacer()
-          Text(viewModel.user.Phone)
+          Text(stuViewModel.user.Phone)
             .padding(.trailing)
         }.padding()
-        
+          Button(action: {
+              sviewModel.signOut()
+          }, label: {
+              Text("Logout")
+                  .foregroundColor(Color.white)
+                  .frame(width: 200, height: 50)
+                  .cornerRadius(8)
+                  .background(Color.blue)
+          })
         
       }
+      
       
     }
 }

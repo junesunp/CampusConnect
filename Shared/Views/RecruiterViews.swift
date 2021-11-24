@@ -9,14 +9,16 @@ import SwiftUI
 
 struct RecruiterViews: View {
   
-  @ObservedObject var viewModel = StudentsViewModel()
-  @ObservedObject var recViewModel = RecruitersViewModel()
+//  @ObservedObject var stuViewModel = StudentsViewModel()
+//  @ObservedObject var recViewModel = RecruitersViewModel()
+  @EnvironmentObject var stuViewModel: StudentsViewModel
+  @EnvironmentObject var recViewModel: RecruitersViewModel
   
-  init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
-    recViewModel.fetchRecruiter()
-  }
+//  init(){
+//    stuViewModel.fetchStudents()
+//    //stuViewModel.fetchStudent(email:stuViewModel.user.Email)
+//    //recViewModel.fetchRecruiter()
+//  }
   
     var body: some View {
       TabView{
@@ -26,9 +28,9 @@ struct RecruiterViews: View {
               .tabItem {
                   Image(systemName: "list.bullet")
               }
-              Text(viewModel.user.Email)
-              Text(viewModel.user.First)
-              Text(viewModel.user.Last)
+              Text(stuViewModel.user.Email)
+              Text(stuViewModel.user.First)
+              Text(stuViewModel.user.Last)
           }
           .navigationBarItems(trailing: Button(action: {
           })

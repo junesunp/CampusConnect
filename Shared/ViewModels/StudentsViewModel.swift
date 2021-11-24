@@ -12,12 +12,14 @@ import SwiftUI
 import CoreMedia
 import FirebaseAuth
 class StudentsViewModel: ObservableObject{
-	var currentStudentID: String = "Test"
+	
   let db = Firestore.firestore()
-	//let currUser = Auth.auth().currentUser
+	//let currUser = Auth.auth().currentUser!.uid
+	//let currentStudentID = Auth.auth().currentUser!.uid
   @Published var students = [Student]()
   @Published var myGroups = [Group]()
-  @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+  @Published var user: Student = Student(Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+	//@Published var user = Auth.auth().currentUser
   var errorMessage = ""
     
   func fetchStudents() {
@@ -31,24 +33,43 @@ class StudentsViewModel: ObservableObject{
       }
     }
   }
-	func fetchStudent() {
-//	 let curSID = student.id
-//	 let currID = "\(curSID)"
-   let docRef = db.collection("Student").document(currentStudentID)
-   docRef.getDocument { document, error in
-    if let error = error as NSError? {
+	func fetchStudent(currID: String) {
+	 //let currStu = db.collection("Student").document(email)
+	 //print("\(email)")
+	 //let docRef = db.collection("Student").document(currID)
+	 let docRef = db.collection("Student").whereField("email", isEqualTo: currID)
+   docRef.getDocuments { (snapshot, error) in
+	 if let error = error as NSError? {
      self.errorMessage = "Error getting document"
     }
     else {
-     if let document = document {
-      do {
-        self.user = try document.data(as: Student.self)!
-        self.getStudentGroups(number: 1)
-      }
-      catch {
-       print(error)
-      }
-     }
+			for document in snapshot!.documents {
+			  //let document = snapshot!.documents.first
+				if document == document {
+				do {
+					print("IIIII AMMMMM GETTTINg TOOOOO HERERERERERERE THE DOC EXISTS")
+					//self.user = try document.data(as: Student.self)!
+					//self.user = Student(id: document.get("id"), Email: document.get("Email"), )
+					let dataDescription = document.data()
+					print("\(dataDescription["id"])")
+					print("\(dataDescription["email"])")
+					self.user.id = "\(dataDescription["id"])"
+					self.user.Email = "\(dataDescription["email"])"
+					self.user.First = "\(dataDescription["FName"])"
+					self.user.Last = "\(dataDescription["LName"])"
+					self.user.Grad = "\(dataDescription["Grad"])"
+					self.user.Major = "\(dataDescription["Major"])"
+					self.user.School = "\(dataDescription["School"])"
+					let currGroups = dataDescription["Groups"] as! Array<DocumentReference>
+					self.user.Groups = currGroups
+					//self.currentStudentID = "\(self.user.id)"
+					self.getStudentGroups(number: 1)
+				}
+				catch {
+				 print(error)
+				}
+			 }
+		}
     }
    }
   }
@@ -96,11 +117,12 @@ class StudentsViewModel: ObservableObject{
     }
   }
 	
-	func createStudent(email: String, password: String, username: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
-		db.collection("Student").document(username).setData([
+	func createStudent(id: String, email: String, password: String, username: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
+		db.collection("Student").addDocument(data: [
+			"id": id,
 			"email": email,
-			"first": fname,
-			"last": lname,
+			"FName": fname,
+			"LName": lname,
 			"Grad": gradYear,
 			"Major": major,
 			"School": schoolName,
@@ -114,8 +136,10 @@ class StudentsViewModel: ObservableObject{
 					  
 				} else {
 						print("Document successfully written!")
-					  self.user = Student(id: email, Email:email, First:fname, Last:lname, Grad:gradYear, Major:major, Phone:"", School:schoolName, Password:password, Groups: [])
-					  self.currentStudentID = "\(self.user.id)"
+					  //self.user = Student(id: id, Email:email, First:fname, Last:lname, Grad:gradYear, Major:major, Phone:"", School:schoolName, Password:password, Groups: [])
+					  print (" HELLLO HELLLO HELOOOOOOOO HHERE I  AMAMAMMAMAMAMA     ")
+					  print("\(self.user.id)")
+					  //self.currentStudentID = "\(self.user.id)"
 					  //self.fetchStudent(student: self.user)
 		}
 		}

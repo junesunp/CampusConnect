@@ -23,8 +23,15 @@ struct CampusConnectApp: App {
     var body: some Scene {
         WindowGroup {
             let sviewModel = AppViewModel()
+            let stuViewModel = StudentsViewModel()
+            let recViewModel = RecruitersViewModel()
+            let groupViewModel = GroupsViewModel()
             ContentView()
                 .environmentObject(sviewModel)
+                .environmentObject(stuViewModel)
+                .environmentObject(recViewModel)
+                .environmentObject(groupViewModel)
+                
         }
     }
 }
