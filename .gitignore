@@ -8,6 +8,10 @@ xcuserdata/
 xcodeproj/
 xcworkspace/
 
+#OS-specific files
+.DS_Store
+.Trashes
+
 
 ## compatibility with Xcode 8 and earlier (ignoring not required starting Xcode 9)
 *.xcscmblueprint
