@@ -20,7 +20,7 @@ struct Group: Identifiable, Codable {
  var Description: String
  var Recruiter: DocumentReference
  var Students: [DocumentReference]
-    
+
  enum CodingKeys: String, CodingKey {
   case id
   case Active

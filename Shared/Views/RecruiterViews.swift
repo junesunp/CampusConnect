@@ -9,18 +9,13 @@ import SwiftUI
 
 struct RecruiterViews: View {
   
-  @ObservedObject var recViewModel = RecruitersViewModel()
-  @ObservedObject var groupViewModel = GroupsViewModel()
+  @EnvironmentObject var stuViewModel: StudentsViewModel
+  @EnvironmentObject var recViewModel: RecruitersViewModel
+  @ObservedObject var groupViewModel = GroupViewModel()
   @State var sort: Int = 2
-  @State private var createGroupSheet = false
+  @State var createGroupSheet = false
   
-  init(){
-    recViewModel.fetchRecruiter()
-    recViewModel.fetchRecruiterGroups(number: sort)
-    
-    
-  }
-  
+
     var body: some View {
         TabView{
             NavigationView{

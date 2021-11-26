@@ -7,65 +7,48 @@
 
 
 import SwiftUI
+import FirebaseAuth
+
 
 struct ContentView: View {
+    let auth = Auth.auth()
+    @EnvironmentObject var sviewModel: AppViewModel
+    @EnvironmentObject var stuViewModel: StudentsViewModel
+    @EnvironmentObject var recViewModel: RecruitersViewModel
+    @EnvironmentObject var groupViewModel: GroupsViewModel
+    var userCode: String {
+        if sviewModel.signedIn{
+            stuViewModel.fetchStudent(currID: sviewModel.userID)
+            
+        }
+        return ""
+    }
     
-    @ObservedObject var viewModel = StudentsViewModel()
-    @ObservedObject var recViewModel = RecruitersViewModel()
   
     var body: some View {
-      //StudentViews()
-      // Scanner()
-      RecruiterViews()
-    }
-  
-  init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
-    recViewModel.fetchRecruiter()
-        TabView{
-            VStack{
-                List {
-                    Text(viewModel.user.First)
-                }
-                List{
-                    ForEach(viewModel.myGroups){
-                        group in
-                        Text(group.Name)
-                        Text(group.Description)
-                    }
-                }
+        // TODO: Add way to check user role 
+        if sviewModel.signedIn{
+            if sviewModel.role == "Students"{
+                StudentViews()
             }
-            
-            .tabItem {
-                Image(systemName: "list.bullet")
-            }
-            VStack{
-                Text("QR Code")
-                Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
-            }
-            .tabItem {
-                Image(systemName: "qrcode.viewfinder")
-            }
-            VStack{
-                Text(viewModel.user.First)
-                Text(viewModel.user.Last)
-                Text(viewModel.user.School)
-            }
-            .tabItem {
-                Image(systemName: "person.crop.circle")
+            else{
+                RecruiterViews()
             }
         }
-            
-    }
-  
-  init(){
-      viewModel.fetchStudent()
+        else{
+            LogInViews()
+        }
+      }
 
-  }
 }
+
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+      .environmentObject(AppViewModel())
+      .environmentObject(StudentsViewModel())
+      .environmentObject(RecruitersViewModel())
+      .environmentObject(GroupsViewModel())
   }
 }
+

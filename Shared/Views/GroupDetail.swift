@@ -61,15 +61,6 @@ struct GroupDetail: View {
           }
         Spacer().frame(height: 5)
         
-        /*
-        HStack {
-            Text("Description:")
-                .fontWeight(.bold)
-                .padding(.leading)
-            Spacer()
-            Text(group.Description)
-                .padding(.trailing)
-        } */
     }.navigationBarTitle(group.Name)
   }
 }

@@ -8,9 +8,21 @@
 import SwiftUI
 
 struct CreateGroup: View {
-    //var group: Group
     @State var name = ""
     @State var description = ""
+    var body: some View {
+        NavigationView {
+                VStack {
+                    TextField("Group Name", text: $name)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                    TextField("Description", text: $description)
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                }
+                .padding()
+            }
+            .navigationTitle("Create Group")
     @Environment(\.dismiss) var dismiss
     @ObservedObject var recViewModel = RecruitersViewModel()
     
@@ -34,7 +46,6 @@ struct CreateGroup: View {
             })
         }
         .padding()
-        //Spacer()
     }
 }
 
