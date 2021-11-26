@@ -70,18 +70,15 @@
 		B67D056E272F77F400B2E311 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056D272F77F400B2E311 /* FirebaseStorage */; };
 		B67D0570272F77F400B2E311 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */; };
 		B67D0572272F77F400B2E311 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */; };
-<<<<<<< HEAD
 		CF798A0127324A320038678F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = CF798A0027324A320038678F /* GoogleSignIn */; };
 		CF85F3AB2746CA0E00277677 /* LogInViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF85F3AA2746CA0E00277677 /* LogInViews.swift */; };
 		CF89C893273AE6B400C08A4D /* CreateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF89C892273AE6B300C08A4D /* CreateGroup.swift */; };
-=======
 		B67D05762731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
 		B67D05772731CEA100B2E311 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05752731CEA100B2E311 /* Group.swift */; };
 		B67D05792731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
 		B67D057A2731D43400B2E311 /* Recruiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D05782731D43400B2E311 /* Recruiter.swift */; };
 		B67D057F273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
 		B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
->>>>>>> stage
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,14 +131,11 @@
 		B63E5C70272BAA8100830C77 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = StudentsViewModel.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 1; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
-<<<<<<< HEAD
 		CF85F3AA2746CA0E00277677 /* LogInViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViews.swift; sourceTree = "<group>"; };
 		CF89C892273AE6B300C08A4D /* CreateGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroup.swift; sourceTree = "<group>"; };
-=======
 		B67D05752731CEA100B2E311 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		B67D05782731D43400B2E311 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
 		B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecruiterViewModel.swift; sourceTree = "<group>"; };
->>>>>>> stage
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,16 +209,13 @@
 				5E9D8FD12733631200AA6120 /* RecruiterViews.swift */,
 				5E9D8FD62733631200AA6120 /* StudentViews.swift */,
 				5E9D8FDE2733709B00AA6120 /* GroupDetail.swift */,
-<<<<<<< HEAD
 				CF89C892273AE6B300C08A4D /* CreateGroup.swift */,
 				CF85F3AA2746CA0E00277677 /* LogInViews.swift */,
-=======
 				5E9D8FE42734957600AA6120 /* RecGroupDetail.swift */,
 				5E9D8FE62735CA0E00AA6120 /* RecStudentDetail.swift */,
 				5E9D8FE82735D75500AA6120 /* RecStudentRow.swift */,
 				5E9D8FEA2735DF9200AA6120 /* Scanner.swift */,
 				5EA18795273B1B79002AD9EE /* CreateGroup.swift */,
->>>>>>> stage
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,11 +364,8 @@
 				B67D056D272F77F400B2E311 /* FirebaseStorage */,
 				B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */,
 				B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */,
-<<<<<<< HEAD
 				CF798A0027324A320038678F /* GoogleSignIn */,
-=======
 				5E9D8FED2735DFD300AA6120 /* CodeScanner */,
->>>>>>> stage
 			);
 			productName = "CampusConnect (iOS)";
 			productReference = B63E5C38272BA4E700830C77 /* CampusConnect.app */;
@@ -473,11 +461,8 @@
 			mainGroup = B63E5C2B272BA4E600830C77;
 			packageReferences = (
 				B67D053E272F77F400B2E311 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-<<<<<<< HEAD
 				CF7989FF27324A320038678F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-=======
 				5E9D8FEC2735DFD300AA6120 /* XCRemoteSwiftPackageReference "CodeScanner" */,
->>>>>>> stage
 			);
 			productRefGroup = B63E5C39272BA4E700830C77 /* Products */;
 			projectDirPath = "";
@@ -550,11 +535,8 @@
 				B63E5C5B272BA4E700830C77 /* ContentView.swift in Sources */,
 				5E9D8FDC2733631200AA6120 /* QRCode.swift in Sources */,
 				B63E5C71272BAA8100830C77 /* Student.swift in Sources */,
-<<<<<<< HEAD
 				CF89C893273AE6B400C08A4D /* CreateGroup.swift in Sources */,
-=======
 				B67D05762731CEA100B2E311 /* Group.swift in Sources */,
->>>>>>> stage
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 				5E9D8FEB2735DF9200AA6120 /* Scanner.swift in Sources */,
 				5E9D8FDB2733631200AA6120 /* RecruiterProfile.swift in Sources */,
