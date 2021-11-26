@@ -41,6 +41,7 @@ class GroupsViewModel: ObservableObject{
   }
     
     func fetchStudents(group: Group) {
+        self.students.removeAll()
         let docRefs = group.Actives
         if docRefs.count == 0 {
             self.students = [Student]()
@@ -103,11 +104,13 @@ class GroupsViewModel: ObservableObject{
         }
     }
     
-    /*func deactivateStudent(student: Student, group: Group){
-        db.collection("Group").document(group.id).updateData(["Actives": FieldValue.arrayRemove([group.id])
-                           ])
+    func deactivateStudent(student: Student, group: Group){
+        db.collection("Group").document(group.id!).updateData(["Actives": FieldValue.arrayRemove([db.collection("Student").document(student.id!)])
+                                                              ])
+        db.collection("Group").document(group.id!).updateData(["Inactives": FieldValue.arrayUnion([db.collection("Student").document(student.id!)])
+                                                              ])
     }
-     */
+     
     
     func clearStudents() {
         self.students = [Student]()

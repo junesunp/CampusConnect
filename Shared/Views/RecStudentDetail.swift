@@ -63,14 +63,24 @@ struct RecStudentDetail: View {
                   .padding(.trailing)
               }
             Spacer().frame(height: 5)
-            /*
-            Button(action: { groupViewModel.deactivateStudent(student: student, group: group) }){
-                Text("Remove Student from Group").foregroundColor(Color(.green))
-                    .frame(width: 600, height: 100)
-                    .background(Color(.clear))
-            }
-             */
+        
+            
+            
             
         }.navigationBarTitle(student.First + " " + student.Last)
+        Spacer()
+        NavigationLink(destination: RecGroupDetail(group: group)){
+            Text("Remove Student from Group").foregroundColor(Color(.red))
+            
+        }.simultaneousGesture(TapGesture().onEnded{ groupViewModel.deactivateStudent(student: student, group: group) } )
+        /*
+        Button(action: { groupViewModel.deactivateStudent(student: student, group: group) } ){
+            Text("Remove Student from Group").foregroundColor(Color(.green))
+                .frame(width: 600, height: 100)
+                .background(Color(.clear))
+        }
+         */
+        Spacer()
     }
+    
 }
