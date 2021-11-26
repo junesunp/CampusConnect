@@ -12,7 +12,11 @@ struct GroupDetail: View {
   var group: Group
   let width = UIScreen.main.bounds.width * 0.75
   let groupRecruiter: Recruiter
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> stage
   var body: some View {
     VStack {
         HStack {
@@ -20,30 +24,56 @@ struct GroupDetail: View {
               .fontWeight(.bold)
               .padding(.leading)
             Spacer()
-            Text(group.Description)
-              .padding(.trailing)
+            Text(groupRecruiter.First + " " + groupRecruiter.Last)
+                  .padding(.trailing)
           }
+        Spacer().frame(height: 5)
         HStack {
-            Text("Contact Info:")
+            Text("Company:")
               .fontWeight(.bold)
               .padding(.leading)
             Spacer()
-            VStack {
-                Text("email")
+            Text(groupRecruiter.Company)
                   .padding(.trailing)
-                Text("phone number")
-                  .padding(.trailing)
-            }
           }
-
-      HStack {
-        Text("Description:")
-          .fontWeight(.bold)
-          .padding(.leading)
-        Spacer()
-        Text(group.Description)
-          .padding(.trailing)
-      }.padding()
+        Spacer().frame(height: 5)
+        HStack {
+            Text("Position:")
+              .fontWeight(.bold)
+              .padding(.leading)
+            Spacer()
+            Text(groupRecruiter.Position)
+                  .padding(.trailing)
+          }
+        Spacer().frame(height: 5)
+        HStack {
+            Text("Email:")
+              .fontWeight(.bold)
+              .padding(.leading)
+            Spacer()
+            Text(groupRecruiter.Email)
+              .padding(.trailing)
+          }
+        Spacer().frame(height: 5)
+        HStack {
+            Text("Phone:")
+              .fontWeight(.bold)
+              .padding(.leading)
+            Spacer()
+            Text(groupRecruiter.Phone)
+              .padding(.trailing)
+          }
+        Spacer().frame(height: 5)
+        
+        /*
+        HStack {
+            Text("Description:")
+                .fontWeight(.bold)
+                .padding(.leading)
+            Spacer()
+            Text(group.Description)
+                .padding(.trailing)
+        } */
     }.navigationBarTitle(group.Name)
   }
 }

@@ -27,6 +27,7 @@ struct ContentView: View {
     
   
     var body: some View {
+<<<<<<< HEAD
         // TODO: Add way to check user role 
         if sviewModel.signedIn{
             // viewModel.fetchStudent()
@@ -222,30 +223,64 @@ struct ContentView: View {
             Text(group.Name)
             Text(group.Description)
           }
-        }
-      }
-      .tabItem {
-        Image(systemName: "list.bullet")
-      }
-      VStack{
-        Text("QR Code")
-        Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
-      }
-      .tabItem {
-        Image(systemName: "qrcode.viewfinder")
-      }
-      VStack{
-        Text(viewModel.user.First)
-        Text(viewModel.user.Last)
-        Text(viewModel.user.School)
-      }
-      .tabItem {
-        Image(systemName: "person.crop.circle")
-      }
+=======
+      //StudentViews()
+      // Scanner()
+      RecruiterViews()
     }
+  
+  init(){
+    viewModel.fetchStudents()
+    viewModel.fetchStudent()
+    recViewModel.fetchRecruiter()
+        TabView{
+            VStack{
+                List {
+                    Text(viewModel.user.First)
+                }
+                List{
+                    ForEach(viewModel.myGroups){
+                        group in
+                        Text(group.Name)
+                        Text(group.Description)
+                    }
+                }
+            }
+            
+            .tabItem {
+                Image(systemName: "list.bullet")
+            }
+            VStack{
+                Text("QR Code")
+                Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
+            }
+            .tabItem {
+                Image(systemName: "qrcode.viewfinder")
+            }
+            VStack{
+                Text(viewModel.user.First)
+                Text(viewModel.user.Last)
+                Text(viewModel.user.School)
+            }
+            .tabItem {
+                Image(systemName: "person.crop.circle")
+            }
+>>>>>>> stage
+        }
+            
+    }
+  
+  init(){
+      viewModel.fetchStudent()
+
   }
- init(){
-   viewModel.fetchStudent()
- }
 }
+<<<<<<< HEAD
 */
+=======
+struct ContentView_Previews: PreviewProvider {
+  static var previews: some View {
+    ContentView()
+  }
+}
+>>>>>>> stage

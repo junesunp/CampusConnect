@@ -11,6 +11,7 @@ struct CreateGroup: View {
     //var group: Group
     @State var name = ""
     @State var description = ""
+<<<<<<< HEAD
     var body: some View {
         NavigationView {
                 VStack {
@@ -37,6 +38,32 @@ struct CreateGroup: View {
                 //Spacer()
             }
             .navigationTitle("Create Group")
+=======
+    @Environment(\.dismiss) var dismiss
+    @ObservedObject var recViewModel = RecruitersViewModel()
+    
+    var body: some View {
+        VStack {
+            TextField("Group Name", text: $name)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+            TextField("Description", text: $description)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+            Button (action: {
+                recViewModel.recCreateGroup(name: name, des: description);
+                dismiss()
+            }, label: {
+                Text("Create Group")
+                    .foregroundColor(Color.white)
+                    .frame(width: 200, height: 50)
+                    .cornerRadius(8)
+                    .background(Color.blue)
+            })
+        }
+        .padding()
+        //Spacer()
+>>>>>>> stage
     }
 }
 

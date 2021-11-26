@@ -9,51 +9,59 @@ import SwiftUI
 
 struct RecruiterViews: View {
   
-//  @ObservedObject var stuViewModel = StudentsViewModel()
-//  @ObservedObject var recViewModel = RecruitersViewModel()
   @EnvironmentObject var stuViewModel: StudentsViewModel
-  @EnvironmentObject var recViewModel: RecruitersViewModel
+    @EnvironmentObject var recViewModel: RecruitersViewModel
+    @ObservedObject var groupViewModel = GroupViewModel()
+  @State var sort: Int = 2
+  @State var createGroupSheet = false
   
-//  init(){
-//    stuViewModel.fetchStudents()
-//    //stuViewModel.fetchStudent(email:stuViewModel.user.Email)
-//    //recViewModel.fetchRecruiter()
-//  }
+
+  
   
     var body: some View {
-      TabView{
-          
-          List {
-              NavigationLink("Add Group", destination: CreateGroup())
-              .tabItem {
-                  Image(systemName: "list.bullet")
-              }
-              Text(stuViewModel.user.Email)
-              Text(stuViewModel.user.First)
-              Text(stuViewModel.user.Last)
-          }
-          .navigationBarItems(trailing: Button(action: {
-          })
-          {
-              Image(systemName: "plus")
-                  .resizable()
-                  .padding(6)
-                  .frame(width: 24, height: 24)
-                  .background(Color.blue)
-                  .clipShape(Circle())
-                  .foregroundColor(.white)
-          })
-          
-          QRCode()
-          .tabItem {
-              Image(systemName: "qrcode.viewfinder")
-          }
-          RecruiterProfile()
-          .tabItem {
-              Image(systemName: "person.crop.circle")
-          }
-          
-      }
+        TabView{
+            NavigationView{
+                List{
+                    ForEach(recViewModel.recruiterGroups){ group in
+                        NavigationLink(destination: RecGroupDetail(group: group)) {
+                            GroupRow(group: group)
+                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+                            }
+                    }
+                }.navigationBarTitle(recViewModel.user.First + "'s Groups")
+                .navigationBarItems(trailing:
+                                        Button("Create Group") {
+                                            createGroupSheet.toggle()
+                                        }
+                                        .sheet(isPresented: $createGroupSheet) {
+                                                    CreateGroup()
+                                            }
+                )
+                .onAppear(perform: { groupViewModel.clearStudents() })
+                .onAppear(perform: { recViewModel.updateGroups(number: sort) })
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Picker(selection: $sort, label: Text("Sorting options")) {
+                                Text("Date").tag(1)
+                                Text("Alphabetical").tag(2)
+                            }
+                        }
+                        label: {
+                            Label("Sort", systemImage: "arrow.up.arrow.down")
+                        }
+                    }
+                }
+            }
+            .tabItem {
+                Image(systemName: "list.bullet")
+            }
+            Profile()
+                .tabItem {
+                    Image(systemName: "person.crop.circle")
+                }
+            
+        }
     }
 }
 

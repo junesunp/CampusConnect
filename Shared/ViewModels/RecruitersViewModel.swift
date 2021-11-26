@@ -15,13 +15,19 @@ class RecruitersViewModel: ObservableObject {
   let db = Firestore.firestore()
   @Published var recruiterGroups = [Group]()
   @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
-  //@Published var currentGroup = Group(id:"" , Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: recruiterDocRef, Students:[Student]())
   var errorMessage = ""
+<<<<<<< HEAD
 	func fetchRecruiter(email: String) {
     let docRef = db.collection("Recruiter").whereField("email", isEqualTo: email)
 		//let docRef = db.collection("Recruiter").document(currentRecID)
     //docRef.getDocument { document, error in
 		docRef.getDocuments { snapshot, error in
+=======
+
+  func fetchRecruiter() {
+    let docRef = db.collection("Recruiter").document(currentRecID)
+    docRef.getDocument { document, error in
+>>>>>>> stage
       if let error = error as NSError? {
         self.errorMessage = "Error getting document: \(error.localizedDescription)"
       }
@@ -31,7 +37,11 @@ class RecruitersViewModel: ObservableObject {
           do{
             //let dataDescription = document.data()
             self.user = try document.data(as: Recruiter.self)!
+<<<<<<< HEAD
 						self.fetchRecruiterGroups(currRec: document)
+=======
+            self.fetchRecruiterGroups(number: 1)
+>>>>>>> stage
           }
           catch {
             print(error)
@@ -40,8 +50,22 @@ class RecruitersViewModel: ObservableObject {
       }
     }
   }
+<<<<<<< HEAD
 	func fetchRecruiterGroups(currRec: QueryDocumentSnapshot) {
 		db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currRec.documentID)).addSnapshotListener { (querySnapshot, error) in
+=======
+    
+    func sorterForAlphabetical(this:Group, that:Group) -> Bool {
+        return this.Name < that.Name
+    }
+    func sorterForTimeStamp(this:Group, that:Group) -> Bool {
+      return this.Created < that.Created
+    }
+    
+    
+  func fetchRecruiterGroups(number: Int) {
+    db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).addSnapshotListener { (querySnapshot, error) in
+>>>>>>> stage
       guard let documents = querySnapshot?.documents else {
         print("No documents")
         return
@@ -49,11 +73,15 @@ class RecruitersViewModel: ObservableObject {
       self.recruiterGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
         return try? queryDocumentSnapshot.data(as: Group.self)
       }
-      print("hELLOOO")
-      print("")
-      print(self.recruiterGroups)
+    }
+    if number == 1{
+        recruiterGroups.sort(by: sorterForAlphabetical)
+    }
+    else{
+        recruiterGroups.sort(by: sorterForTimeStamp)
     }
   }
+<<<<<<< HEAD
 func createRecruiter(email: String, password: String, username: String, fname: String, lname: String, company: String, role: String){
     db.collection("Recruiter").addDocument(data: [
         "Email": email,
@@ -78,6 +106,58 @@ func createRecruiter(email: String, password: String, username: String, fname: S
     }
     }
 }
+=======
+    
+    func updateGroups(number: Int) {
+      recruiterGroups = [Group]()
+        fetchRecruiterGroups(number: number)
+    }
+    
+    
+    func recCreateGroup(name: String, des: String?){
+        var recRef: DocumentReference? = nil
+        let docRef = db.collection("Recruiter").document(currentRecID)
+        recRef = db.document("Recruiter/" + docRef.documentID)
+        
+        var ref: DocumentReference? = nil
+        ref = db.collection("Group").addDocument(data: [
+            "Active": true,
+            "DateCreated": Date.now,
+            "DateUpdated": Date.now,
+            "Name": name,
+            "Description": des ?? "",
+            "Recruiter": recRef,
+            "Students": [DocumentReference]()
+        ])
+    }
+    
+    func recEditGroup(curGroup: Group, name: String = "", des: String = "") {
+        let docRef = db.collection("Group").document(curGroup.id!)
+        let strDocRef = "\(docRef)"
+        if name != "" && des != "" {
+            db.collection("Group").document(strDocRef).updateData([
+                        "DateUpdated": Date.now,
+                        "Name": name,
+                        "Description": des
+                    ])
+        }
+        else if name == "" && des != "" {
+            db.collection("Group").document(strDocRef).updateData([
+                        "DateUpdated": Date.now,
+                        "Description": des
+                    ])
+        }
+        else if name != "" && des == "" {
+            db.collection("Group").document(strDocRef).updateData([
+                        "DateUpdated": Date.now,
+                        "Name": name
+                    ])
+        }
+        
+    }
+  
+    
+>>>>>>> stage
   /*
   func fetchGroup() {
     let docRef = db.collection("Group").document(currentRecID)
