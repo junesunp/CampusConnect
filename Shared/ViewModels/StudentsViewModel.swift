@@ -14,12 +14,9 @@ import FirebaseAuth
 class StudentsViewModel: ObservableObject{
 	
   let db = Firestore.firestore()
-	//let currUser = Auth.auth().currentUser!.uid
-	//let currentStudentID = Auth.auth().currentUser!.uid
   @Published var students = [Student]()
   @Published var myGroups = [Group]()
   @Published var user: Student = Student(Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
-	//@Published var user = Auth.auth().currentUser
   var errorMessage = ""
     
   func fetchStudents() {
@@ -34,23 +31,15 @@ class StudentsViewModel: ObservableObject{
     }
   }
 	func fetchStudent(currID: String) {
-	 //let currStu = db.collection("Student").document(email)
-	 //print("\(email)")
-	 //let docRef = db.collection("Student").document(currID)
 	 let docRef = db.collection("Student").whereField("email", isEqualTo: currID)
    docRef.getDocuments { (snapshot, error) in
 	 if let error = error as NSError? {
      self.errorMessage = "Error getting document"
     }
     else {
-<<<<<<< HEAD
 			for document in snapshot!.documents {
-			  //let document = snapshot!.documents.first
 				if document == document {
 				do {
-					print("IIIII AMMMMM GETTTINg TOOOOO HERERERERERERE THE DOC EXISTS")
-					//self.user = try document.data(as: Student.self)!
-					//self.user = Student(id: document.get("id"), Email: document.get("Email"), )
 					let dataDescription = document.data()
 					print("\(dataDescription["id"])")
 					print("\(dataDescription["email"])")
@@ -63,7 +52,6 @@ class StudentsViewModel: ObservableObject{
 					self.user.School = "\(dataDescription["School"])"
 					let currGroups = dataDescription["Groups"] as! Array<DocumentReference>
 					self.user.Groups = currGroups
-					//self.currentStudentID = "\(self.user.id)"
 					self.getStudentGroups(number: 1)
 				}
 				catch {
@@ -108,7 +96,6 @@ class StudentsViewModel: ObservableObject{
         }
   }
   
-=======
      if let document = document {
       do {
         self.user = try document.data(as: Student.self)!
@@ -154,7 +141,6 @@ class StudentsViewModel: ObservableObject{
               myGroups.sort(by: sorterForTimeStamp)
           }
     }
->>>>>>> stage
 
     
   func addStudent(student: Student){
@@ -185,16 +171,10 @@ class StudentsViewModel: ObservableObject{
 					  
 				} else {
 						print("Document successfully written!")
-					  //self.user = Student(id: id, Email:email, First:fname, Last:lname, Grad:gradYear, Major:major, Phone:"", School:schoolName, Password:password, Groups: [])
-					  print (" HELLLO HELLLO HELOOOOOOOO HHERE I  AMAMAMMAMAMAMA     ")
-					  print("\(self.user.id)")
-					  //self.currentStudentID = "\(self.user.id)"
-					  //self.fetchStudent(student: self.user)
 		}
 		}
 	}
     
-  
 
     
   func createQRCode(from string: String) -> UIImage{
@@ -209,18 +189,7 @@ class StudentsViewModel: ObservableObject{
     }
     return UIImage(systemName: "xmark.circle") ?? UIImage()
   }
-<<<<<<< HEAD
-	
-	
-//	func getCurrUserID(student: Student){
-//		currentStudentID = student.id
-//
-//	}
-=======
-    func deleteGroup(group: Group) {
-        
-    }
->>>>>>> stage
+
 }
 
 

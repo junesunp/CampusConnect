@@ -12,11 +12,7 @@ struct GroupDetail: View {
   var group: Group
   let width = UIScreen.main.bounds.width * 0.75
   let groupRecruiter: Recruiter
-<<<<<<< HEAD
-
-=======
     
->>>>>>> stage
   var body: some View {
     VStack {
         HStack {
@@ -65,15 +61,6 @@ struct GroupDetail: View {
           }
         Spacer().frame(height: 5)
         
-        /*
-        HStack {
-            Text("Description:")
-                .fontWeight(.bold)
-                .padding(.leading)
-            Spacer()
-            Text(group.Description)
-                .padding(.trailing)
-        } */
     }.navigationBarTitle(group.Name)
   }
 }

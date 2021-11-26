@@ -10,14 +10,12 @@ import SwiftUI
 struct RecruiterViews: View {
   
   @EnvironmentObject var stuViewModel: StudentsViewModel
-    @EnvironmentObject var recViewModel: RecruitersViewModel
-    @ObservedObject var groupViewModel = GroupViewModel()
+  @EnvironmentObject var recViewModel: RecruitersViewModel
+  @ObservedObject var groupViewModel = GroupViewModel()
   @State var sort: Int = 2
   @State var createGroupSheet = false
   
 
-  
-  
     var body: some View {
         TabView{
             NavigationView{

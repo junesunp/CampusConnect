@@ -11,7 +11,6 @@ import CoreImage.CIFilterBuiltins
 import SwiftUI
 import CoreMedia
 class GroupsViewModel: ObservableObject{
-<<<<<<< HEAD
     let db = Firestore.firestore()
     @Published var students = [Student]()
     @Published var myGroups = [Group]()
@@ -38,28 +37,7 @@ class GroupsViewModel: ObservableObject{
           }
         }
       }
-    func fetchStudents(group: Group) {
-            let docRefs = group.Students
-            for student in docRefs {
-                let docRef = student
-                docRef.getDocument { document, error in
-                    if let error = error as NSError? {
-                        self.errorMessage = "Error getting document: \(error.localizedDescription)"
-                    }
-                    else {
-                        if let document = document {
-                            do {
-                                let temp = try document.data(as: Student.self)
-                                self.students.append(temp!)
-                            }
-                            catch {
-                                print(error)
-                            }
-                        }
-                    }
-                }
-            }
-        }
+   
         
     func addStudent(group: Group, studentId: String) {
         let studentDocRef = db.collection("Student").document(studentId)
@@ -77,36 +55,7 @@ class GroupsViewModel: ObservableObject{
     func clearStudents() {
         self.students = [Student]()
     }
-=======
- let db = Firestore.firestore()
- @Published var students = [Student]()
- @Published var myGroups = [Recruiter]()
- @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
-  @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
-  
-    //@Published var currentGroup = Group(id:"", Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: , Students: [DocumentReference]())
- var errorMessage = ""
-  
- func getRecruiter(group: Group) {
-    let docRef = group.Recruiter
-    docRef.getDocument { document, error in
-      if let error = error as NSError? {
-        self.errorMessage = "Error getting document"
-      }
-      else{
-        if let document = document {
-          do{
-            let recruiter = try document.data(as: Recruiter.self)
-            self.viewedGroupRecruiter = recruiter!
-          }
-          catch{
-            print(error)
-          }
-        }
-      }
-    }
-  }
->>>>>>> stage
+
     
     func fetchStudents(group: Group) {
         let docRefs = group.Students
@@ -135,20 +84,4 @@ class GroupsViewModel: ObservableObject{
         }
     }
     
-    func addStudent(group: Group, studentId: String) {
-        let studentDocRef = db.collection("Student").document(studentId)
-        let groupDocRef = db.collection("Group").document(group.id!)
-        groupDocRef.updateData([
-            "Students": FieldValue.arrayUnion([studentDocRef])
-        ])
-        
-        studentDocRef.updateData([
-            "Groups": FieldValue.arrayUnion([groupDocRef])
-        ])
-        fetchStudents(group: group)
-    }
-    
-    func clearStudents() {
-        self.students = [Student]()
-    }
 }

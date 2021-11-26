@@ -16,18 +16,13 @@ class RecruitersViewModel: ObservableObject {
   @Published var recruiterGroups = [Group]()
   @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
   var errorMessage = ""
-<<<<<<< HEAD
 	func fetchRecruiter(email: String) {
     let docRef = db.collection("Recruiter").whereField("email", isEqualTo: email)
-		//let docRef = db.collection("Recruiter").document(currentRecID)
-    //docRef.getDocument { document, error in
 		docRef.getDocuments { snapshot, error in
-=======
 
   func fetchRecruiter() {
     let docRef = db.collection("Recruiter").document(currentRecID)
     docRef.getDocument { document, error in
->>>>>>> stage
       if let error = error as NSError? {
         self.errorMessage = "Error getting document: \(error.localizedDescription)"
       }
@@ -35,13 +30,8 @@ class RecruitersViewModel: ObservableObject {
 				let document = snapshot!.documents.first
         if let document = document {
           do{
-            //let dataDescription = document.data()
             self.user = try document.data(as: Recruiter.self)!
-<<<<<<< HEAD
-						self.fetchRecruiterGroups(currRec: document)
-=======
-            self.fetchRecruiterGroups(number: 1)
->>>>>>> stage
+            self.fetchRecruiterGroups(number: 1, currRec: document)
           }
           catch {
             print(error)
@@ -50,10 +40,7 @@ class RecruitersViewModel: ObservableObject {
       }
     }
   }
-<<<<<<< HEAD
-	func fetchRecruiterGroups(currRec: QueryDocumentSnapshot) {
-		db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currRec.documentID)).addSnapshotListener { (querySnapshot, error) in
-=======
+            
     
     func sorterForAlphabetical(this:Group, that:Group) -> Bool {
         return this.Name < that.Name
@@ -63,25 +50,24 @@ class RecruitersViewModel: ObservableObject {
     }
     
     
-  func fetchRecruiterGroups(number: Int) {
-    db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).addSnapshotListener { (querySnapshot, error) in
->>>>>>> stage
-      guard let documents = querySnapshot?.documents else {
-        print("No documents")
-        return
-      }
-      self.recruiterGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
-        return try? queryDocumentSnapshot.data(as: Group.self)
-      }
-    }
-    if number == 1{
-        recruiterGroups.sort(by: sorterForAlphabetical)
-    }
-    else{
-        recruiterGroups.sort(by: sorterForTimeStamp)
-    }
+    func fetchRecruiterGroups(number: Int, currRec: QueryDocumentSnapshot) {
+        db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currRec.documentID)).addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            self.recruiterGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+                return try? queryDocumentSnapshot.data(as: Group.self)
+            }
+            }
+        if number == 1{
+            recruiterGroups.sort(by: sorterForAlphabetical)
+        }
+        else{
+            recruiterGroups.sort(by: sorterForTimeStamp)
+        }
   }
-<<<<<<< HEAD
+
 func createRecruiter(email: String, password: String, username: String, fname: String, lname: String, company: String, role: String){
     db.collection("Recruiter").addDocument(data: [
         "Email": email,
@@ -98,15 +84,9 @@ func createRecruiter(email: String, password: String, username: String, fname: S
                   
             } else {
                     print("Document successfully written!")
-                  //self.user = Student(id: id, Email:email, First:fname, Last:lname, Grad:gradYear, Major:major, Phone:"", School:schoolName, Password:password, Groups: [])
-                  print (" HELLLO HELLLO HELOOOOOOOO HHERE I  AMAMAMMAMAMAMA     ")
-                  //print("\(self.user.id)")
-                  //self.currentStudentID = "\(self.user.id)"
-                  //self.fetchStudent(student: self.user)
     }
     }
 }
-=======
     
     func updateGroups(number: Int) {
       recruiterGroups = [Group]()
@@ -155,22 +135,4 @@ func createRecruiter(email: String, password: String, username: String, fname: S
         }
         
     }
-  
-    
->>>>>>> stage
-  /*
-  func fetchGroup() {
-    let docRef = db.collection("Group").document(currentRecID)
-    docRef.getDocument { document, error in
-      if let error = error as NSError? {
-        self.errorMessage = "Error getting document: \(error.localizedDescription)"
-      }
-      else {
-        if let document = document {
-          self.
-        }
-      }
-    }
-  }
-  */
 }
