@@ -39,6 +39,7 @@
 		B63E5C72272BAA8100830C77 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C70272BAA8100830C77 /* Student.swift */; };
 		B63E5C74272BAA9900830C77 /* StudentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */; };
 		B63E5C75272BAA9900830C77 /* StudentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */; };
+		B65A21842756B45600CDB47A /* RecEditGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A21832756B45600CDB47A /* RecEditGroup.swift */; };
 		B67D053D272F644200B2E311 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67D053C272F644200B2E311 /* AVKit.framework */; };
 		B67D0540272F77F400B2E311 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B67D053F272F77F400B2E311 /* FirebaseAnalytics */; };
 		B67D0542272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0541272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta */; };
@@ -122,6 +123,7 @@
 		B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B63E5C70272BAA8100830C77 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsViewModel.swift; sourceTree = "<group>"; };
+		B65A21832756B45600CDB47A /* RecEditGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecEditGroup.swift; sourceTree = "<group>"; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		B67D05752731CEA100B2E311 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		B67D05782731D43400B2E311 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				5E9D8FE82735D75500AA6120 /* RecStudentRow.swift */,
 				5E9D8FEA2735DF9200AA6120 /* Scanner.swift */,
 				5EA18795273B1B79002AD9EE /* CreateGroup.swift */,
+				B65A21832756B45600CDB47A /* RecEditGroup.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				5E9D8FDA2733631200AA6120 /* GroupRow.swift in Sources */,
 				5E9D8FDF2733709B00AA6120 /* GroupDetail.swift in Sources */,
 				5E9D8FD92733631200AA6120 /* Profile.swift in Sources */,
+				B65A21842756B45600CDB47A /* RecEditGroup.swift in Sources */,
 				5E9D8FC32731C86800AA6120 /* RecruitersViewModel.swift in Sources */,
 				5E9D8FD82733631200AA6120 /* RecruiterViews.swift in Sources */,
 				5E9D8FE3273372FD00AA6120 /* GroupsViewModel.swift in Sources */,
