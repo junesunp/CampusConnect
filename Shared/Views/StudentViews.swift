@@ -22,12 +22,13 @@ struct StudentViews: View {
   
   var searchResults: [Group] {
     if searchText.isEmpty {
-      return viewModel.myGroups
+     return viewModel.myGroups
     }
     else {
-      return viewModel.myGroups.filter { $0.Name.contains(searchText) }
+     return viewModel.myGroups.filter { $0.Name.contains(searchText) }
     }
-  }
+   }
+  
     
     var body: some View {
         TabView{

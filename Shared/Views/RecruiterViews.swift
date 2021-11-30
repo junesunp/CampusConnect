@@ -13,7 +13,7 @@ struct RecruiterViews: View {
   @ObservedObject var groupViewModel = GroupsViewModel()
   @State var sort: Int = 1
   @State private var createGroupSheet = false
-  // @Binding var activeGroups: [Group]
+  @State var searchText = ""
   
   init(){
     recViewModel.fetchRecruiter()
@@ -21,18 +21,26 @@ struct RecruiterViews: View {
     recViewModel.fetchInactiveGroups(number: sort)
   }
   
+  
   var sortResults: [Group] {
-    if sort == 1{
-      return recViewModel.activeGroups.sorted()
+    if searchText.isEmpty {
+      if sort == 1{
+        return recViewModel.activeGroups.sorted()
+      }
+      else if sort == 2 {
+        return recViewModel.activeGroups.sorted(by: { $0.Created < $1.Created } )
+      }
+      else if sort == 3 {
+        return recViewModel.activeGroups.sorted(by: { $0.Updated < $1.Updated } )
+      }
+      else{
+        return recViewModel.activeGroups.sorted() // default alphabetical
+      }
     }
-    else if sort == 2 {
-      return recViewModel.activeGroups.sorted(by: { $0.Created < $1.Created } )
+    else {
+     return recViewModel.activeGroups.filter { $0.Name.contains(searchText) }
     }
-    else if sort == 3 {
-      return recViewModel.activeGroups.sorted(by: { $0.Updated < $1.Updated } )
-    }
-    return recViewModel.activeGroups.sorted() // default alphabetical
-  }
+   }
   
     var body: some View {
         TabView{
@@ -57,6 +65,7 @@ struct RecruiterViews: View {
                         )
                         .onAppear(perform: { groupViewModel.clearStudents() })
                         .onAppear(perform: { recViewModel.updateGroups(number: sort) })
+                        .searchable(text: $searchText)
                         .toolbar {
                             ToolbarItem(placement: .primaryAction) {
                                 Menu {
