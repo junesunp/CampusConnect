@@ -19,6 +19,7 @@ class StudentsViewModel: ObservableObject{
     var errorMessage = ""
     
     func fetchStudents() {
+        self.students.removeAll()
         db.collection("Student").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
@@ -69,6 +70,7 @@ class StudentsViewModel: ObservableObject{
         return this.Created < that.Created
     }
     func getStudentGroups(number: Int) {
+        self.myGroups.removeAll()
         for group in self.user.Groups{
             let docRef = group
             docRef.getDocument { document, error in
@@ -134,7 +136,8 @@ class StudentsViewModel: ObservableObject{
         let filter = CIFilter.qrCodeGenerator()
         let data = Data(string.utf8)
         filter.setValue(data, forKey: "inputMessage")
-        if let outputImage = filter.outputImage {
+        let transform = CGAffineTransform(scaleX: 5, y: 5)
+        if let outputImage = filter.outputImage?.transformed(by: transform) {
             if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
                 return UIImage(cgImage: cgimg)
             }

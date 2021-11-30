@@ -11,26 +11,33 @@ import FirebaseFirestoreSwift
 import SwiftUI
 
 
-struct Group: Identifiable, Codable {
- @DocumentID var id: String? = UUID().uuidString
- var Active: Bool
- var Created: Date
- var Updated: Date
- var Name: String
- var Description: String
- var Recruiter: DocumentReference
- var Actives: [DocumentReference]
- var Inactives: [DocumentReference]
+struct Group: Identifiable, Codable, Comparable, Equatable, Hashable {
+    @DocumentID var id: String? = UUID().uuidString
+    var Active: Bool
+    var Created: Date
+    var Updated: Date
+    var Name: String
+    var Description: String
+    var Recruiter: DocumentReference
+    var Actives: [DocumentReference]
+    var Inactives: [DocumentReference]
     
- enum CodingKeys: String, CodingKey {
-  case id
-  case Active
-  case Created = "DateCreated"
-  case Updated = "DateUpdated"
-  case Name
-  case Description
-  case Recruiter
-  case Actives
-  case Inactives
- }
+    static func <(lhs: Group, rhs: Group) -> Bool {
+        return lhs.Name < rhs.Name
+    }
+    static func == (lhs: Group, rhs: Group) -> Bool {
+        return lhs.Name == rhs.Name
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case Active
+        case Created = "DateCreated"
+        case Updated = "DateUpdated"
+        case Name
+        case Description
+        case Recruiter
+        case Actives
+        case Inactives
+    }
 }
