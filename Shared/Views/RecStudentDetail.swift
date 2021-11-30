@@ -9,7 +9,15 @@
 import SwiftUI
 
 struct RecStudentDetail: View {
+    /*
+    init{
+        self.studentDescription = group
+        
+    }
+     */
+    
     @ObservedObject var groupViewModel = GroupsViewModel()
+    @State private var studentDescription = "Enter Notes on Applicant"
     var student: Student
     var group: Group
     
@@ -18,6 +26,7 @@ struct RecStudentDetail: View {
       
     var body: some View {
         VStack {
+            Spacer().frame(height: 6)
             HStack {
                 Text("School:")
                   .fontWeight(.bold)
@@ -26,7 +35,6 @@ struct RecStudentDetail: View {
                 Text(student.School)
                       .padding(.trailing)
               }
-            Spacer().frame(height: 5)
             HStack {
                 Text("Class:")
                   .fontWeight(.bold)
@@ -35,7 +43,6 @@ struct RecStudentDetail: View {
                 Text(student.Grad)
                       .padding(.trailing)
               }
-            Spacer().frame(height: 5)
             HStack {
                 Text("Major:")
                   .fontWeight(.bold)
@@ -44,7 +51,6 @@ struct RecStudentDetail: View {
                 Text(student.Major)
                       .padding(.trailing)
               }
-            Spacer().frame(height: 5)
             HStack {
                 Text("Email:")
                   .fontWeight(.bold)
@@ -53,7 +59,6 @@ struct RecStudentDetail: View {
                 Text(student.Email)
                   .padding(.trailing)
               }
-            Spacer().frame(height: 5)
             HStack {
                 Text("Phone:")
                   .fontWeight(.bold)
@@ -62,13 +67,17 @@ struct RecStudentDetail: View {
                 Text(student.Phone)
                   .padding(.trailing)
               }
-            Spacer().frame(height: 5)
-        
-            
-            
-            
+
         }.navigationBarTitle(student.First + " " + student.Last)
-        Spacer()
+
+
+
+        TextEditor(text: $studentDescription)
+            .foregroundColor(.secondary)
+            .padding(.horizontal)
+            .navigationTitle("Notes")
+
+
         NavigationLink(destination: RecGroupDetail(group: group)){
             Text("Remove Student from Group").foregroundColor(Color(.red))
             
