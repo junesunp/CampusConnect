@@ -11,14 +11,27 @@ struct RecruiterViews: View {
   
   @ObservedObject var recViewModel = RecruitersViewModel()
   @ObservedObject var groupViewModel = GroupsViewModel()
-  @State var sort: Int = 2
+  @State var sort: Int = 1
   @State private var createGroupSheet = false
+  // @Binding var activeGroups: [Group]
   
   init(){
     recViewModel.fetchRecruiter()
     recViewModel.fetchRecruiterGroups(number: sort)
     recViewModel.fetchInactiveGroups(number: sort)
-    
+  }
+  
+  var sortResults: [Group] {
+    if sort == 1{
+      return recViewModel.activeGroups.sorted()
+    }
+    else if sort == 2 {
+      return recViewModel.activeGroups.sorted(by: { $0.Created < $1.Created } )
+    }
+    else if sort == 3 {
+      return recViewModel.activeGroups.sorted(by: { $0.Updated < $1.Updated } )
+    }
+    return recViewModel.activeGroups.sorted() // default alphabetical
   }
   
     var body: some View {
@@ -27,7 +40,7 @@ struct RecruiterViews: View {
                     VStack{
                         List{
                             Section(header: Text("My Active Groups")){
-                                ForEach(recViewModel.activeGroups){ group in
+                              ForEach(sortResults, id: \.self){ group in
                                     NavigationLink(destination: RecGroupDetail(group: group)){
                                         GroupRow(group: group)
                                     }
@@ -48,8 +61,9 @@ struct RecruiterViews: View {
                             ToolbarItem(placement: .primaryAction) {
                                 Menu {
                                     Picker(selection: $sort, label: Text("Sorting options")) {
-                                        Text("Date").tag(1)
-                                        Text("Alphabetical").tag(2)
+                                        Text("Alphabetical").tag(1)
+                                        Text("Date Created").tag(2)
+                                        Text("Date Updated").tag(3)
                                     }
                                 }
                                 label: {

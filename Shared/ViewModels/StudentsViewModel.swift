@@ -42,7 +42,7 @@ class StudentsViewModel: ObservableObject{
         self.getStudentGroups(number: 1)
       }
       catch {
-       print(error)
+       // print(error)
       }
      }
     }
@@ -68,17 +68,20 @@ class StudentsViewModel: ObservableObject{
                    self.myGroups.append(temp!)
                  }
                  catch {
-                   print(error)
+                   // print(error)
                  }
                }
               }
             }
           }
           if number == 1{
-              myGroups.sort(by: sorterForAlphabetical)
+              myGroups.sort()
+            for item in myGroups {
+              print(item.Name)
+            }
           }
           else{
-              myGroups.sort(by: sorterForTimeStamp)
+              myGroups.sort()
           }
     }
 
@@ -88,7 +91,7 @@ class StudentsViewModel: ObservableObject{
       try db.collection("Student").addDocument(from: student)
     }
     catch {
-      print(error)
+      // print(error)
     }
   }
 
@@ -98,7 +101,8 @@ class StudentsViewModel: ObservableObject{
     let filter = CIFilter.qrCodeGenerator()
     let data = Data(string.utf8)
     filter.setValue(data, forKey: "inputMessage")
-    if let outputImage = filter.outputImage {
+    let transform = CGAffineTransform(scaleX: 5, y: 5)
+    if let outputImage = filter.outputImage?.transformed(by: transform) {
       if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
         return UIImage(cgImage: cgimg)
       }

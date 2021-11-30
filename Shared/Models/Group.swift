@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import SwiftUI
 
 
-struct Group: Identifiable, Codable {
+struct Group: Identifiable, Codable, Comparable, Equatable, Hashable {
  @DocumentID var id: String? = UUID().uuidString
  var Active: Bool
  var Created: Date
@@ -21,7 +21,15 @@ struct Group: Identifiable, Codable {
  var Recruiter: DocumentReference
  var Actives: [DocumentReference]
  var Inactives: [DocumentReference]
+  
+  static func <(lhs: Group, rhs: Group) -> Bool {
+    return lhs.Name < rhs.Name
+  }
     
+  static func == (lhs: Group, rhs: Group) -> Bool {
+    return lhs.Name == rhs.Name
+  }
+  
  enum CodingKeys: String, CodingKey {
   case id
   case Active

@@ -11,25 +11,36 @@ struct StudentViews: View {
     
     @ObservedObject var viewModel = StudentsViewModel()
     @ObservedObject var groupViewModel = GroupsViewModel()
-    @State var sort: Int = 2
+    @State var sort: Int = 1
+    @State var searchText = ""
     
     init(){
         viewModel.fetchStudents()
         viewModel.fetchStudent()
         viewModel.getStudentGroups(number: sort)
     }
+  
+  var searchResults: [Group] {
+    if searchText.isEmpty {
+      return viewModel.myGroups
+    }
+    else {
+      return viewModel.myGroups.filter { $0.Name.contains(searchText) }
+    }
+  }
     
     var body: some View {
         TabView{
             NavigationView{
                 List{
-                    ForEach(viewModel.myGroups){ group in
+                  ForEach(searchResults, id: \.self){ group in
                         NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter)) {
                             GroupRow(group: group)
                             .onAppear(perform: { groupViewModel.getRecruiter(group: group) })
                         }
                     }
                 }.navigationBarTitle(viewModel.user.First + "'s Groups")
+                .searchable(text: $searchText)
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {

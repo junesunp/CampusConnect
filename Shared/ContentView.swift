@@ -10,24 +10,21 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @ObservedObject var viewModel = StudentsViewModel()
-    @ObservedObject var recViewModel = RecruitersViewModel()
+    // @ObservedObject var viewModel = StudentsViewModel()
+//    @ObservedObject var recViewModel = RecruitersViewModel()
+//    @State var sort: Int = 1
   
     var body: some View {
-      //StudentViews()
+      // StudentViews()
       // Scanner()
       RecruiterViews()
     }
   
-  init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
-    recViewModel.fetchRecruiter()
-  }
-}
-
-struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+//  init(){
+//    viewModel.fetchStudents()
+//    viewModel.fetchStudent()
+//    recViewModel.fetchRecruiter()
+//    recViewModel.fetchRecruiterGroups(number: sort)
+//    recViewModel.fetchInactiveGroups(number: sort)
+//  }
 }

@@ -47,6 +47,7 @@ class RecruitersViewModel: ObservableObject {
     
     
   func fetchRecruiterGroups(number: Int) {
+    // self.activeGroups.removeAll()
       db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
       guard let documents = querySnapshot?.documents else {
         print("No documents")
@@ -55,12 +56,6 @@ class RecruitersViewModel: ObservableObject {
       self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
         return try? queryDocumentSnapshot.data(as: Group.self)
       }
-    }
-    if number == 1{
-        activeGroups.sort(by: sorterForAlphabetical)
-    }
-    else{
-        activeGroups.sort(by: sorterForTimeStamp)
     }
   }
     
@@ -85,7 +80,7 @@ class RecruitersViewModel: ObservableObject {
  
     
     func updateGroups(number: Int) {
-      activeGroups = [Group]()
+      // activeGroups = [Group]()
         fetchRecruiterGroups(number: number)
     }
     
@@ -98,12 +93,13 @@ class RecruitersViewModel: ObservableObject {
         var ref: DocumentReference? = nil
         ref = db.collection("Group").addDocument(data: [
             "Active": true,
+            "Actives": [DocumentReference](),
             "DateCreated": Date.now,
             "DateUpdated": Date.now,
             "Name": name,
             "Description": des ?? "",
             "Recruiter": recRef,
-            "Students": [DocumentReference]()
+            "Inactives": [DocumentReference]()
         ])
     }
     

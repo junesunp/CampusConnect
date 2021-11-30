@@ -20,7 +20,7 @@ struct QRCode: View {
       VStack{
           Text("QR Code")
             .fontWeight(.bold)
-          Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
+        Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
             .resizable()
             .aspectRatio(contentMode: .fit)
           }
