@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GroupRow: View {
-    //@ObservedObject var viewModel = StudentsViewModel()
     var group: Group
     
     var body: some View {

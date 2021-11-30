@@ -7,27 +7,37 @@
 
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
+    let auth = Auth.auth()
     
-    @ObservedObject var viewModel = StudentsViewModel()
-    @ObservedObject var recViewModel = RecruitersViewModel()
-  
+    @EnvironmentObject var sviewModel: AppViewModel
+    @EnvironmentObject var stuViewModel: StudentsViewModel
+    @EnvironmentObject var recViewModel: RecruitersViewModel
+    @EnvironmentObject var groupViewModel: GroupsViewModel
     var body: some View {
-      //StudentViews()
-      // Scanner()
-      RecruiterViews()
+        // TODO: Add way to check user role
+        if sviewModel.signedIn{
+            if sviewModel.role == "Students"{
+                StudentViews()
+            }
+            else{
+                RecruiterViews()
+            }
+        }
+        else{
+            LogInViews()
+        }
     }
-  
-  init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
-    recViewModel.fetchRecruiter()
-  }
 }
 
 struct ContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentView()
-  }
+    static var previews: some View {
+        ContentView()
+            .environmentObject(AppViewModel())
+            .environmentObject(StudentsViewModel())
+            .environmentObject(RecruitersViewModel())
+            .environmentObject(GroupsViewModel())
+    }
 }

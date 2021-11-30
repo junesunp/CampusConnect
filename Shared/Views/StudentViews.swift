@@ -9,27 +9,22 @@ import SwiftUI
 
 struct StudentViews: View {
     
-    @ObservedObject var viewModel = StudentsViewModel()
-    @ObservedObject var groupViewModel = GroupsViewModel()
+    @EnvironmentObject var stuViewModel: StudentsViewModel
+    @EnvironmentObject var groupViewModel: GroupsViewModel
     @State var sort: Int = 2
     
-    init(){
-        viewModel.fetchStudents()
-        viewModel.fetchStudent()
-        viewModel.getStudentGroups(number: sort)
-    }
     
     var body: some View {
         TabView{
             NavigationView{
                 List{
-                    ForEach(viewModel.myGroups){ group in
+                    ForEach(stuViewModel.myGroups){ group in
                         NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter)) {
                             GroupRow(group: group)
                             .onAppear(perform: { groupViewModel.getRecruiter(group: group) })
                         }
                     }
-                }.navigationBarTitle(viewModel.user.First + "'s Groups")
+                }.navigationBarTitle(stuViewModel.user.First + "'s Groups")
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {

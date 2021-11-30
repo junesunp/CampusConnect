@@ -9,17 +9,11 @@ import SwiftUI
 
 struct RecruiterViews: View {
   
-  @ObservedObject var recViewModel = RecruitersViewModel()
-  @ObservedObject var groupViewModel = GroupsViewModel()
-  @State var sort: Int = 2
-  @State private var createGroupSheet = false
-  
-  init(){
-    recViewModel.fetchRecruiter()
-    recViewModel.fetchRecruiterGroups(number: sort)
-    recViewModel.fetchInactiveGroups(number: sort)
-    
-  }
+    @EnvironmentObject var stuViewModel: StudentsViewModel
+    @EnvironmentObject var recViewModel: RecruitersViewModel
+    @EnvironmentObject var groupViewModel : GroupsViewModel
+    @State var sort: Int = 2
+    @State var createGroupSheet = false
   
     var body: some View {
         TabView{
@@ -75,7 +69,7 @@ struct RecruiterViews: View {
             .tabItem {
                 Image(systemName: "list.bullet")
             }
-            Profile()
+            RecruiterProfile()
             .tabItem {
                 Image(systemName: "person.crop.circle")
             }

@@ -12,7 +12,7 @@ struct CreateGroup: View {
     @State var name = ""
     @State var description = ""
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var recViewModel = RecruitersViewModel()
+    @EnvironmentObject var recViewModel : RecruitersViewModel
     
     var body: some View {
         VStack {

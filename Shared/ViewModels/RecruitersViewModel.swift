@@ -18,25 +18,26 @@ class RecruitersViewModel: ObservableObject {
   @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
   var errorMessage = ""
 
-  func fetchRecruiter() {
-    let docRef = db.collection("Recruiter").document(currentRecID)
-    docRef.getDocument { document, error in
-      if let error = error as NSError? {
-        self.errorMessage = "Error getting document: \(error.localizedDescription)"
-      }
-      else {
-        if let document = document {
-          do{
-            self.user = try document.data(as: Recruiter.self)!
-            self.fetchRecruiterGroups(number: 1)
-          }
-          catch {
-            print(error)
-          }
+    func fetchRecruiter(email: String) {
+        let docRef = db.collection("Recruiter").whereField("Email", isEqualTo: email)
+        docRef.getDocuments { snapshot, error in
+            if let error = error as NSError? {
+                self.errorMessage = "Error getting document: \(error.localizedDescription)"
+            }
+            else {
+                let document = snapshot!.documents.first
+                if let document = document {
+                    do{
+                        self.user = try document.data(as: Recruiter.self)!
+                        self.fetchRecruiterGroups(number: 1)
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
+            }
         }
-      }
     }
-  }
     
     func sorterForAlphabetical(this:Group, that:Group) -> Bool {
         return this.Name < that.Name
@@ -130,6 +131,26 @@ class RecruitersViewModel: ObservableObject {
                     ])
         }
         
+    }
+    
+    func createRecruiter(id: String, email: String, password: String, fname: String, lname: String, company: String, role: String){
+        db.collection("Recruiter").document(id).setData([
+            "Email": email,
+            "FName": fname,
+            "LName": lname,
+            "Postion": role,
+            "Company": company,
+            "Password": password,
+            "Phone": "123-456-1890",
+        ])
+        { err in
+                if let err = err {
+                        print("Error writing document: \(err)")
+                      
+                } else {
+                        print("Document successfully written!")
+        }
+        }
     }
   
     

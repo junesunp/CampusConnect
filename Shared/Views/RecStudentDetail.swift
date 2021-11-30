@@ -9,20 +9,13 @@
 import SwiftUI
 
 struct RecStudentDetail: View {
-    /*
-    init{
-        self.studentDescription = group
-        
-    }
-     */
     
-    @ObservedObject var groupViewModel = GroupsViewModel()
+    @EnvironmentObject var groupViewModel : GroupsViewModel
     @State private var studentDescription = "Enter Notes on Applicant"
     var student: Student
     var group: Group
     
     let width = UIScreen.main.bounds.width * 0.75
-    //let groupRecruiter: Recruiter
       
     var body: some View {
         VStack {

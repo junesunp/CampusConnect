@@ -11,7 +11,7 @@ import UserNotifications
 
 struct Scanner: View {
     
-  @ObservedObject var groupViewModel = GroupsViewModel()
+  @EnvironmentObject var groupViewModel : GroupsViewModel
   var group: Group
     
   func handleScan(result: Result<String, CodeScannerView.ScanError>) {

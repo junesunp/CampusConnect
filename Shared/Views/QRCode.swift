@@ -8,21 +8,16 @@
 import SwiftUI
 
 struct QRCode: View {
-  
-  @ObservedObject var viewModel = StudentsViewModel()
-  
-  init(){
-    viewModel.fetchStudents()
-    viewModel.fetchStudent()
-  }
-  
+    
+    @EnvironmentObject var stuViewModel : StudentsViewModel
+    
     var body: some View {
-      VStack{
-          Text("QR Code")
-            .fontWeight(.bold)
-          Image(uiImage: viewModel.createQRCode(from: viewModel.user.Email))
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-          }
+        VStack{
+            Text("QR Code")
+                .fontWeight(.bold)
+            Image(uiImage: stuViewModel.createQRCode(from: stuViewModel.user.Email))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        }
     }
 }
