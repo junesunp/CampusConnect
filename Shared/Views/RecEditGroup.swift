@@ -13,7 +13,7 @@ struct RecEditGroup: View {
     @ObservedObject var recViewModel = RecruitersViewModel()
     var body: some View {
         VStack {
-            Text("Edit  + group.Name").font(.title)
+            Text("Edit  " + group.Name).font(.title)
             TextField("Group Name", text: $name)
                 .padding()
                 .background(Color(.secondarySystemBackground))

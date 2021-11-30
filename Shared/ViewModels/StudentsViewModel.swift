@@ -29,6 +29,7 @@ class StudentsViewModel: ObservableObject{
       }
     }
   }
+    
   func fetchStudent() {
    let docRef = db.collection("Student").document(currentStudentID)
    docRef.getDocument { document, error in
