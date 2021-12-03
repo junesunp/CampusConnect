@@ -15,9 +15,8 @@ class GroupsViewModel: ObservableObject{
  @Published var students = [Student]()
  @Published var myGroups = [Recruiter]()
  @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
-  @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+ @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
   
-    //@Published var currentGroup = Group(id:"", Created:Date.now, Updated:Date.now, Name:"", Description:"", Recruiter: , Students: [DocumentReference]())
  var errorMessage = ""
   
  func getRecruiter(group: Group) {
@@ -111,6 +110,7 @@ class GroupsViewModel: ObservableObject{
                                                               ])
     }
      
+    
     
     func clearStudents() {
         self.students = [Student]()

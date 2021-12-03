@@ -1,4 +1,3 @@
-
 // RecEditGroup.swift
 // CampusConnect (iOS)
 //
@@ -13,13 +12,16 @@ struct RecEditGroup: View {
     @EnvironmentObject var recViewModel : RecruitersViewModel
     var body: some View {
         VStack {
-            Text("Edit  " + group.Name).font(.title)
+            Spacer()
+            Text("Edit " + group.Name).font(.title)
             TextField("Group Name", text: $name)
                 .padding()
                 .background(Color(.secondarySystemBackground))
             TextField("Description", text: $description)
                 .padding()
                 .background(Color(.secondarySystemBackground))
+            Spacer()
+            Spacer()
             Button (action: {
                 recViewModel.recEditGroup(curGroup: group, name: name, des: description);
                 dismiss()
@@ -29,9 +31,8 @@ struct RecEditGroup: View {
                     .frame(width: 200, height: 50)
                     .cornerRadius(8)
                     .background(Color.blue)
-            })
+            }).padding().padding()
         }
         .padding()
-        //Spacer()
     }
 }

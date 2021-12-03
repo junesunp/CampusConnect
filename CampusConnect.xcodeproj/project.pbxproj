@@ -41,6 +41,7 @@
 		B63E5C75272BAA9900830C77 /* StudentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */; };
 		B65A21842756B45600CDB47A /* RecEditGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A21832756B45600CDB47A /* RecEditGroup.swift */; };
 		B65A21862756C71D00CDB47A /* LogInViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A21852756C71D00CDB47A /* LogInViews.swift */; };
+		B65A218827597A2E00CDB47A /* RecEditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A218727597A2E00CDB47A /* RecEditProfile.swift */; };
 		B67D053D272F644200B2E311 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67D053C272F644200B2E311 /* AVKit.framework */; };
 		B67D0540272F77F400B2E311 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B67D053F272F77F400B2E311 /* FirebaseAnalytics */; };
 		B67D0542272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0541272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta */; };
@@ -126,6 +127,7 @@
 		B63E5C73272BAA9900830C77 /* StudentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentsViewModel.swift; sourceTree = "<group>"; };
 		B65A21832756B45600CDB47A /* RecEditGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecEditGroup.swift; sourceTree = "<group>"; };
 		B65A21852756C71D00CDB47A /* LogInViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViews.swift; sourceTree = "<group>"; };
+		B65A218727597A2E00CDB47A /* RecEditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecEditProfile.swift; sourceTree = "<group>"; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		B67D05752731CEA100B2E311 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		B67D05782731D43400B2E311 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				5EA18795273B1B79002AD9EE /* CreateGroup.swift */,
 				B65A21832756B45600CDB47A /* RecEditGroup.swift */,
 				B65A21852756C71D00CDB47A /* LogInViews.swift */,
+				B65A218727597A2E00CDB47A /* RecEditProfile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				B63E5C59272BA4E700830C77 /* CampusConnectApp.swift in Sources */,
 				5E9D8FEB2735DF9200AA6120 /* Scanner.swift in Sources */,
 				5E9D8FDB2733631200AA6120 /* RecruiterProfile.swift in Sources */,
+				B65A218827597A2E00CDB47A /* RecEditProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

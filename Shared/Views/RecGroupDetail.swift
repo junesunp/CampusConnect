@@ -38,7 +38,8 @@ struct RecGroupDetail: View {
                 }
                 List{
                     ForEach(groupViewModel.students) { student in
-                        NavigationLink(destination: RecStudentDetail(student: student, group: group)) {
+                        NavigationLink(destination: RecStudentDetail(studentDescription: group.Notes[student.id!] ?? "Enter Notes on Applicant", student: student, group: group
+                                                                    )) {
                             RecStudentRow(student: student)
                         }
                     }

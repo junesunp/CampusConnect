@@ -21,6 +21,7 @@ struct Group: Identifiable, Codable, Comparable, Equatable, Hashable {
     var Recruiter: DocumentReference
     var Actives: [DocumentReference]
     var Inactives: [DocumentReference]
+    var Notes: Dictionary<String, String>
     
     static func <(lhs: Group, rhs: Group) -> Bool {
         return lhs.Name < rhs.Name
@@ -39,5 +40,6 @@ struct Group: Identifiable, Codable, Comparable, Equatable, Hashable {
         case Recruiter
         case Actives
         case Inactives
+        case Notes
     }
 }

@@ -43,7 +43,7 @@ class AppViewModel: ObservableObject {
 
     func signIn(email: String, password: String){
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
+        guard authResult != nil, error == nil else { return }
           // ...
           DispatchQueue.main.async {
             self?.signedIn = true
@@ -54,7 +54,7 @@ class AppViewModel: ObservableObject {
 
     func signUp(email: String, password: String){
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-        guard let strongSelf = self else { return }
+        guard authResult != nil, error == nil else { return }
         DispatchQueue.main.async {
           self?.signedIn = true
         }
@@ -75,7 +75,10 @@ struct LogInViews: View {
     @EnvironmentObject var sviewModel: AppViewModel
     @EnvironmentObject var stuViewModel: StudentsViewModel
     @EnvironmentObject var recViewModel: RecruitersViewModel
+    
     @State var asStudent = true
+    @State var isSignedIn = true
+    
     var body: some View {
             NavigationView {
                 VStack {
@@ -86,6 +89,17 @@ struct LogInViews: View {
                         SecureField("Password", text: $password)
                             .padding()
                             .background(Color(.secondarySystemBackground))
+                        
+                        if isSignedIn == false{
+                            Text("Incorrect credentials")
+                                .padding()
+                                .foregroundColor(.red)
+                                .background(Color.black)
+                                .font(Font.body.bold())
+                                .cornerRadius(8)
+                            
+                        }
+                        
                         Toggle("Sign in as..", isOn: $asStudent)
                         .onChange(of: asStudent) { value in
                                         // action...
@@ -111,15 +125,19 @@ struct LogInViews: View {
                             
                             //stuViewModel.user = Auth.auth().currentUser
                             sviewModel.signIn(email: email, password: password)
-                            if sviewModel.role == "Students"{
-                                stuViewModel.fetchStudent(currID: email)
-                                stuViewModel.fetchStudents()
+                            if sviewModel.isSignedIn{
+                                if sviewModel.role == "Students"{
+                                    stuViewModel.fetchStudent(currID: email)
+                                    stuViewModel.fetchStudents()
+                                }
+                                else{
+                                    recViewModel.fetchRecruiter(email: email)
+                                    stuViewModel.fetchStudents()
+                                }
                             }
                             else{
-                                recViewModel.fetchRecruiter(email: email)
-                                stuViewModel.fetchStudents()
+                                self.isSignedIn = false
                             }
-                            
                         }, label: {
                             Text("Sign In")
                                 .foregroundColor(Color.white)

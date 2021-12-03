@@ -96,7 +96,6 @@ struct RecruiterViews: View {
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                 }
-            
         }
     }
 }

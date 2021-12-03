@@ -11,12 +11,23 @@ import SwiftUI
 struct RecStudentDetail: View {
     
     @EnvironmentObject var groupViewModel : GroupsViewModel
-    @State private var studentDescription = "Enter Notes on Applicant"
+    @State var studentDescription = "Enter Notes on Applicant"
+
     var student: Student
     var group: Group
-    
+        
     let width = UIScreen.main.bounds.width * 0.75
       
+    private func hideKeyboardAndSave() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        //x save()
+    }
+    
+    //private func save() {
+        
+     //   groupViewModel.db.collection("Group").document(group.id!).updateData(["Notes" : FieldValue.arrayUnion([student.id! : studentDescription])])
+    //}
+    
     var body: some View {
         VStack {
             Spacer().frame(height: 6)
@@ -60,16 +71,18 @@ struct RecStudentDetail: View {
                 Text(student.Phone)
                   .padding(.trailing)
               }
+            TextEditor(text: $studentDescription)
+                .foregroundColor(.secondary)
+                .padding(.horizontal)
+                .navigationTitle("Notes")
+                .onTapGesture {}
 
         }.navigationBarTitle(student.First + " " + student.Last)
+         .onTapGesture { hideKeyboardAndSave() }
 
 
 
-        TextEditor(text: $studentDescription)
-            .foregroundColor(.secondary)
-            .padding(.horizontal)
-            .navigationTitle("Notes")
-
+        
 
         NavigationLink(destination: RecGroupDetail(group: group)){
             Text("Remove Student from Group").foregroundColor(Color(.red))

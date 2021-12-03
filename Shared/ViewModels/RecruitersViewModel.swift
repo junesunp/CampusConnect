@@ -30,6 +30,7 @@ class RecruitersViewModel: ObservableObject {
                     do{
                         self.user = try document.data(as: Recruiter.self)!
                         self.fetchRecruiterGroups(number: 1)
+                        self.fetchInactiveGroups(number: 1)
                     }
                     catch {
                         print(error)
@@ -109,29 +110,79 @@ class RecruitersViewModel: ObservableObject {
     }
     
     func recEditGroup(curGroup: Group, name: String = "", des: String = "") {
-        let docRef = db.collection("Group").document(curGroup.id!)
-        let strDocRef = "\(docRef)"
         if name != "" && des != "" {
-            db.collection("Group").document(strDocRef).updateData([
-                        "DateUpdated": Date.now,
-                        "Name": name,
-                        "Description": des
-                    ])
+          db.collection("Group").document("\(curGroup.id!)").updateData([
+                "DateUpdated": Date.now,
+                "Name": name,
+                "Description": des
+              ])
         }
         else if name == "" && des != "" {
-            db.collection("Group").document(strDocRef).updateData([
-                        "DateUpdated": Date.now,
-                        "Description": des
-                    ])
+          db.collection("Group").document("\(curGroup.id!)").updateData([
+                "DateUpdated": Date.now,
+                "Description": des
+              ])
         }
         else if name != "" && des == "" {
-            db.collection("Group").document(strDocRef).updateData([
-                        "DateUpdated": Date.now,
-                        "Name": name
-                    ])
+          db.collection("Group").document("\(curGroup.id!)").updateData([
+                "DateUpdated": Date.now,
+                "Name": name
+              ])
+          print("IN HERE **************")
         }
-        
-    }
+      }
+
+    func editRecruiter(rec: Recruiter, company: String = "", pos: String = "", email: String = "", phone: String = "") -> String {
+        if company != "" && pos != "" && email != "" && phone != ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Company": company,
+                "Position": pos,
+                "Email": email,
+                "Phone": phone
+              ])
+        }
+        else if company != "" && pos != "" && email != "" && phone == ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Company": company,
+                "Position": pos,
+                "Email": email
+              ])
+        }
+        else if company == "" && pos != "" && email != "" && phone == ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Position": pos,
+                "Email": email
+              ])
+        }
+        else if company != "" && pos == "" && email == "" && phone == ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Company": company,
+              ])
+        }
+        else if company == "" && pos != "" && email == "" && phone == ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Position": pos,
+              ])
+        }
+        else if company == "" && pos == "" && email != "" && phone == ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Email": email,
+              ])
+        }
+        else if company == "" && pos == "" && email == "" && phone != ""{
+          db.collection("Recruiter").document("\(rec.id!)").updateData([
+                "Phone": phone
+              ])
+        }
+        if email != "" {
+          return email;
+        } else {
+          return rec.Email;
+        }
+      }
+
+
+
     
     func createRecruiter(id: String, email: String, password: String, fname: String, lname: String, company: String, role: String){
         db.collection("Recruiter").document(id).setData([
@@ -154,19 +205,4 @@ class RecruitersViewModel: ObservableObject {
     }
   
     
-  /*
-  func fetchGroup() {
-    let docRef = db.collection("Group").document(currentRecID)
-    docRef.getDocument { document, error in
-      if let error = error as NSError? {
-        self.errorMessage = "Error getting document: \(error.localizedDescription)"
-      }
-      else {
-        if let document = document {
-          self.
-        }
-      }
-    }
-  }
-  */
 }
