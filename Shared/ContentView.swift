@@ -18,8 +18,8 @@ struct ContentView: View {
     @EnvironmentObject var groupViewModel: GroupsViewModel
     var body: some View {
         // TODO: Add way to check user role
-        if sviewModel.signedIn{
-            if sviewModel.role == "Students"{
+        if sviewModel.isSignedIn{
+            if sviewModel.role == "Student"{
                 StudentViews()
             }
             else{

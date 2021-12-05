@@ -59,6 +59,8 @@ struct RecruiterProfile: View {
             }.padding()
             Spacer()
             Button(action: {
+                sviewModel.role = "Student"
+                stuViewModel.correctUserType = false
                 sviewModel.signOut()
             }, label: {
                 Text("Logout")

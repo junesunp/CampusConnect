@@ -17,6 +17,20 @@ class StudentsViewModel: ObservableObject{
     @Published var myGroups = [Group]()
     @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
     var errorMessage = ""
+    var correctUserType = false
+    
+    func verifyLoginEmail(email: String, role: String) {
+        let temp = db.collection(role).whereField("Email", isEqualTo: email)
+            temp.getDocuments { (documents, error) in
+                if let error = error as NSError? {
+                    self.errorMessage = "Error getting document"
+                }
+                else{
+                    self.correctUserType = documents!.documents.count == 1
+                }
+        }
+        print(self.correctUserType)
+    }
     
     func fetchStudents() {
         self.students.removeAll()
