@@ -13,7 +13,7 @@ import SwiftUI
 
 struct Recruiter: Identifiable, Codable {
     
-  @DocumentID var id: String? = UUID().uuidString
+  @DocumentID var id: String?
   var Email: String
   var First: String
   var Last: String

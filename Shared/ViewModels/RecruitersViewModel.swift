@@ -11,7 +11,6 @@ import CoreImage.CIFilterBuiltins
 import SwiftUI
 import CoreMedia
 class RecruitersViewModel: ObservableObject {
-  let currentRecID = "dU7IlGMa71WUHBmDFMhS"
   let db = Firestore.firestore()
   @Published var activeGroups = [Group]()
   @Published var inactiveGroups = [Group]()
@@ -20,13 +19,13 @@ class RecruitersViewModel: ObservableObject {
 
     func fetchRecruiter(email: String) {
         let docRef = db.collection("Recruiter").whereField("Email", isEqualTo: email)
-        docRef.getDocuments { snapshot, error in
+        docRef.getDocuments { (documents, error) in
             if let error = error as NSError? {
                 self.errorMessage = "Error getting document: \(error.localizedDescription)"
             }
             else {
-                let document = snapshot!.documents.first
-                if let document = document {
+                for document in documents!.documents {
+                if document == document {
                     do{
                         self.user = try document.data(as: Recruiter.self)!
                         self.fetchRecruiterGroups(number: 1)
@@ -39,6 +38,9 @@ class RecruitersViewModel: ObservableObject {
             }
         }
     }
+    }
+        
+    
     
     func sorterForAlphabetical(this:Group, that:Group) -> Bool {
         return this.Name < that.Name
@@ -49,7 +51,7 @@ class RecruitersViewModel: ObservableObject {
     
     
   func fetchRecruiterGroups(number: Int) {
-      db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
+      db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document("\(user.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
       guard let documents = querySnapshot?.documents else {
         print("No documents")
         return
@@ -67,7 +69,7 @@ class RecruitersViewModel: ObservableObject {
   }
     
     func fetchInactiveGroups(number: Int) {
-        db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document(currentRecID)).whereField("Active", isEqualTo: false).addSnapshotListener { (querySnapshot, error) in
+        db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document("\(user.id!)")).whereField("Active", isEqualTo: false).addSnapshotListener { (querySnapshot, error) in
         guard let documents = querySnapshot?.documents else {
           print("No documents")
           return
@@ -89,12 +91,14 @@ class RecruitersViewModel: ObservableObject {
     func updateGroups(number: Int) {
       activeGroups = [Group]()
         fetchRecruiterGroups(number: number)
+      inactiveGroups = [Group]()
+        fetchInactiveGroups(number: number)
     }
     
     
     func recCreateGroup(name: String, des: String?){
         var recRef: DocumentReference? = nil
-        let docRef = db.collection("Recruiter").document(currentRecID)
+        let docRef = db.collection("Recruiter").document("\(user.id!)")
         recRef = db.document("Recruiter/" + docRef.documentID)
         
         var ref: DocumentReference? = nil
@@ -189,7 +193,7 @@ class RecruitersViewModel: ObservableObject {
             "Email": email,
             "FName": fname,
             "LName": lname,
-            "Postion": role,
+            "Position": role,
             "Company": company,
             "Password": password,
             "Phone": "123-456-1890",

@@ -74,15 +74,10 @@ struct RecStudentDetail: View {
             TextEditor(text: $studentDescription)
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
-                .navigationTitle("Notes")
                 .onTapGesture {}
 
         }.navigationBarTitle(student.First + " " + student.Last)
          .onTapGesture { hideKeyboardAndSave() }
-
-
-
-        
 
         NavigationLink(destination: RecGroupDetail(group: group)){
             Text("Remove Student from Group").foregroundColor(Color(.red))

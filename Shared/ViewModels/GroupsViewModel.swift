@@ -11,33 +11,53 @@ import CoreImage.CIFilterBuiltins
 import SwiftUI
 import CoreMedia
 class GroupsViewModel: ObservableObject{
- let db = Firestore.firestore()
- @Published var students = [Student]()
- @Published var myGroups = [Recruiter]()
- @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
- @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
-  
- var errorMessage = ""
-  
- func getRecruiter(group: Group) {
-    let docRef = group.Recruiter
-    docRef.getDocument { document, error in
-      if let error = error as NSError? {
-        self.errorMessage = "Error getting document"
-      }
-      else{
-        if let document = document {
-          do{
-            let recruiter = try document.data(as: Recruiter.self)
-            self.viewedGroupRecruiter = recruiter!
-          }
-          catch{
-            print(error)
-          }
+    let db = Firestore.firestore()
+    @Published var students = [Student]()
+    @Published var myGroups = [Recruiter]()
+    @Published var studentNotes = ""
+    @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
+    @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+    
+    var errorMessage = ""
+    
+    func getRecruiter(group: Group) {
+        let docRef = group.Recruiter
+        docRef.getDocument { document, error in
+            if let error = error as NSError? {
+                self.errorMessage = "Error getting document"
+            }
+            else{
+                if let document = document {
+                    do{
+                        let recruiter = try document.data(as: Recruiter.self)
+                        self.viewedGroupRecruiter = recruiter!
+                    }
+                    catch{
+                        print(error)
+                    }
+                }
+            }
         }
-      }
     }
-  }
+    
+    func getStudentNotes(group: Group, student: Student){
+        db.collection("StudentNotes").document(group.id!).getDocument { document, error in
+            if let error = error as NSError? {
+                self.errorMessage = "Error getting document"
+            }
+            else {
+                if let document = document {
+                    do{
+                        let temp = try document.get(student.id!)
+                        self.studentNotes = temp as! String
+                    }
+                    catch{
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
     
     func fetchStudents(group: Group) {
         self.students.removeAll()
@@ -109,7 +129,7 @@ class GroupsViewModel: ObservableObject{
         db.collection("Group").document(group.id!).updateData(["Inactives": FieldValue.arrayUnion([db.collection("Student").document(student.id!)])
                                                               ])
     }
-     
+    
     
     
     func clearStudents() {

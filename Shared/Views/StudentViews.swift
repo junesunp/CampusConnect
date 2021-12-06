@@ -28,9 +28,8 @@ struct StudentViews: View {
             NavigationView{
                 List{
                     ForEach(searchResults, id: \.self){ group in
-                        NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter)) {
+                        NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
                             GroupRow(group: group)
-                                .onAppear(perform: { groupViewModel.getRecruiter(group: group) })
                         }
                     }
                 }.navigationBarTitle(stuViewModel.user.First + "'s Groups")
