@@ -88,7 +88,7 @@ class GroupsViewModel: ObservableObject{
         let studentDocRef = db.collection("Student").document(studentId)
         let groupDocRef = db.collection("Group").document(group.id!)
         groupDocRef.updateData([
-            "Students": FieldValue.arrayUnion([studentDocRef])
+            "Actives": FieldValue.arrayUnion([studentDocRef])
         ])
         
         studentDocRef.updateData([

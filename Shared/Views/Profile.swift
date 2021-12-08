@@ -11,12 +11,19 @@ struct Profile: View {
     @State private var image: Image?
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-    
-    //        init (){
-    //            image = stuView.fetchImage()
-    //        }
+    @State private var editProfileSheet = false
+
     var body: some View {
         VStack{
+            HStack{
+                Spacer()
+                Button("Edit") {
+                    editProfileSheet.toggle()
+                }
+                .sheet(isPresented: $editProfileSheet) {
+                    EditProfile(stu: stuViewModel.user)
+                }.padding().padding()
+            }
             ZStack {
                 if image != nil {
                     image?

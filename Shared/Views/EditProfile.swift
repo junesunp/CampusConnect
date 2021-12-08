@@ -1,27 +1,31 @@
-//
-// RecEditProfile.swift
+
+// EditProfile.swift
 // CampusConnect (iOS)
 //
 // Created by Thomas Choi on 12/2/21.
 //
 import SwiftUI
-struct RecEditProfile: View {
-    var rec: Recruiter
-    @State var company = ""
-    @State var position = ""
+struct EditProfile: View {
+    var stu: Student
+    @State var school = ""
+    @State var major = ""
+    @State var grad = ""
     @State var email = ""
     @State var phone = ""
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var recViewModel : RecruitersViewModel
+    @EnvironmentObject var stuViewModel : StudentsViewModel
     var body: some View {
         VStack {
             Spacer()
             Text("Edit Profile").font(.title)
-            Text(rec.First + " " + rec.Last).font(.subheadline)
-            TextField("Company", text: $company)
+            Text(stu.First + " " + stu.Last).font(.subheadline)
+            TextField("School", text: $school)
                 .padding()
                 .background(Color(.secondarySystemBackground))
-            TextField("Position", text: $position)
+            TextField("Major", text: $major)
+                .padding()
+                .background(Color(.secondarySystemBackground))
+            TextField("Graduation Year", text: $grad)
                 .padding()
                 .background(Color(.secondarySystemBackground))
             TextField("Email", text: $email)
@@ -31,9 +35,8 @@ struct RecEditProfile: View {
                 .padding()
                 .background(Color(.secondarySystemBackground))
             Spacer()
-            Spacer()
             Button (action: {
-                recViewModel.fetchRecruiter(email: recViewModel.editRecruiter(rec: rec, company: company, pos: position, email: email, phone: phone));
+                stuViewModel.fetchStudent(currID: stuViewModel.editStudent(stu: stu, school: school, major: major, grad: grad, email: email, phone: phone));
                 dismiss()
             }, label: {
                 Text("Done Editing")

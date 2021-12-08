@@ -21,13 +21,13 @@ class StudentsViewModel: ObservableObject{
     
     func verifyLoginEmail(email: String, role: String) {
         let temp = db.collection(role).whereField("Email", isEqualTo: email)
-            temp.getDocuments { (documents, error) in
-                if let error = error as NSError? {
-                    self.errorMessage = "Error getting document"
-                }
-                else{
-                    self.correctUserType = documents!.documents.count == 1
-                }
+        temp.getDocuments { (documents, error) in
+            if let error = error as NSError? {
+                self.errorMessage = "Error getting document"
+            }
+            else{
+                self.correctUserType = documents!.documents.count == 1
+            }
         }
     }
     
@@ -53,22 +53,20 @@ class StudentsViewModel: ObservableObject{
             else {
                 for document in documents!.documents {
                     if document == document{
-                    do {
-                        self.user = try document.data(as: Student.self)!
-                        self.getActiveGroups(number: 1, student: self.user)
-                        self.getInactiveGroups(number: 1, student: self.user)
-
-                    }
-                    catch {
-                        print(error)
+                        do {
+                            self.user = try document.data(as: Student.self)!
+                            print(self.user)
+                            self.getActiveGroups(number: 1)
+                            self.getInactiveGroups(number: 1)
+                        }
+                        catch {
+                            print(error)
+                        }
                     }
                 }
             }
         }
     }
-    }
-    
-    
     
     func sorterForAlphabetical(this:Group, that:Group) -> Bool {
         return this.Name < that.Name
@@ -80,100 +78,83 @@ class StudentsViewModel: ObservableObject{
     
     func fetchRecruiterGroups(number: Int) {
         db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document("\(user.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
-        guard let documents = querySnapshot?.documents else {
-          print("No documents")
-          return
-        }
-        self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
-          return try? queryDocumentSnapshot.data(as: Group.self)
-        }
-      }
-      if number == 1{
-          activeGroups.sort(by: sorterForAlphabetical)
-      }
-      else{
-          activeGroups.sort(by: sorterForTimeStamp)
-      }
-    }
-    
-
-    func getActiveGroups(number: Int, student: Student) {
-        self.inactiveGroups.removeAll()
-        
-        db.collection("Group").whereField("Actives", arrayContains: db.collection("Student").document("\(student.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
-        guard let documents = querySnapshot?.documents else {
-          print("No documents")
-          return
-        }
-        self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
-          return try? queryDocumentSnapshot.data(as: Group.self)
-        }
-      }
-      if number == 1{
-          activeGroups.sort(by: sorterForAlphabetical)
-      }
-      else{
-          activeGroups.sort(by: sorterForTimeStamp)
-      }
-    }
-    
-    func getInactiveGroups(number: Int, student: Student) {
-        self.inactiveGroups.removeAll()
-        
-        db.collection("Group").whereField("Inactives", arrayContains: db.collection("Student").document("\(student.id!)")).whereField("Active", isEqualTo: false).addSnapshotListener { (querySnapshot, error) in
-        guard let documents = querySnapshot?.documents else {
-          print("No documents")
-          return
-        }
-        self.inactiveGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
-          return try? queryDocumentSnapshot.data(as: Group.self)
-        }
-      }
-      if number == 1{
-          activeGroups.sort(by: sorterForAlphabetical)
-      }
-      else{
-          activeGroups.sort(by: sorterForTimeStamp)
-      }
-    }
-        
-    /*
-        for group in self.user.Groups{
-            let docRef = group
-            print(docRef)
-            docRef.getDocument { document, error in
-                if let error = error as NSError? {
-                    self.errorMessage = "Error getting document: \(error.localizedDescription)"
-                }
-                else {
-                    if let document = document {
-                        do{
-                            let temp = try document.data(as: Group.self)
-                            if ((temp!.Active) == true){
-                                self.activeGroups.append(temp!)
-                            }
-                            if ((temp!.Active) == false){
-                                self.inactiveGroups.append(temp!)
-                            }
-                        }
-                        catch {
-                            print(error)
-                        }
-                    }
-                }
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+                return try? queryDocumentSnapshot.data(as: Group.self)
             }
         }
         if number == 1{
             activeGroups.sort(by: sorterForAlphabetical)
-            inactiveGroups.sort(by: sorterForAlphabetical)
-
         }
         else{
             activeGroups.sort(by: sorterForTimeStamp)
-            inactiveGroups.sort(by: sorterForTimeStamp)
         }
     }
-    */
+    
+    
+    func getActiveGroups(number: Int) {
+        
+        activeGroups.removeAll()
+        
+        db.collection("Group").whereField("Actives", arrayContains: db.collection("Student").document("\(self.user.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+                return try? queryDocumentSnapshot.data(as: Group.self)
+            }
+        }
+        if number == 1{
+            activeGroups.sort(by: sorterForAlphabetical)
+        }
+        else{
+            activeGroups.sort(by: sorterForTimeStamp)
+        }
+    }
+    
+    func updateGroups(number: Int) {
+        activeGroups = [Group]()
+        getActiveGroups(number: number)
+        inactiveGroups = [Group]()
+        getInactiveGroups(number: number)
+    }
+    
+    func getInactiveGroups(number: Int) {
+        inactiveGroups.removeAll()
+        
+        db.collection("Group").whereField("Actives", arrayContains: db.collection("Student").document("\(self.user.id!)")).whereField("Active", isEqualTo: false).addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            self.inactiveGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+                return try? queryDocumentSnapshot.data(as: Group.self)
+            }
+            print(documents)
+            print(self.inactiveGroups)
+        }
+        
+        
+        /*
+         db.collection("Group").whereField("Inactives", arrayContains: db.collection("Student").document("\(self.user.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
+         guard let documents = querySnapshot?.documents else {
+         print("No documents")
+         return
+         }
+         self.inactiveGroups.append( contentsOf: documents.compactMap { queryDocumentSnapshot -> Group? in
+         return try? queryDocumentSnapshot.data(as: Group.self)
+         })
+         print(documents)
+         print(self.inactiveGroups)
+         }
+         */
+        
+    }
+
     
     func addStudent(student: Student){
         do {
@@ -222,6 +203,74 @@ class StudentsViewModel: ObservableObject{
     }
     func deleteGroup(group: Group) {
         
+    }
+    
+    func editStudent(stu: Student, school: String = "", major: String = "", grad: String = "", email: String = "", phone: String = "") -> String {
+        if school != "" && major != "" && grad != "" && email != "" && phone != ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "School": school,
+                "Major": major,
+                "Grad": grad,
+                "Email": email,
+                "Phone": phone
+            ])
+        }
+        else if school != "" && major != "" && grad != "" && email != "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "School": school,
+                "Major": major,
+                "Grad": grad,
+                "Email": email
+            ])
+        }
+        else if school == "" && major != "" && grad != "" && email == "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "Major": major,
+                "Grad": grad
+            ])
+        }
+        else if school != "" && major != "" && grad != "" && email != "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "Email": email,
+                "Phone": phone
+            ])
+        }
+        else if school != "" && major == "" && grad == "" && email != "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "School": school,
+                "Email": email
+            ])
+        }
+        else if school != "" && major == "" && grad == "" && email == "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "School": school
+            ])
+        }
+        if school == "" && major != "" && grad == "" && email == "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "Major": major
+            ])
+        }
+        if school == "" && major == "" && grad != "" && email == "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "Grad": grad
+            ])
+        }
+        if school == "" && major == "" && grad == "" && email != "" && phone == ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "Email": email
+            ])
+        }
+        if school == "" && major == "" && grad == "" && email == "" && phone != ""{
+            db.collection("Student").document("\(stu.id!)").updateData([
+                "Phone": phone
+            ])
+        }
+        if email != "" {
+            return email;
+        } else {
+            return stu.Email;
+        }
     }
 }
 

@@ -45,6 +45,8 @@
 		B65A218B275D555700CDB47A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A218A275D555700CDB47A /* ImagePicker.swift */; };
 		B65A218D2760278600CDB47A /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A218C2760278600CDB47A /* EmailView.swift */; };
 		B65A218F276027D200CDB47A /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A218E276027D200CDB47A /* MailView.swift */; };
+		B65A21902761497300CDB47A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C33272BA4E700830C77 /* Assets.xcassets */; };
+		B65A21922761508700CDB47A /* EditProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B65A21912761508700CDB47A /* EditProfile.swift */; };
 		B67D053D272F644200B2E311 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B67D053C272F644200B2E311 /* AVKit.framework */; };
 		B67D0540272F77F400B2E311 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B67D053F272F77F400B2E311 /* FirebaseAnalytics */; };
 		B67D0542272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = B67D0541272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta */; };
@@ -134,6 +136,7 @@
 		B65A218A275D555700CDB47A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B65A218C2760278600CDB47A /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
 		B65A218E276027D200CDB47A /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		B65A21912761508700CDB47A /* EditProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile.swift; sourceTree = "<group>"; };
 		B67D053C272F644200B2E311 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.0.sdk/System/Library/Frameworks/AVKit.framework; sourceTree = DEVELOPER_DIR; };
 		B67D05752731CEA100B2E311 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		B67D05782731D43400B2E311 /* Recruiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recruiter.swift; sourceTree = "<group>"; };
@@ -220,6 +223,7 @@
 				B65A218727597A2E00CDB47A /* RecEditProfile.swift */,
 				B65A218C2760278600CDB47A /* EmailView.swift */,
 				B65A218E276027D200CDB47A /* MailView.swift */,
+				B65A21912761508700CDB47A /* EditProfile.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -501,6 +505,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B65A21902761497300CDB47A /* Assets.xcassets in Resources */,
 				B6B3BE3C27460FC3003DCBD3 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,6 +547,7 @@
 				B65A21842756B45600CDB47A /* RecEditGroup.swift in Sources */,
 				5E9D8FC32731C86800AA6120 /* RecruitersViewModel.swift in Sources */,
 				5E9D8FD82733631200AA6120 /* RecruiterViews.swift in Sources */,
+				B65A21922761508700CDB47A /* EditProfile.swift in Sources */,
 				5E9D8FE3273372FD00AA6120 /* GroupsViewModel.swift in Sources */,
 				5E9D8FE72735CA0E00AA6120 /* RecStudentDetail.swift in Sources */,
 				5EA18796273B1B79002AD9EE /* CreateGroup.swift in Sources */,
@@ -649,6 +655,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
+				ENABLE_ON_DEMAND_RESOURCES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -708,7 +716,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_ON_DEMAND_RESOURCES = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -736,6 +746,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MSM8RA86AZ;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";
@@ -770,6 +781,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MSM8RA86AZ;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "We need to scan QR codes.";

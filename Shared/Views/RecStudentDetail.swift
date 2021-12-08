@@ -37,7 +37,7 @@ struct RecStudentDetail: View {
                 Spacer()
                 Text(student.School)
                       .padding(.trailing)
-              }
+            }.padding()
             HStack {
                 Text("Class:")
                   .fontWeight(.bold)
@@ -45,7 +45,7 @@ struct RecStudentDetail: View {
                 Spacer()
                 Text(student.Grad)
                       .padding(.trailing)
-              }
+              }.padding()
             HStack {
                 Text("Major:")
                   .fontWeight(.bold)
@@ -53,7 +53,7 @@ struct RecStudentDetail: View {
                 Spacer()
                 Text(student.Major)
                       .padding(.trailing)
-              }
+              }.padding()
             HStack {
                 Text("Email:")
                   .fontWeight(.bold)
@@ -61,7 +61,7 @@ struct RecStudentDetail: View {
                 Spacer()
                 Text(student.Email)
                   .padding(.trailing)
-              }
+              }.padding()
             HStack {
                 Text("Phone:")
                   .fontWeight(.bold)
@@ -69,7 +69,7 @@ struct RecStudentDetail: View {
                 Spacer()
                 Text(student.Phone)
                   .padding(.trailing)
-              }
+              }.padding()
             
             TextEditor(text: $studentDescription)
                 .foregroundColor(.secondary)
@@ -83,13 +83,7 @@ struct RecStudentDetail: View {
         NavigationLink(destination: RecGroupDetail(group: group)){
             Text("Remove Student from Group").foregroundColor(Color(.red))
         }.simultaneousGesture(TapGesture().onEnded{ groupViewModel.deactivateStudent(student: student, group: group) } )
-        /*
-        Button(action: { groupViewModel.deactivateStudent(student: student, group: group) } ){
-            Text("Remove Student from Group").foregroundColor(Color(.green))
-                .frame(width: 600, height: 100)
-                .background(Color(.clear))
-        }
-         */
+
         Spacer()
     }
     

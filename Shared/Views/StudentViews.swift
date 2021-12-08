@@ -27,40 +27,45 @@ struct StudentViews: View {
     var body: some View {
         TabView{
             NavigationView{
-                List{
-                    Section(header: Text("My Active Groups")){
-                        ForEach(searchResults, id: \.self){ group in
-                            NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
-                                GroupRow(group: group)
+                VStack{
+                    List{
+                        Section(header: Text("My Active Groups")){
+                            ForEach(searchResults, id: \.self){ group in
+                                NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
+                                    GroupRow(group: group)
+                                }
                             }
                         }
                     }
-                }
-                .searchable(text: $searchText)
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Menu {
-                            Picker(selection: $sort, label: Text("Sorting options")) {
-                                Text("Date").tag(1)
-                                Text("Alphabetical").tag(2)
+                    //                    .onAppear(perform: { stuViewModel.getActiveGroups(number: 1) })
+
+                    .searchable(text: $searchText)
+                    .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Menu {
+                                Picker(selection: $sort, label: Text("Sorting options")) {
+                                    Text("Date").tag(1)
+                                    Text("Alphabetical").tag(2)
+                                }
                             }
+                        label: {
+                            Label("Sort", systemImage: "arrow.up.arrow.down")
                         }
-                    label: {
-                        Label("Sort", systemImage: "arrow.up.arrow.down")
-                    }
-                    }
-                }
-                List{
-                    Section(header: Text("My Inactive Groups")){
-                        ForEach(stuViewModel.inactiveGroups){ group in
-                            NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
-                                GroupRow(group: group)
-                            }
                         }
                     }
+                    List{
+                        Section(header: Text("My Inactive Groups")){
+                            ForEach(stuViewModel.inactiveGroups){ group in
+                                NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
+                                    GroupRow(group: group)
+                                }
+                            }
+                        }
+                    }
+                   // .onAppear(perform: { stuViewModel.getInactiveGroups(number: 1) })
+
                 }
             }
-            .onAppear(perform: { stuViewModel.fetchStudent(currID: stuViewModel.user.id!) } )
             .tabItem {
                 Image(systemName: "list.bullet")
             }

@@ -83,6 +83,10 @@ struct LogInViews: View {
         NavigationView {
             VStack {
                 VStack {
+                    Image("AppIconImage")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 150, height: 150)
                     TextField("Email Address", text: $email)
                         .padding()
                         .background(Color(.secondarySystemBackground))
@@ -109,7 +113,6 @@ struct LogInViews: View {
                                 else{
                                     sviewModel.role = "Student"
                                 }
-                                print("CURRENT ROLE ISSSS ISSS ISSSI HERERE: " + sviewModel.role)
                             }
                         
                             .padding()
@@ -128,20 +131,22 @@ struct LogInViews: View {
                         guard !email.isEmpty, !password.isEmpty else {
                             return
                         }
-                        stuViewModel.verifyLoginEmail(email: email, role: sviewModel.role)
+                        
+                            stuViewModel.verifyLoginEmail(email: email, role: sviewModel.role)
+                    
+                        
                         if stuViewModel.correctUserType {
                             sviewModel.signIn(email: email, password: password)
                             
                             if sviewModel.role == "Student"{
+                                print("Role is STUDENT")
                                 stuViewModel.fetchStudent(currID: email)
-                                stuViewModel.fetchStudents()
                             }
                             else{
                                 recViewModel.fetchRecruiter(email: email)
-                                stuViewModel.fetchStudents()
                             }
                         }
-
+                        
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1
                         ) {
                             if sviewModel.isSignedIn == false{
@@ -162,7 +167,7 @@ struct LogInViews: View {
                 
                 Spacer()
             }
-            .navigationTitle("Welcome Sign in Below")
+            .navigationTitle("Welcome!")
         }
     }
 }
@@ -198,7 +203,7 @@ struct StartSignUpView: View {
             NavigationLink(destination: SchoolSignUpView(email: $email, password:$password, fname:$fname, lname:$lname)) {
                 Text("I want to be recruited")
                     .padding(15)
-                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(width: 250)
                     .background(Color.blue)
                     .foregroundColor(Color.white)
                     .cornerRadius(5)
@@ -210,16 +215,19 @@ struct StartSignUpView: View {
                 sviewModel.role = "Student"
             })
             .padding()
-            .padding()
+            Text("OR...").bold()
+                .padding()
             
             NavigationLink(destination: RecruiterSignUpView(email: $email, password:$password, fname:$fname, lname:$lname)) {
-                Text("I want to be a Recruiter")
+                Text("I want to be a recruiter")
                     .padding(15)
-                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(width: 250)
                     .background(Color.white)
                     .foregroundColor(Color.blue)
-                    .cornerRadius(5)
-                    .border(Color.black)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
             }
             .padding([.leading, .trailing], 30)
             .padding([.top], 21)
@@ -272,7 +280,6 @@ struct SchoolSignUpView: View {
             Button(action: {
                 stuViewModel.createStudent(id: email, email: email, password: password, fname: fname, lname: lname, schoolName: schoolName, major: major, gradYear: gradYear[selectedYearIndex])
                 sviewModel.signUp(email: email, password: password)
-                stuViewModel.fetchStudents()
                 stuViewModel.fetchStudent(currID: email)
             }, label: {
                 Text("Create Account")

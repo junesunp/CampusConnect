@@ -22,8 +22,7 @@ struct GroupDetail: View {
             Spacer()
             Text(groupRecruiter.First + " " + groupRecruiter.Last)
                   .padding(.trailing)
-          }
-        Spacer().frame(height: 5)
+        }.padding()
         HStack {
             Text("Company:")
               .fontWeight(.bold)
@@ -31,8 +30,7 @@ struct GroupDetail: View {
             Spacer()
             Text(groupRecruiter.Company)
                   .padding(.trailing)
-          }
-        Spacer().frame(height: 5)
+        }.padding()
         HStack {
             Text("Position:")
               .fontWeight(.bold)
@@ -40,8 +38,7 @@ struct GroupDetail: View {
             Spacer()
             Text(groupRecruiter.Position)
                   .padding(.trailing)
-          }
-        Spacer().frame(height: 5)
+        }.padding()
         HStack {
             Text("Email:")
               .fontWeight(.bold)
@@ -49,8 +46,7 @@ struct GroupDetail: View {
             Spacer()
             Text(groupRecruiter.Email)
               .padding(.trailing)
-          }
-        Spacer().frame(height: 5)
+        }.padding()
         HStack {
             Text("Phone:")
               .fontWeight(.bold)
@@ -58,18 +54,17 @@ struct GroupDetail: View {
             Spacer()
             Text(groupRecruiter.Phone)
               .padding(.trailing)
-          }
-        Spacer().frame(height: 5)
-        
+        }.padding()
+        Spacer()
         /*
-        HStack {
-            Text("Description:")
-                .fontWeight(.bold)
-                .padding(.leading)
-            Spacer()
-            Text(group.Description)
-                .padding(.trailing)
-        } */
+            HStack {
+                Text("Description:")
+                    .fontWeight(.bold)
+                    .padding(.leading)
+                Spacer()
+                Text(group.Description)
+                    .padding(.trailing)
+            } */
     }.navigationBarTitle(group.Name)
   }
 }
