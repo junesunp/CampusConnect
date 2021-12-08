@@ -36,8 +36,13 @@ struct RecGroupDetail: View {
           }
       }.onAppear(perform: {groupViewModel.fetchStudents(group: group) } )
        .navigationBarItems(trailing:
-        NavigationLink(destination: Scanner(group: group)) {
-          Image(systemName: "plus")
+        HStack {
+          NavigationLink(destination: Scanner(group: group)) {
+            Image(systemName: "plus")
+          }
+         NavigationLink(destination: EmailView(group: group, students: groupViewModel.students)) {
+           Image(systemName: "mail")
+         }
         }
        )
       Spacer()

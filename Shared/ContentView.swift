@@ -6,25 +6,30 @@
 //
 
 
-import SwiftUI
+//import SwiftUI
 
-struct ContentView: View {
+//struct ContentView: View {
     
     // @ObservedObject var viewModel = StudentsViewModel()
 //    @ObservedObject var recViewModel = RecruitersViewModel()
 //    @State var sort: Int = 1
   
-    var body: some View {
-      // StudentViews()
-      // Scanner()
-      RecruiterViews()
-    }
+//    var body: some View {
+//      // StudentViews()
+//      // Scanner()
+//      // RecruiterViews()
+//    }
   
-//  init(){
-//    viewModel.fetchStudents()
-//    viewModel.fetchStudent()
-//    recViewModel.fetchRecruiter()
-//    recViewModel.fetchRecruiterGroups(number: sort)
-//    recViewModel.fetchInactiveGroups(number: sort)
-//  }
+import SwiftUI
+
+struct ContentView: View {
+
+
+    var body: some View {
+
+      RecruiterViews()
+
+    }
+
 }
+
