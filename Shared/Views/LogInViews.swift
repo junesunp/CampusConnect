@@ -253,12 +253,9 @@ struct SchoolSignUpView: View {
     @State private var selectedYearIndex = 0
     @State var schoolName = ""
     let auth = Auth.auth()
-    //@ObservedObject var sviewModel =  AppViewModel()
     @EnvironmentObject var stuViewModel: StudentsViewModel
     @EnvironmentObject var sviewModel: AppViewModel
     var body: some View {
-        //        NavigationView {
-        //VStack {
         VStack {
             TextField("School", text: $schoolName)
                 .padding()
@@ -288,12 +285,9 @@ struct SchoolSignUpView: View {
                     ToolbarItem(placement: .navigationBarLeading) {
                         VStack {
                             Text("Create Account").font(.largeTitle).bold()
-                            //Text("Subtitle").font(.subheadline)
                         }
                     }}
-            //}
                 .padding()
-            //Spacer()
         }
     }
 }
@@ -344,7 +338,6 @@ struct RecruiterSignUpView: View {
                     }}
             //}
                 .padding()
-            //Spacer()
         }
     }
 }

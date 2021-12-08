@@ -38,9 +38,9 @@ struct RecGroupDetail: View {
                 }
                 List{
                     ForEach(groupViewModel.students) { student in
-                        //NavigationLink(destination: RecStudentDetail(studentDescription: group.Notes[student.id!] ?? "Enter Notes on Applicant", student: student, group: group
-                        NavigationLink(destination: RecStudentDetail(studentDescription: groupViewModel.studentNotes, student: student, group: group
-                                                                    )) {
+                        NavigationLink(destination: RecStudentDetail(studentDescription:         group.Notes[student.id!] ?? "Enter Notes on Applicant", student: student, group: group)) {
+                            //NavigationLink(destination: RecStudentDetail(studentDescription: groupViewModel.studentNotes, student: student, group: group
+                            //).onAppear(perform: {groupViewModel.getStudentNotes(group: group, student: student)})) {
                             RecStudentRow(student: student)
                         }
                     }
@@ -49,10 +49,14 @@ struct RecGroupDetail: View {
         }.navigationBarTitle(group.Name)
             .onAppear(perform: {groupViewModel.fetchStudents(group: group) } )
             .navigationBarItems(trailing:
-                                    HStack{
+            HStack{
                 NavigationLink(destination: Scanner(group: group)) {
                     Image(systemName: "plus")
-                };
+                }
+                NavigationLink(destination: EmailView(group: group, students: groupViewModel.students)) {
+                      Image(systemName: "mail")
+                }
+                
                 Button("Edit") {
                     editGroupSheet.toggle()
                 }

@@ -11,10 +11,10 @@ import CoreImage.CIFilterBuiltins
 import SwiftUI
 import CoreMedia
 class StudentsViewModel: ObservableObject{
-    //let currentStudentID = "C8V5BI0KYdqWT5xnpUy9"
     let db = Firestore.firestore()
     @Published var students = [Student]()
-    @Published var myGroups = [Group]()
+    @Published var activeGroups = [Group]()
+    @Published var inactiveGroups = [Group]()
     @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
     var errorMessage = ""
     var correctUserType = false
@@ -29,7 +29,6 @@ class StudentsViewModel: ObservableObject{
                     self.correctUserType = documents!.documents.count == 1
                 }
         }
-        print(self.correctUserType)
     }
     
     func fetchStudents() {
@@ -54,17 +53,11 @@ class StudentsViewModel: ObservableObject{
             else {
                 for document in documents!.documents {
                     if document == document{
-                //}
-                //if let document = documents!.documents.first {
                     do {
-                        /*
-                        let dataDescription = document.data()
-                        print(dataDescription)
-                        print("(\(dataDescription["FName"])")
-                        self.user.First = "\(dataDescription["FName"]!)"
-                         */
                         self.user = try document.data(as: Student.self)!
-                        self.getStudentGroups(number: 1)
+                        self.getActiveGroups(number: 1, student: self.user)
+                        self.getInactiveGroups(number: 1, student: self.user)
+
                     }
                     catch {
                         print(error)
@@ -83,10 +76,71 @@ class StudentsViewModel: ObservableObject{
     func sorterForTimeStamp(this:Group, that:Group) -> Bool {
         return this.Created < that.Created
     }
-    func getStudentGroups(number: Int) {
-        self.myGroups.removeAll()
+    
+    
+    func fetchRecruiterGroups(number: Int) {
+        db.collection("Group").whereField("Recruiter", isEqualTo: db.collection("Recruiter").document("\(user.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
+        guard let documents = querySnapshot?.documents else {
+          print("No documents")
+          return
+        }
+        self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+          return try? queryDocumentSnapshot.data(as: Group.self)
+        }
+      }
+      if number == 1{
+          activeGroups.sort(by: sorterForAlphabetical)
+      }
+      else{
+          activeGroups.sort(by: sorterForTimeStamp)
+      }
+    }
+    
+
+    func getActiveGroups(number: Int, student: Student) {
+        self.inactiveGroups.removeAll()
+        
+        db.collection("Group").whereField("Actives", arrayContains: db.collection("Student").document("\(student.id!)")).whereField("Active", isEqualTo: true).addSnapshotListener { (querySnapshot, error) in
+        guard let documents = querySnapshot?.documents else {
+          print("No documents")
+          return
+        }
+        self.activeGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+          return try? queryDocumentSnapshot.data(as: Group.self)
+        }
+      }
+      if number == 1{
+          activeGroups.sort(by: sorterForAlphabetical)
+      }
+      else{
+          activeGroups.sort(by: sorterForTimeStamp)
+      }
+    }
+    
+    func getInactiveGroups(number: Int, student: Student) {
+        self.inactiveGroups.removeAll()
+        
+        db.collection("Group").whereField("Inactives", arrayContains: db.collection("Student").document("\(student.id!)")).whereField("Active", isEqualTo: false).addSnapshotListener { (querySnapshot, error) in
+        guard let documents = querySnapshot?.documents else {
+          print("No documents")
+          return
+        }
+        self.inactiveGroups = documents.compactMap { queryDocumentSnapshot -> Group? in
+          return try? queryDocumentSnapshot.data(as: Group.self)
+        }
+      }
+      if number == 1{
+          activeGroups.sort(by: sorterForAlphabetical)
+      }
+      else{
+          activeGroups.sort(by: sorterForTimeStamp)
+      }
+    }
+        
+    /*
         for group in self.user.Groups{
             let docRef = group
+            print(docRef)
             docRef.getDocument { document, error in
                 if let error = error as NSError? {
                     self.errorMessage = "Error getting document: \(error.localizedDescription)"
@@ -95,7 +149,12 @@ class StudentsViewModel: ObservableObject{
                     if let document = document {
                         do{
                             let temp = try document.data(as: Group.self)
-                            self.myGroups.append(temp!)
+                            if ((temp!.Active) == true){
+                                self.activeGroups.append(temp!)
+                            }
+                            if ((temp!.Active) == false){
+                                self.inactiveGroups.append(temp!)
+                            }
                         }
                         catch {
                             print(error)
@@ -105,13 +164,16 @@ class StudentsViewModel: ObservableObject{
             }
         }
         if number == 1{
-            myGroups.sort(by: sorterForAlphabetical)
+            activeGroups.sort(by: sorterForAlphabetical)
+            inactiveGroups.sort(by: sorterForAlphabetical)
+
         }
         else{
-            myGroups.sort(by: sorterForTimeStamp)
+            activeGroups.sort(by: sorterForTimeStamp)
+            inactiveGroups.sort(by: sorterForTimeStamp)
         }
     }
-    
+    */
     
     func addStudent(student: Student){
         do {

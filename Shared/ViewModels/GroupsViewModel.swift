@@ -41,20 +41,17 @@ class GroupsViewModel: ObservableObject{
     }
     
     func getStudentNotes(group: Group, student: Student){
-        db.collection("StudentNotes").document(group.id!).getDocument { document, error in
-            if let error = error as NSError? {
-                self.errorMessage = "Error getting document"
-            }
-            else {
-                if let document = document {
-                    do{
-                        let temp = try document.get(student.id!)
-                        self.studentNotes = temp as! String
-                    }
-                    catch{
-                        print(error)
-                    }
-                }
+        print(group.id)
+        print(student.id)
+        let docRef = db.collection("StudentNotes").document(group.id!)
+
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let property = document.get(student.id!)
+                print(property)
+                self.studentNotes = property as! String
+            } else {
+                print("Document does not exist")
             }
         }
     }

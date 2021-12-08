@@ -9,6 +9,11 @@ struct RecruiterProfile: View {
     @EnvironmentObject var stuViewModel: StudentsViewModel
     @EnvironmentObject var recViewModel: RecruitersViewModel
     @EnvironmentObject var sviewModel: AppViewModel
+    
+    @State private var image: Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    
     @State private var editRecProfileSheet = false
     var body: some View {
         VStack{
@@ -20,6 +25,31 @@ struct RecruiterProfile: View {
                 .sheet(isPresented: $editRecProfileSheet) {
                     RecEditProfile(rec: recViewModel.user)
                 }.padding().padding()
+            }
+            ZStack {
+                if image != nil {
+                    image?
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(Circle())
+                        .overlay(
+                            Circle()
+                                .stroke(Color.white, lineWidth: 4)
+                                .shadow(radius: 10)
+                        )
+                    
+                } else {
+                    Circle()
+                        .fill(Color.secondary)
+                    Text("Tap to select a picture")
+                        .foregroundColor(.white)
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                }
+            }
+            .padding()
+            .onTapGesture {
+                self.showingImagePicker = true
             }
             HStack {
                 Text(recViewModel.user.First + " " + recViewModel.user.Last).font(.title)
@@ -70,5 +100,12 @@ struct RecruiterProfile: View {
                     .background(Color.blue)
             }).padding().padding()
         }
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
+            ImagePicker(image: self.$inputImage)
+        }
+    }
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }

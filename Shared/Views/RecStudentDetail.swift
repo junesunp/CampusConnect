@@ -11,7 +11,7 @@ import SwiftUI
 struct RecStudentDetail: View {
     
     @EnvironmentObject var groupViewModel : GroupsViewModel
-    @State var studentDescription = "Enter Notes on Applicant"
+    @State var studentDescription = ""
 
     var student: Student
     var group: Group
@@ -20,13 +20,12 @@ struct RecStudentDetail: View {
       
     private func hideKeyboardAndSave() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        //x save()
+        save()
     }
     
-    //private func save() {
-        
-     //   groupViewModel.db.collection("Group").document(group.id!).updateData(["Notes" : FieldValue.arrayUnion([student.id! : studentDescription])])
-    //}
+    private func save() {
+        groupViewModel.db.collection("Group").document(group.id!).updateData([ "Notes": [student.id!: studentDescription]])
+    }
     
     var body: some View {
         VStack {
@@ -71,17 +70,18 @@ struct RecStudentDetail: View {
                 Text(student.Phone)
                   .padding(.trailing)
               }
+            
             TextEditor(text: $studentDescription)
                 .foregroundColor(.secondary)
                 .padding(.horizontal)
                 .onTapGesture {}
+                //.onChange(of: self.studentDescription, perform: )
 
         }.navigationBarTitle(student.First + " " + student.Last)
          .onTapGesture { hideKeyboardAndSave() }
 
         NavigationLink(destination: RecGroupDetail(group: group)){
             Text("Remove Student from Group").foregroundColor(Color(.red))
-            
         }.simultaneousGesture(TapGesture().onEnded{ groupViewModel.deactivateStudent(student: student, group: group) } )
         /*
         Button(action: { groupViewModel.deactivateStudent(student: student, group: group) } ){

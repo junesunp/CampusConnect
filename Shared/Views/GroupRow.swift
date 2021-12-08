@@ -12,12 +12,10 @@ struct GroupRow: View {
     
     var body: some View {
         HStack {
-          Text("Name:")
-            .fontWeight(.bold)
-            .padding(.leading)
-          Spacer()
-          Text(group.Name) //group.name
-            .padding(.trailing)
+            Text(group.Name)
+                .fontWeight(.bold)
+                .padding(.leading)
+                .padding(.trailing)
         }.padding()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import simd
 
 struct StudentViews: View {
     
@@ -16,10 +17,10 @@ struct StudentViews: View {
     
     var searchResults: [Group] {
         if searchText.isEmpty {
-            return stuViewModel.myGroups
+            return stuViewModel.activeGroups
         }
         else {
-            return stuViewModel.myGroups.filter { $0.Name.contains(searchText) }
+            return stuViewModel.activeGroups.filter { $0.Name.contains(searchText) }
         }
     }
     
@@ -27,27 +28,39 @@ struct StudentViews: View {
         TabView{
             NavigationView{
                 List{
-                    ForEach(searchResults, id: \.self){ group in
-                        NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
-                            GroupRow(group: group)
-                        }
-                    }
-                }.navigationBarTitle(stuViewModel.user.First + "'s Groups")
-                    .searchable(text: $searchText)
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Menu {
-                                Picker(selection: $sort, label: Text("Sorting options")) {
-                                    Text("Date").tag(1)
-                                    Text("Alphabetical").tag(2)
-                                }
+                    Section(header: Text("My Active Groups")){
+                        ForEach(searchResults, id: \.self){ group in
+                            NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
+                                GroupRow(group: group)
                             }
-                        label: {
-                            Label("Sort", systemImage: "arrow.up.arrow.down")
-                        }
                         }
                     }
+                }
+                .searchable(text: $searchText)
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Picker(selection: $sort, label: Text("Sorting options")) {
+                                Text("Date").tag(1)
+                                Text("Alphabetical").tag(2)
+                            }
+                        }
+                    label: {
+                        Label("Sort", systemImage: "arrow.up.arrow.down")
+                    }
+                    }
+                }
+                List{
+                    Section(header: Text("My Inactive Groups")){
+                        ForEach(stuViewModel.inactiveGroups){ group in
+                            NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
+                                GroupRow(group: group)
+                            }
+                        }
+                    }
+                }
             }
+            .onAppear(perform: { stuViewModel.fetchStudent(currID: stuViewModel.user.id!) } )
             .tabItem {
                 Image(systemName: "list.bullet")
             }
