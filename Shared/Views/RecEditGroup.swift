@@ -21,7 +21,6 @@ struct RecEditGroup: View {
                 .padding()
                 .background(Color(.secondarySystemBackground))
             Spacer()
-            Spacer()
             Button (action: {
                 recViewModel.recEditGroup(curGroup: group, name: name, des: description);
                 dismiss()

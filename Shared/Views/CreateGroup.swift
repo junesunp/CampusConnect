@@ -16,12 +16,15 @@ struct CreateGroup: View {
     
     var body: some View {
         VStack {
+            Text("Create Group").font(.title)
             TextField("Group Name", text: $name)
                 .padding()
                 .background(Color(.secondarySystemBackground))
             TextField("Description", text: $description)
                 .padding()
                 .background(Color(.secondarySystemBackground))
+            Spacer()
+
             Button (action: {
                 recViewModel.recCreateGroup(name: name, des: description);
                 dismiss()
