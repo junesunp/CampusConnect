@@ -21,6 +21,7 @@ struct Recruiter: Identifiable, Codable {
   var Company: String
   var Position: String
   var Password: String
+  var Picture: String
     
   enum CodingKeys: String, CodingKey {
     case id
@@ -31,6 +32,7 @@ struct Recruiter: Identifiable, Codable {
     case Company
     case Position
     case Password
+    case Picture
   }
     
 }

@@ -20,6 +20,7 @@ struct Student: Identifiable, Codable {
  var Phone: String
  var School: String
  var Password: String
+ var Picture: String
  var Groups: [DocumentReference]
 
  enum CodingKeys: String, CodingKey {
@@ -32,6 +33,7 @@ struct Student: Identifiable, Codable {
   case School
   case Grad
   case Password
+  case Picture
   case Groups
  }
 }

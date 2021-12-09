@@ -8,10 +8,11 @@ import SwiftUI
 struct Profile: View {
     @EnvironmentObject var stuViewModel: StudentsViewModel
     @EnvironmentObject var sviewModel: AppViewModel
-    @State private var image: Image?
+    @State var image: Image?
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     @State private var editProfileSheet = false
+
 
     var body: some View {
         VStack{
@@ -113,5 +114,6 @@ struct Profile: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
+        stuViewModel.setProfileImage(profpic: inputImage, id: stuViewModel.user.id!)
     }
 }

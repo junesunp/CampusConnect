@@ -14,7 +14,8 @@ class RecruitersViewModel: ObservableObject {
   let db = Firestore.firestore()
   @Published var activeGroups = [Group]()
   @Published var inactiveGroups = [Group]()
-  @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
+    @Published var user: Recruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"", Picture:"")
+  var profilePicture = UIImage(named: "")
   var errorMessage = ""
 
     func fetchRecruiter(email: String) {
@@ -109,7 +110,14 @@ class RecruitersViewModel: ObservableObject {
             "Name": name,
             "Description": des ?? "",
             "Recruiter": recRef,
-            "Students": [DocumentReference]()
+            "Students": [DocumentReference](),
+            "Picture": ""
+        ])
+    }
+    
+    func setProfileImage(profpic: UIImage, id: String) {
+        db.collection("Recruiter").document(id).updateData([
+            "Picture": profpic.jpegData(compressionQuality: 0.1)!.base64EncodedString()
         ])
     }
     

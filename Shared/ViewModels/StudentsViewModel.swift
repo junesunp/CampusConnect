@@ -1,9 +1,6 @@
-//
 // StudentsViewModel.swift
 // NetworkApp
-//
-// Created by John Park on 10/19/21.
-//
+// Created by John Park on 10/19/21
 import Foundation
 import Firebase
 import FirebaseFirestore
@@ -15,7 +12,8 @@ class StudentsViewModel: ObservableObject{
     @Published var students = [Student]()
     @Published var activeGroups = [Group]()
     @Published var inactiveGroups = [Group]()
-    @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+    @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Picture: "", Groups: [])
+    var profilePicture = UIImage(named: "")
     var errorMessage = ""
     var correctUserType = false
     
@@ -154,7 +152,7 @@ class StudentsViewModel: ObservableObject{
          */
         
     }
-
+    
     
     func addStudent(student: Student){
         do {
@@ -175,6 +173,7 @@ class StudentsViewModel: ObservableObject{
             "School": schoolName,
             "Password": password,
             "Phone": "123-456-1890",
+            "Picture": "",
             "Groups": [Group]()
         ])
         { err in
@@ -186,6 +185,49 @@ class StudentsViewModel: ObservableObject{
             }
         }
     }
+    
+    func setProfileImage(profpic: UIImage, id: String) {
+        db.collection("Student").document(id).updateData([
+            "Picture": profpic.jpegData(compressionQuality: 0.1)!.base64EncodedString()
+        ])
+    }
+    /*
+    func fetchProfileImage(id: String){
+        //@Binding var result: UIImage
+        //@State var temp: String
+        let docRefs = db.collection("Student").whereField("id", isEqualTo: id)
+        docRefs.getDocuments { (documents, error) in
+            @State var result: UIImage
+            @State var temp: String
+            if let error = error as NSError? {
+                self.errorMessage = "Error getting document"
+            }
+            else {
+                for document in documents!.documents {
+                    if document == document{
+                        do {
+                            let dataDescription = document.data()
+                            temp = "\(dataDescription["Picture"]!)"
+                            print(temp)
+                            if temp == ""{
+                                self.profilePicture = nil
+                            }
+                            else{
+                                if let data = Data(base64Encoded: temp, options: .ignoreUnknownCharacters){
+                                    self.profilePicture = (UIImage(data: data)!)
+                                }
+                            }
+                     
+                        }
+                        catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+        }
+    }
+     */
     
     
     func createQRCode(from string: String) -> UIImage{

@@ -73,7 +73,7 @@ struct StudentViews: View {
                 .tabItem {
                     Image(systemName: "qrcode.viewfinder")
                 }
-            Profile()
+            Profile(image: Image(uiImage: UIImage(data: Data(base64Encoded: stuViewModel.user.Picture, options: .ignoreUnknownCharacters)!) ?? UIImage()) )
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                 }

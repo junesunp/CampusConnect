@@ -10,7 +10,7 @@ struct RecruiterProfile: View {
     @EnvironmentObject var recViewModel: RecruitersViewModel
     @EnvironmentObject var sviewModel: AppViewModel
     
-    @State private var image: Image?
+    @State var image: Image?
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     
@@ -107,5 +107,6 @@ struct RecruiterProfile: View {
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
+        recViewModel.setProfileImage(profpic: inputImage, id: recViewModel.user.id!)
     }
 }

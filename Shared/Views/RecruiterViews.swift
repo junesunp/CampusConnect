@@ -92,10 +92,11 @@ struct RecruiterViews: View {
             .tabItem {
                 Image(systemName: "list.bullet")
             }
-            RecruiterProfile()
+            RecruiterProfile(image: Image(uiImage: UIImage(data: Data(base64Encoded: recViewModel.user.Picture, options: .ignoreUnknownCharacters)!) ?? UIImage()) )
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                 }
+            
         }
     }
 }

@@ -15,8 +15,8 @@ class GroupsViewModel: ObservableObject{
     @Published var students = [Student]()
     @Published var myGroups = [Recruiter]()
     @Published var studentNotes = ""
-    @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"")
-    @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Groups: [])
+    @Published var viewedGroupRecruiter = Recruiter(id: "", Email:"", First:"", Last:"", Phone:"", Company:"", Position:"", Password:"", Picture:"")
+    @Published var user: Student = Student(id: "", Email:"", First:"", Last:"", Grad:"", Major:"", Phone:"", School:"", Password:"", Picture: "", Groups: [])
     
     var errorMessage = ""
     

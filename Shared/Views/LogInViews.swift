@@ -131,15 +131,11 @@ struct LogInViews: View {
                         guard !email.isEmpty, !password.isEmpty else {
                             return
                         }
-                        
                             stuViewModel.verifyLoginEmail(email: email, role: sviewModel.role)
-                    
-                        
                         if stuViewModel.correctUserType {
                             sviewModel.signIn(email: email, password: password)
                             
                             if sviewModel.role == "Student"{
-                                print("Role is STUDENT")
                                 stuViewModel.fetchStudent(currID: email)
                             }
                             else{
