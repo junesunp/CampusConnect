@@ -122,19 +122,20 @@ struct LogInViews: View {
                             )
                         if asStudent {
                             Text("Student")
+														.fontWeight(.bold)
                         }
                         else{
                             Text("Recruiter")
+														.fontWeight(.bold)
                         }
                     }
                     Button(action: {
                         guard !email.isEmpty, !password.isEmpty else {
                             return
                         }
-                            stuViewModel.verifyLoginEmail(email: email, role: sviewModel.role)
+												stuViewModel.verifyLoginEmail(email: email, role: sviewModel.role)
                         if stuViewModel.correctUserType {
                             sviewModel.signIn(email: email, password: password)
-                            
                             if sviewModel.role == "Student"{
                                 stuViewModel.fetchStudent(currID: email)
                             }
@@ -143,7 +144,7 @@ struct LogInViews: View {
                             }
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3
                         ) {
                             if sviewModel.isSignedIn == false{
                                 self.isSignedIn = false
@@ -157,11 +158,14 @@ struct LogInViews: View {
                             .background(Color.blue)
                     })
                     .cornerRadius(8)
-
                     NavigationLink("Create Account", destination: StartSignUpView())
+										.padding()
+										Text("Making professional contact sharing faster and cleaner for your job search. Join today to get connected!")
+										.italic()
+										.foregroundColor(.blue)
+										.frame(alignment: .center)
                 }
-                .padding()
-                
+								.padding()
                 Spacer()
             }
             .navigationTitle("Welcome!")
@@ -173,18 +177,22 @@ struct StartSignUpView: View {
     @State var password = ""
     @State var fname = ""
     @State var lname = ""
-    var gradYear = ["2022", "2023", "2024", "2025"]
+    var gradYear = ["2022", "2023", "2024", "2025", "2026", "2027"]
     @State private var selectedYearIndex = 0
     @State var schoolName = ""
     @State var major = ""
-    
-    
     @EnvironmentObject var sviewModel: AppViewModel
     @EnvironmentObject var stuViewModel: StudentsViewModel
     var body: some View {
         //NavigationView {
         //            VStack {
         VStack {
+					Image("AppIconImage")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 150, height: 150)
+						Text("Answer some simple questions...")
+						.font(.headline)
             TextField("First Name", text: $fname)
                 .padding()
                 .background(Color(.secondarySystemBackground))
@@ -238,7 +246,7 @@ struct StartSignUpView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 VStack {
-   //                 Text("Create Account").font(.largeTitle).bold()
+                    Text("Create Account").font(.largeTitle).bold()
                     //Text("Subtitle").font(.subheadline)
                 }
             }}
@@ -255,7 +263,7 @@ struct SchoolSignUpView: View {
     @Binding var fname : String
     @Binding var lname : String
     @State var major = ""
-    var gradYear = ["2022", "2023", "2024", "2025"]
+    var gradYear = ["2022", "2023", "2024", "2025", "2026", "2027", "2028"]
     @State private var selectedYearIndex = 0
     @State var schoolName = ""
     let auth = Auth.auth()
@@ -263,37 +271,49 @@ struct SchoolSignUpView: View {
     @EnvironmentObject var sviewModel: AppViewModel
     var body: some View {
         VStack {
+						Image("AppIconImage")
+								.resizable()
+								.scaledToFit()
+								.frame(width: 150, height: 150)
+						Text("Tell us about yourself...")
+						.font(.headline)
             TextField("School", text: $schoolName)
                 .padding()
                 .background(Color(.secondarySystemBackground))
-            Picker(selection: $selectedYearIndex, label: Text("")) {
-                ForEach(0 ..< gradYear.count) {
-                    Text(self.gradYear[$0])
-                }
-            }
-            Text("Your Graduation Year: \(gradYear[selectedYearIndex])")
-            TextField("major", text: $major)
+						HStack{
+							Text("Graduation Year:")
+							Picker(selection: $selectedYearIndex, label: Text("Your graduation year?")) {
+								ForEach(0 ..< gradYear.count) {
+										Text(self.gradYear[$0])
+								}
+							 }.pickerStyle(DefaultPickerStyle())
+								.padding()
+						}
+            TextField("Major:", text: $major)
                 .padding()
                 .background(Color(.secondarySystemBackground))
+						//.background(Color(.secondarySystemBackground))
             Button(action: {
-                stuViewModel.createStudent(id: email, email: email, password: password, fname: fname, lname: lname, schoolName: schoolName, major: major, gradYear: gradYear[selectedYearIndex])
+							stuViewModel.createStudent(id: email, email: email, password: password, fname: fname, lname: lname, schoolName: schoolName, major: major, gradYear: gradYear[selectedYearIndex])
                 sviewModel.signUp(email: email, password: password)
                 stuViewModel.fetchStudent(currID: email)
             }, label: {
-                Text("Create Account")
+                Text("Create Campus Connect Account!")
                     .foregroundColor(Color.white)
-                    .frame(width: 200, height: 50)
+                    .frame(width: 300, height: 50)
                     .background(Color.blue)
             })
                 .cornerRadius(8)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         VStack {
-                            Text("Create Account").font(.largeTitle).bold()
+                            Text("Create Account!").font(.largeTitle).bold()
                         }
                     }}
                 .padding()
+								
         }
+				.padding()
     }
 }
 
@@ -316,6 +336,12 @@ struct RecruiterSignUpView: View {
         //        NavigationView {
         //VStack {
         VStack {
+					Image("AppIconImage")
+							.resizable()
+							.scaledToFit()
+							.frame(width: 150, height: 150)
+						Text("Tell us about yourself...")
+						.font(.headline)
             TextField("Company", text: $company)
                 .padding()
                 .background(Color(.secondarySystemBackground))
@@ -328,9 +354,9 @@ struct RecruiterSignUpView: View {
                 sviewModel.signUp(email: email, password: password)
                 
             }, label: {
-                Text("Create Account")
+                Text("Create Campus Connect Account!")
                     .foregroundColor(Color.white)
-                    .frame(width: 200, height: 50)
+                    .frame(width: 300, height: 50)
                     .cornerRadius(8)
                     .background(Color.blue)
             })
@@ -344,6 +370,7 @@ struct RecruiterSignUpView: View {
             //}
                 .padding()
         }
+				.padding()
     }
 }
 

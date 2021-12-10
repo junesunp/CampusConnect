@@ -15,14 +15,25 @@ struct StudentViews: View {
     @State var sort: Int = 2
     @State var searchText = ""
     
-    var searchResults: [Group] {
-        if searchText.isEmpty {
-            return stuViewModel.activeGroups
-        }
-        else {
-            return stuViewModel.activeGroups.filter { $0.Name.contains(searchText) }
-        }
-    }
+	var sortResults: [Group] {
+			if searchText.isEmpty {
+					if sort == 1{
+							return stuViewModel.activeGroups.sorted()
+					}
+					else if sort == 2 {
+							return stuViewModel.activeGroups.sorted(by: { $0.Created < $1.Created } )
+					}
+					else if sort == 3 {
+							return stuViewModel.activeGroups.sorted(by: { $0.Updated < $1.Updated } )
+					}
+					else{
+							return stuViewModel.activeGroups.sorted() // default alphabetical
+					}
+			}
+			else {
+					return stuViewModel.activeGroups.filter { $0.Name.contains(searchText) }
+			}
+	}
     
     var body: some View {
         TabView{
@@ -30,8 +41,8 @@ struct StudentViews: View {
                 VStack{
                     List{
                         Section(header: Text("My Active Groups")){
-                            ForEach(searchResults, id: \.self){ group in
-                                NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
+                            ForEach(sortResults, id: \.self){ group in
+															NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter, image: Image(uiImage: UIImage(data: Data(base64Encoded: groupViewModel.viewedGroupRecruiter.Picture, options: .ignoreUnknownCharacters)!) ?? UIImage())).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
                                     GroupRow(group: group)
                                 }
                             }
@@ -49,8 +60,9 @@ struct StudentViews: View {
                             ToolbarItem(placement: .primaryAction) {
                                 Menu {
                                     Picker(selection: $sort, label: Text("Sorting options")) {
-                                        Text("Date").tag(1)
-                                        Text("Alphabetical").tag(2)
+																			Text("Alphabetical").tag(1)
+																			Text("Date Created").tag(2)
+																			Text("Date Updated").tag(3)
                                     }
                                 }
                             label: {
@@ -61,7 +73,7 @@ struct StudentViews: View {
                     List{
                         Section(header: Text("My Inactive Groups")){
                             ForEach(stuViewModel.inactiveGroups){ group in
-                                NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
+                                NavigationLink(destination: GroupDetail(group: group, groupRecruiter: groupViewModel.viewedGroupRecruiter, image: Image(uiImage: UIImage(data: Data(base64Encoded: groupViewModel.viewedGroupRecruiter.Picture, options: .ignoreUnknownCharacters)!) ?? UIImage())).onAppear(perform: { groupViewModel.getRecruiter(group: group) })) {
                                     GroupRow(group: group)
                                 }
                             }

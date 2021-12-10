@@ -79,6 +79,7 @@
 		B67D0580273361FE00B2E311 /* RecruiterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D057E273361FE00B2E311 /* RecruiterViewModel.swift */; };
 		B6B3BE3C27460FC3003DCBD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */; };
 		B6B3BE3D27460FCA003DCBD3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63E5C6D272BA8FB00830C77 /* GoogleService-Info.plist */; };
+		CFC8C149276301E2009093ED /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = CFC8C148276301E2009093ED /* iPhoneNumberField */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 				B67D0542272F77F400B2E311 /* FirebaseAnalyticsSwift-Beta in Frameworks */,
 				B67D0572272F77F400B2E311 /* FirebaseStorageSwift-Beta in Frameworks */,
 				B67D0540272F77F400B2E311 /* FirebaseAnalytics in Frameworks */,
+				CFC8C149276301E2009093ED /* iPhoneNumberField in Frameworks */,
 				B67D053D272F644200B2E311 /* AVKit.framework in Frameworks */,
 				B67D0566272F77F400B2E311 /* FirebaseMLModelDownloader in Frameworks */,
 				B67D0546272F77F400B2E311 /* FirebaseAppCheck in Frameworks */,
@@ -391,6 +393,7 @@
 				B67D056F272F77F400B2E311 /* FirebaseStorageCombine-Community */,
 				B67D0571272F77F400B2E311 /* FirebaseStorageSwift-Beta */,
 				5E9D8FED2735DFD300AA6120 /* CodeScanner */,
+				CFC8C148276301E2009093ED /* iPhoneNumberField */,
 			);
 			productName = "CampusConnect (iOS)";
 			productReference = B63E5C38272BA4E700830C77 /* CampusConnect.app */;
@@ -487,6 +490,7 @@
 			packageReferences = (
 				B67D053E272F77F400B2E311 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				5E9D8FEC2735DFD300AA6120 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+				CFC8C147276301E1009093ED /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = B63E5C39272BA4E700830C77 /* Products */;
 			projectDirPath = "";
@@ -1033,6 +1037,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		CFC8C147276301E1009093ED /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1170,6 +1182,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B67D053E272F77F400B2E311 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageSwift-Beta";
+		};
+		CFC8C148276301E2009093ED /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFC8C147276301E1009093ED /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

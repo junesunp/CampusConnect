@@ -12,12 +12,24 @@ struct GroupDetail: View {
   var group: Group
   let width = UIScreen.main.bounds.width * 0.75
   let groupRecruiter: Recruiter
+	@State var image: Image?
     
   var body: some View {
     VStack {
+				image?
+				.resizable()
+				.scaledToFit()
+				.clipShape(Circle())
+				.overlay(
+						Circle()
+								.stroke(Color.white, lineWidth: 4)
+								.shadow(radius: 10)
+				)
+				.padding()
         HStack {
             Text("Recruiter:")
               .fontWeight(.bold)
+							.foregroundColor(Color.blue)
               .padding(.leading)
             Spacer()
             Text(groupRecruiter.First + " " + groupRecruiter.Last)
@@ -26,6 +38,7 @@ struct GroupDetail: View {
         HStack {
             Text("Company:")
               .fontWeight(.bold)
+							.foregroundColor(Color.blue)
               .padding(.leading)
             Spacer()
             Text(groupRecruiter.Company)
@@ -34,6 +47,7 @@ struct GroupDetail: View {
         HStack {
             Text("Position:")
               .fontWeight(.bold)
+							.foregroundColor(Color.blue)
               .padding(.leading)
             Spacer()
             Text(groupRecruiter.Position)
@@ -42,6 +56,7 @@ struct GroupDetail: View {
         HStack {
             Text("Email:")
               .fontWeight(.bold)
+							.foregroundColor(Color.blue)
               .padding(.leading)
             Spacer()
             Text(groupRecruiter.Email)
@@ -50,6 +65,7 @@ struct GroupDetail: View {
         HStack {
             Text("Phone:")
               .fontWeight(.bold)
+							.foregroundColor(Color.blue)
               .padding(.leading)
             Spacer()
             Text(groupRecruiter.Phone)

@@ -110,8 +110,10 @@ class RecruitersViewModel: ObservableObject {
             "Name": name,
             "Description": des ?? "",
             "Recruiter": recRef,
-            "Students": [DocumentReference](),
-            "Picture": ""
+            "Actives": [DocumentReference](),
+						"Inactives": [DocumentReference](),
+						"Notes": Dictionary<String, String>()
+            //"Picture": ""
         ])
     }
     
@@ -145,25 +147,17 @@ class RecruitersViewModel: ObservableObject {
       }
 
     func editRecruiter(rec: Recruiter, company: String = "", pos: String = "", email: String = "", phone: String = "") -> String {
-        if company != "" && pos != "" && email != "" && phone != ""{
+        if company != "" && pos != "" && email == "" && phone != ""{
           db.collection("Recruiter").document("\(rec.id!)").updateData([
                 "Company": company,
                 "Position": pos,
-                "Email": email,
                 "Phone": phone
               ])
         }
-        else if company != "" && pos != "" && email != "" && phone == ""{
+        else if company != "" && pos != "" && email == "" && phone == ""{
           db.collection("Recruiter").document("\(rec.id!)").updateData([
                 "Company": company,
                 "Position": pos,
-                "Email": email
-              ])
-        }
-        else if company == "" && pos != "" && email != "" && phone == ""{
-          db.collection("Recruiter").document("\(rec.id!)").updateData([
-                "Position": pos,
-                "Email": email
               ])
         }
         else if company != "" && pos == "" && email == "" && phone == ""{
@@ -174,11 +168,6 @@ class RecruitersViewModel: ObservableObject {
         else if company == "" && pos != "" && email == "" && phone == ""{
           db.collection("Recruiter").document("\(rec.id!)").updateData([
                 "Position": pos,
-              ])
-        }
-        else if company == "" && pos == "" && email != "" && phone == ""{
-          db.collection("Recruiter").document("\(rec.id!)").updateData([
-                "Email": email,
               ])
         }
         else if company == "" && pos == "" && email == "" && phone != ""{

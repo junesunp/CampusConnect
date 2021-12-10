@@ -163,7 +163,7 @@ class StudentsViewModel: ObservableObject{
         }
     }
     
-    func createStudent(id: String, email: String, password: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
+	func createStudent(id: String, email: String, password: String, fname: String, lname: String, schoolName: String, major: String, gradYear: String){
         db.collection("Student").document(id).setData([
             "Email": email,
             "FName": fname,
@@ -172,7 +172,7 @@ class StudentsViewModel: ObservableObject{
             "Major": major,
             "School": schoolName,
             "Password": password,
-            "Phone": "123-456-1890",
+            "Phone": "",
             "Picture": "",
             "Groups": [Group]()
         ])
@@ -248,21 +248,19 @@ class StudentsViewModel: ObservableObject{
     }
     
     func editStudent(stu: Student, school: String = "", major: String = "", grad: String = "", email: String = "", phone: String = "") -> String {
-        if school != "" && major != "" && grad != "" && email != "" && phone != ""{
+        if school != "" && major != "" && grad != "" && email == "" && phone != ""{
             db.collection("Student").document("\(stu.id!)").updateData([
                 "School": school,
                 "Major": major,
                 "Grad": grad,
-                "Email": email,
                 "Phone": phone
             ])
         }
-        else if school != "" && major != "" && grad != "" && email != "" && phone == ""{
+        else if school != "" && major != "" && grad != "" && email == "" && phone == ""{
             db.collection("Student").document("\(stu.id!)").updateData([
                 "School": school,
                 "Major": major,
-                "Grad": grad,
-                "Email": email
+                "Grad": grad
             ])
         }
         else if school == "" && major != "" && grad != "" && email == "" && phone == ""{
@@ -271,39 +269,22 @@ class StudentsViewModel: ObservableObject{
                 "Grad": grad
             ])
         }
-        else if school != "" && major != "" && grad != "" && email != "" && phone == ""{
-            db.collection("Student").document("\(stu.id!)").updateData([
-                "Email": email,
-                "Phone": phone
-            ])
-        }
-        else if school != "" && major == "" && grad == "" && email != "" && phone == ""{
-            db.collection("Student").document("\(stu.id!)").updateData([
-                "School": school,
-                "Email": email
-            ])
-        }
         else if school != "" && major == "" && grad == "" && email == "" && phone == ""{
             db.collection("Student").document("\(stu.id!)").updateData([
                 "School": school
             ])
         }
-        if school == "" && major != "" && grad == "" && email == "" && phone == ""{
+        else if school == "" && major != "" && grad == "" && email == "" && phone == ""{
             db.collection("Student").document("\(stu.id!)").updateData([
                 "Major": major
             ])
         }
-        if school == "" && major == "" && grad != "" && email == "" && phone == ""{
+        else if school == "" && major == "" && grad != "" && email == "" && phone == ""{
             db.collection("Student").document("\(stu.id!)").updateData([
                 "Grad": grad
             ])
         }
-        if school == "" && major == "" && grad == "" && email != "" && phone == ""{
-            db.collection("Student").document("\(stu.id!)").updateData([
-                "Email": email
-            ])
-        }
-        if school == "" && major == "" && grad == "" && email == "" && phone != ""{
+        else if school == "" && major == "" && grad == "" && email == "" && phone != ""{
             db.collection("Student").document("\(stu.id!)").updateData([
                 "Phone": phone
             ])

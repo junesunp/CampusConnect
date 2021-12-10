@@ -15,6 +15,7 @@ struct RecStudentDetail: View {
 
     var student: Student
     var group: Group
+		@State var image: Image?
         
     let width = UIScreen.main.bounds.width * 0.75
       
@@ -30,9 +31,20 @@ struct RecStudentDetail: View {
     var body: some View {
         VStack {
             Spacer().frame(height: 6)
+						image?
+						.resizable()
+						.scaledToFit()
+						.clipShape(Circle())
+						.overlay(
+								Circle()
+										.stroke(Color.white, lineWidth: 4)
+										.shadow(radius: 10)
+						)
+						.padding()
             HStack {
                 Text("School:")
                   .fontWeight(.bold)
+									.foregroundColor(Color.blue)
                   .padding(.leading)
                 Spacer()
                 Text(student.School)
@@ -41,6 +53,7 @@ struct RecStudentDetail: View {
             HStack {
                 Text("Class:")
                   .fontWeight(.bold)
+									.foregroundColor(Color.blue)
                   .padding(.leading)
                 Spacer()
                 Text(student.Grad)
@@ -49,6 +62,7 @@ struct RecStudentDetail: View {
             HStack {
                 Text("Major:")
                   .fontWeight(.bold)
+									.foregroundColor(Color.blue)
                   .padding(.leading)
                 Spacer()
                 Text(student.Major)
@@ -57,6 +71,7 @@ struct RecStudentDetail: View {
             HStack {
                 Text("Email:")
                   .fontWeight(.bold)
+									.foregroundColor(Color.blue)
                   .padding(.leading)
                 Spacer()
                 Text(student.Email)
@@ -65,6 +80,7 @@ struct RecStudentDetail: View {
             HStack {
                 Text("Phone:")
                   .fontWeight(.bold)
+									.foregroundColor(Color.blue)
                   .padding(.leading)
                 Spacer()
                 Text(student.Phone)

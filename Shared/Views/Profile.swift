@@ -63,10 +63,12 @@ struct Profile: View {
             HStack {
                 Text(stuViewModel.user.First + " " + stuViewModel.user.Last)
                     .fontWeight(.bold)
+										//.foregroundColor(Color.blue)
             }.padding()
             HStack {
                 Text("School:")
                     .fontWeight(.bold)
+										.foregroundColor(Color.blue)
                     .padding(.leading)
                 Spacer()
                 Text(stuViewModel.user.School)
@@ -75,6 +77,7 @@ struct Profile: View {
             HStack {
                 Text("Class:")
                     .fontWeight(.bold)
+										.foregroundColor(Color.blue)
                     .padding(.leading)
                 Spacer()
                 Text(stuViewModel.user.Grad)
@@ -83,6 +86,7 @@ struct Profile: View {
             HStack {
                 Text("Major:")
                     .fontWeight(.bold)
+										.foregroundColor(Color.blue)
                     .padding(.leading)
                 Spacer()
                 Text(stuViewModel.user.Major)
@@ -91,6 +95,7 @@ struct Profile: View {
             HStack {
                 Text("Email:")
                     .fontWeight(.bold)
+										.foregroundColor(Color.blue)
                     .padding(.leading)
                 Spacer()
                 Text(stuViewModel.user.Email)
@@ -99,6 +104,7 @@ struct Profile: View {
             HStack {
                 Text("Phone:")
                     .fontWeight(.bold)
+										.foregroundColor(Color.blue)
                     .padding(.leading)
                 Spacer()
                 Text(stuViewModel.user.Phone)

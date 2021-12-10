@@ -38,7 +38,7 @@ struct RecGroupDetail: View {
                 }
                 List{
                     ForEach(groupViewModel.students) { student in
-                        NavigationLink(destination: RecStudentDetail(studentDescription:         group.Notes[student.id!] ?? "Enter Notes on Applicant", student: student, group: group)) {
+                        NavigationLink(destination: RecStudentDetail(studentDescription:         group.Notes[student.id!] ?? "Enter Notes on Applicant", student: student, group: group, image: Image(uiImage: UIImage(data: Data(base64Encoded: student.Picture, options: .ignoreUnknownCharacters)!) ?? UIImage()))) {
                             //NavigationLink(destination: RecStudentDetail(studentDescription: groupViewModel.studentNotes, student: student, group: group
                             //).onAppear(perform: {groupViewModel.getStudentNotes(group: group, student: student)})) {
                             RecStudentRow(student: student, image: Image(uiImage: UIImage(data: Data(base64Encoded: student.Picture, options: .ignoreUnknownCharacters)!) ?? UIImage()))
