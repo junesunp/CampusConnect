@@ -18,16 +18,18 @@ struct ContentView: View {
     @EnvironmentObject var groupViewModel: GroupsViewModel
     var body: some View {
         // TODO: Add way to check user role
-        if sviewModel.isSignedIn{
-            if sviewModel.role == "Student"{
-                StudentViews()
+        ZStack{
+            if sviewModel.isSignedIn{
+                if sviewModel.role == "Student"{
+                    StudentViews()
+                }
+                else{
+                    RecruiterViews()
+                }
             }
             else{
-                RecruiterViews()
+                LogInViews()
             }
-        }
-        else{
-            LogInViews()
         }
     }
 }

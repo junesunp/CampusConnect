@@ -41,16 +41,21 @@ struct StudentViews: View {
 
                     .searchable(text: $searchText)
                     .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Menu {
-                                Picker(selection: $sort, label: Text("Sorting options")) {
-                                    Text("Date").tag(1)
-                                    Text("Alphabetical").tag(2)
+                        ToolbarItem(placement: .navigationBarLeading) { // <3>
+                                            VStack {
+                                                Text("Campus Connect").font(.title)
+                                            }
+                                        }
+                            ToolbarItem(placement: .primaryAction) {
+                                Menu {
+                                    Picker(selection: $sort, label: Text("Sorting options")) {
+                                        Text("Date").tag(1)
+                                        Text("Alphabetical").tag(2)
+                                    }
                                 }
+                            label: {
+                                Label("Sort", systemImage: "arrow.up.arrow.down")
                             }
-                        label: {
-                            Label("Sort", systemImage: "arrow.up.arrow.down")
-                        }
                         }
                     }
                     List{
@@ -62,8 +67,6 @@ struct StudentViews: View {
                             }
                         }
                     }
-                   // .onAppear(perform: { stuViewModel.getInactiveGroups(number: 1) })
-
                 }
             }
             .tabItem {

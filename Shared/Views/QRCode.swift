@@ -23,8 +23,9 @@ struct QRCode: View {
                 .frame(width: 300, height: 300)
                 .overlay(
                     Rectangle()
-                        .stroke(Color.black, lineWidth: 4)
+                        .stroke(Color.black, lineWidth: 32)
                         .shadow(radius: 5)
+                        .cornerRadius(24)
                 )
         }
     }

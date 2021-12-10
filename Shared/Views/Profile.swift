@@ -17,6 +17,16 @@ struct Profile: View {
     var body: some View {
         VStack{
             HStack{
+                Button(action: {
+                    sviewModel.role = "Student"
+                    stuViewModel.correctUserType = false
+                    sviewModel.signOut()
+                }, label: {
+                    Text("Logout")
+                        .foregroundColor(Color.red)
+                })
+
+                    .padding()
                 Spacer()
                 Button("Edit") {
                     editProfileSheet.toggle()
@@ -94,19 +104,10 @@ struct Profile: View {
                 Text(stuViewModel.user.Phone)
                     .padding(.trailing)
             }.padding()
-            
-            Button(action: {
-                sviewModel.role = "Student"
-                stuViewModel.correctUserType = false
-                sviewModel.signOut()
-            }, label: {
-                Text("Logout")
-                    .foregroundColor(Color.white)
-                    .frame(width: 200, height: 50)
-                    .cornerRadius(8)
-                    .background(Color.blue)
-            }).padding()
+            Spacer()
+            Spacer()
         }
+        
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
             ImagePicker(image: self.$inputImage)
         }

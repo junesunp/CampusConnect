@@ -18,6 +18,14 @@ struct RecruiterProfile: View {
     var body: some View {
         VStack{
             HStack{
+                Button(action: {
+                    sviewModel.role = "Student"
+                    stuViewModel.correctUserType = false
+                    sviewModel.signOut()
+                }, label: {
+                    Text("Logout")
+                        .foregroundColor(Color.red)
+                }).padding()
                 Spacer()
                 Button("Edit") {
                     editRecProfileSheet.toggle()
@@ -88,22 +96,14 @@ struct RecruiterProfile: View {
                     .padding(.trailing)
             }.padding()
             Spacer()
-            Button(action: {
-                sviewModel.role = "Student"
-                stuViewModel.correctUserType = false
-                sviewModel.signOut()
-            }, label: {
-                Text("Logout")
-                    .foregroundColor(Color.white)
-                    .frame(width: 200, height: 50)
-                    .cornerRadius(8)
-                    .background(Color.blue)
-            }).padding().padding()
+            Spacer()
+
         }
         .sheet(isPresented: $showingImagePicker, onDismiss: loadImage){
             ImagePicker(image: self.$inputImage)
         }
     }
+    
     func loadImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)

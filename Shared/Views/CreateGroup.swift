@@ -35,6 +35,7 @@ struct CreateGroup: View {
                     .cornerRadius(8)
                     .background(Color.blue)
             })
+                .cornerRadius(8)
         }
         .padding()
         //Spacer()

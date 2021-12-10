@@ -117,7 +117,7 @@ struct LogInViews: View {
                         
                             .padding()
                             .overlay(
-                                RoundedRectangle(cornerRadius: 10)
+                                RoundedRectangle(cornerRadius: 8)
                                     .stroke(asStudent ? Color.green: Color.blue, lineWidth: 2) // <7>
                             )
                         if asStudent {
@@ -154,9 +154,10 @@ struct LogInViews: View {
                         Text("Sign In")
                             .foregroundColor(Color.white)
                             .frame(width: 200, height: 50)
-                            .cornerRadius(8)
                             .background(Color.blue)
                     })
+                    .cornerRadius(8)
+
                     NavigationLink("Create Account", destination: StartSignUpView())
                 }
                 .padding()
@@ -202,7 +203,8 @@ struct StartSignUpView: View {
                     .frame(width: 250)
                     .background(Color.blue)
                     .foregroundColor(Color.white)
-                    .cornerRadius(5)
+                    .cornerRadius(8
+                    )
             }
             .padding([.leading, .trailing], 30)
             .padding([.top], 21)
@@ -221,7 +223,7 @@ struct StartSignUpView: View {
                     .background(Color.white)
                     .foregroundColor(Color.blue)
                     .overlay(
-                        RoundedRectangle(cornerRadius: 5)
+                        RoundedRectangle(cornerRadius: 8)
                             .stroke(Color.black, lineWidth: 1)
                     )
             }
@@ -236,7 +238,7 @@ struct StartSignUpView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 VStack {
-                    Text("Create Account").font(.largeTitle).bold()
+   //                 Text("Create Account").font(.largeTitle).bold()
                     //Text("Subtitle").font(.subheadline)
                 }
             }}
@@ -281,9 +283,9 @@ struct SchoolSignUpView: View {
                 Text("Create Account")
                     .foregroundColor(Color.white)
                     .frame(width: 200, height: 50)
-                    .cornerRadius(8)
                     .background(Color.blue)
             })
+                .cornerRadius(8)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         VStack {

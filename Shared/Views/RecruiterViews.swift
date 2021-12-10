@@ -37,56 +37,65 @@ struct RecruiterViews: View {
     }
     
     var body: some View {
+        
         TabView{
             NavigationView{
-                VStack{
-                    List{
-                        Section(header: Text("My Active Groups")){
-                            ForEach(sortResults, id: \.self){ group in
-                                NavigationLink(destination: RecGroupDetail(group: group)){
-                                    GroupRow(group: group)
+                ZStack{
+                  VStack{
+                        List{
+                            Section(header: Text("My Active Groups")){
+                                ForEach(sortResults, id: \.self){ group in
+                                    NavigationLink(destination: RecGroupDetail(group: group)){
+                                        GroupRow(group: group)
+                                    }
                                 }
                             }
                         }
-                    }
-                    .navigationBarItems(trailing:
-                                            Button("Create Group") {
-                        createGroupSheet.toggle()
-                    }
-                                            .sheet(isPresented: $createGroupSheet) {
-                        CreateGroup()
-                    }
-                    )
-                    .onAppear(perform: { groupViewModel.clearStudents() })
-                    .onAppear(perform: { recViewModel.updateGroups(number: sort) })
-                    .searchable(text: $searchText)
-                    .toolbar {
-                        ToolbarItem(placement: .primaryAction) {
-                            Menu {
-                                Picker(selection: $sort, label: Text("Sorting options")) {
-                                    Text("Alphabetical").tag(1)
-                                    Text("Date Created").tag(2)
-                                    Text("Date Updated").tag(3)
+                        .navigationBarItems(trailing:
+                                                Button("Create Group") {
+                            createGroupSheet.toggle()
+                        }
+                                                .sheet(isPresented: $createGroupSheet) {
+                            CreateGroup()
+                        }
+                        )
+                        .onAppear(perform: { groupViewModel.clearStudents() })
+                        .onAppear(perform: { recViewModel.updateGroups(number: sort) })
+                        .searchable(text: $searchText)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) { // <3>
+                                                VStack {
+                                                    Text("Campus Connect").font(.title)
+                                                }
+                                            }
+                            ToolbarItem(placement: .primaryAction) {
+                                Menu {
+                                    Picker(selection: $sort, label: Text("Sorting options")) {
+                                        Text("Alphabetical").tag(1)
+                                        Text("Date Created").tag(2)
+                                        Text("Date Updated").tag(3)
+                                    }
                                 }
+                            label: {
+                                Label("Sort", systemImage: "arrow.up.arrow.down")
                             }
-                        label: {
-                            Label("Sort", systemImage: "arrow.up.arrow.down")
-                        }
-                        }
-                    }
-                    
-                    List {
-                        Section(header: Text("My Inactive Groups")){
-                            ForEach(recViewModel.inactiveGroups){ group in
-                                NavigationLink(destination: RecGroupDetail(group: group)) {
-                                    GroupRow(group: group)
-                                        .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
-                                }
                             }
                         }
-                    }
-                    .onAppear(perform: { groupViewModel.clearStudents() })
-                    .onAppear(perform: { recViewModel.updateGroups(number: sort) })
+                        
+                        List {
+                            Section(header: Text("My Inactive Groups")){
+                                ForEach(recViewModel.inactiveGroups){ group in
+                                    NavigationLink(destination: RecGroupDetail(group: group)) {
+                                        GroupRow(group: group)
+                                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+                                    }
+                                }
+                            }
+                        }
+                        .onAppear(perform: { groupViewModel.clearStudents() })
+                        .onAppear(perform: { recViewModel.updateGroups(number: sort) })
+                    //}
+                  }
                 }
             }
             .tabItem {
@@ -96,8 +105,11 @@ struct RecruiterViews: View {
                 .tabItem {
                     Image(systemName: "person.crop.circle")
                 }
+
             
-        }
+        }.onAppear(perform: {
+            UITabBar.appearance().barTintColor = .blue
+               })
     }
 }
 
