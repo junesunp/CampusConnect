@@ -47,6 +47,8 @@ struct RecruiterViews: View {
                                 ForEach(sortResults, id: \.self){ group in
                                     NavigationLink(destination: RecGroupDetail(group: group)){
                                         GroupRow(group: group)
+//                                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+                                        //ADDED HERE
                                     }
                                 }
                             }
@@ -59,7 +61,7 @@ struct RecruiterViews: View {
                             CreateGroup()
                         }
                         )
-                        .onAppear(perform: { groupViewModel.clearStudents() })
+                        //.onAppear(perform: { groupViewModel.clearStudents() })
                         .onAppear(perform: { recViewModel.updateGroups(number: sort) })
                         .searchable(text: $searchText)
                         .toolbar {
@@ -87,12 +89,12 @@ struct RecruiterViews: View {
                                 ForEach(recViewModel.inactiveGroups){ group in
                                     NavigationLink(destination: RecGroupDetail(group: group)) {
                                         GroupRow(group: group)
-                                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
+//                                            .onAppear(perform: { groupViewModel.fetchStudents(group: group) })
                                     }
                                 }
                             }
                         }
-                        .onAppear(perform: { groupViewModel.clearStudents() })
+                        //.onAppear(perform: { groupViewModel.clearStudents() })
                         .onAppear(perform: { recViewModel.updateGroups(number: sort) })
                     //}
                   }

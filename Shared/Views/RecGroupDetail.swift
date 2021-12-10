@@ -8,7 +8,9 @@ import SwiftUI
 import FirebaseFirestore
 struct RecGroupDetail: View {
     @EnvironmentObject var groupViewModel : GroupsViewModel
+    @EnvironmentObject var recViewModel : RecruitersViewModel
     var group: Group
+    //var rec: Recruiter
     let width = UIScreen.main.bounds.width * 0.75
     @State private var editGroupSheet = false
     var body: some View {

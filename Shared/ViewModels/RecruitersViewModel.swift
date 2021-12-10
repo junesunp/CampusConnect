@@ -111,8 +111,8 @@ class RecruitersViewModel: ObservableObject {
             "Description": des ?? "",
             "Recruiter": recRef,
             "Actives": [DocumentReference](),
-						"Inactives": [DocumentReference](),
-						"Notes": Dictionary<String, String>()
+            "Inactives": [DocumentReference](),
+            "Notes": Dictionary<String, String>()
             //"Picture": ""
         ])
     }
@@ -193,7 +193,8 @@ class RecruitersViewModel: ObservableObject {
             "Position": role,
             "Company": company,
             "Password": password,
-            "Phone": "123-456-1890",
+            "Phone": "",
+            "Picture": ""
         ])
         { err in
                 if let err = err {

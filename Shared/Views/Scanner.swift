@@ -9,6 +9,7 @@ import CodeScanner
 import UserNotifications
 struct Scanner: View {
     @EnvironmentObject var groupViewModel : GroupsViewModel
+    @EnvironmentObject var recViewModel : RecruitersViewModel
     @State var status = 1
     var group: Group
     func handleScan(result: Result<String, CodeScannerView.ScanError>) {
