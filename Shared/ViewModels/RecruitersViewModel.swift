@@ -110,8 +110,9 @@ class RecruitersViewModel: ObservableObject {
             "Name": name,
             "Description": des ?? "",
             "Recruiter": recRef,
-            "Students": [DocumentReference](),
-            "Picture": ""
+            "Actives": [DocumentReference](),
+            "Inactives": [DocumentReference](),
+            "Notes": Dictionary<String, String>(),
         ])
     }
     

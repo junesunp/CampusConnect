@@ -9,7 +9,7 @@ struct QRCode: View {
     @EnvironmentObject var stuViewModel : StudentsViewModel
     var body: some View {
         VStack{
-            Text("QR Code for " + stuViewModel.user.First + " " + stuViewModel.user.Last)
+            Text(stuViewModel.user.First + " " + stuViewModel.user.Last)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             Text(stuViewModel.user.Grad)
@@ -23,9 +23,7 @@ struct QRCode: View {
                 .frame(width: 300, height: 300)
                 .overlay(
                     Rectangle()
-                        .stroke(Color.black, lineWidth: 32)
-                        .shadow(radius: 5)
-                        .cornerRadius(24)
+                        .stroke(Color.black, lineWidth: 10)
                 )
         }
     }
